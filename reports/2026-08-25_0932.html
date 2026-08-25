@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="archive-nav"><a href="../archive.html">📚 历史简报归档</a></nav>
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-08-25 09:32 CEST &middot; 渲染于 2026-08-25 09:35</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>阿里800亿港元AI增发致港股暴跌拖累亚洲科技股，英伟达财报前芯片承压；比特币重返8万美元创三月新高</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li>阿里巴巴以8.4%折价完成HK$80亿港元（约10.2亿美元）AI增发，股价一度暴跌近10%，拖累Micron、Intel、Amazon等美股芯片股及亚洲科技股，韩国KOSPI盘中重挫超3%</li><li>比特币时隔三个多月重返8万美元，创5月以来新高，本周涨幅达22-23%，为2023年以来最大三日涨幅，ETF净流入近19.2亿美元</li><li>加拿大将于今日（8/25）公布对美报复性关税，总理卡尼称策略从&quot;美元对美元&quot;对等报复转向&quot;更精准打击&quot;，同步扩大失业保险覆盖受损工人</li><li>黄金企稳于$4645-4670区间，金银比回落至约67.5（前值约70），白银报约$68.8，财政赤字担忧仍是主驱动</li><li>阿曼外长今日（8/25）访问德黑兰，伊朗与阿曼就霍尔木兹海峡新航线谈判进入&quot;最后阶段&quot;，油价企稳（WTI约$85、Brent约$92）</li><li>新任Fed主席Warsh确认将于本周五（8/28）Jackson Hole发表首秀演讲，自称&quot;一张白纸&quot;、尚未定调，市场视为9月加息路径的关键风向标</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">阿里巴巴800亿港元AI增发引发亚洲科技股连锁抛售</h3><p class="field-row"><span class="field-label">事件</span>阿里巴巴8/23-24以每股HK$112.70（较收盘价折让8.4%）完成7.1亿股增发，全部募资将投入&quot;全栈AI&quot;基础设施；消息公布后港股暴跌近10%，为港股史上最大单笔主板增发，拖累Micron -5.8%、AMD -3%、Broadcom -2%、SOXX半导体ETF -2.7%（Bloomberg/CNBC/Yahoo Finance，8/23-25）</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>中国科技股（阿里/腾讯）、美股AI/存储芯片（Micron/AMD/Intel）、港股科技板块、AI资本开支债务融资相关标的</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">市场对&quot;AI资本开支靠稀释股权融资&quot;的疑虑此前多集中在美国大厂（OpenAI/博通举债），阿里巴巴是首个大规模股权稀释案例，投资者对&quot;AI投入何时兑现回报&quot;的耐心正在被测试，这一逻辑尚未在其他中国科技股或亚洲AI供应链中被充分定价，值得跟踪是否扩散。</span></p></article><article class="card"><h3 class="card-title">比特币重返8万美元，创近三个月新高</h3><p class="field-row"><span class="field-label">事件</span>比特币8/25亚洲时段上涨最高至$81,257，为5月15日以来首次触及此位，过去七日累涨约22-23%，为近三年最大单周涨幅，加密总市值达$2.75万亿，ETF净流入约$19.2亿（Bloomberg/CNBC/CoinDesk，8/24-25）</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>加密货币（BTC/ETH）、加密矿业股、加密ETF、风险偏好资产、山寨币</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">本轮反弹伴随&quot;数十亿美元杠杆空头被强平&quot;，属于典型的挤压式反弹（short squeeze），历史上此类快速拉升后波动率往往同步放大，追高博弈成分高于基本面驱动。</span></p></article><article class="card"><h3 class="card-title">加拿大对美报复性关税今日公布，策略转向&quot;精准打击&quot;</h3><p class="field-row"><span class="field-label">事件</span>加拿大总理卡尼周一表示将放弃此前承诺的&quot;美元对美元&quot;对等报复，改为针对钢铁、乳制品、家电、农机、纸浆纸张、电子产品的精准反制，将于今日（8/25）正式公布，同步扩大失业保险以援助受冲击工人（AP/PBS/BNN Bloomberg，8/24-25）</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>跨境供应链股（钢铁、乳制品、汽车零部件）、加元汇率、美加贸易敏感消费股</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">相较上一期简报中&quot;9月8日对等报复&quot;的初始表态，本次仅是把落地方式从&quot;对等&quot;改为&quot;精准&quot;、时间提前，市场此前已充分交易关税升级的头条噪音，策略调整本身增量信息有限。</span></p></article><article class="card"><h3 class="card-title">黄金企稳、金银比小幅回落</h3><p class="field-row"><span class="field-label">事件</span>黄金持稳于$4645-4670附近三个月高位，白银报约$68.8，金银比从上一期简报的约70回落至约67.5（GoldSilver/USAGold，8/24-25）</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>贵金属（黄金/白银）、矿业股、美元指数、长端美债</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">金银比从70回落至67.5显示白银相对企稳，但绝对涨速仍落后于黄金的&quot;财政避险&quot;叙事，若Warsh周五讲话偏鸽（利率预期下行），历史上白银的工业+贵金属双重属性往往在贵金属牛市后段补涨，这一分化尚未被市场充分定价。</span></p></article><article class="card"><h3 class="card-title">阿曼-伊朗霍尔木兹海峡谈判进入&quot;最后阶段&quot;，油价企稳</h3><p class="field-row"><span class="field-label">事件</span>阿曼外长今日（8/25）访问德黑兰，伊朗外交部发言人称与阿曼就霍尔木兹海峡新航线谈判已进入&quot;最后阶段&quot;，同期油价维持WTI约$85、Brent约$92（CNN/Al Jazeera/Bloomberg，8/24-25）</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>原油、油轮运输、能源板块、避险资产</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">与美国同期升级的&quot;经济末日&quot;制裁形成微妙反差，一边是财政部威胁封锁伊朗美元通道，一边是外交渠道显示实质缓和迹象，两条信息线索方向相反、可信度均有限，短期油价对任一头条都可能过度反应。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><h3 class="card-title">阿里AI增发 → 资本开支融资模式质疑 → 全球AI供应链情绪传染 → 英伟达财报前波动放大</h3><div class="chain-flow"><span class="chain-node">阿里巴巴HK$80亿股权增发</span><span class="chain-arrow">→</span><span class="chain-node">港股暴跌8-10%(&quot;AI烧钱靠稀释&quot;担忧)</span><span class="chain-arrow">→</span><span class="chain-node">情绪外溢至美股/亚洲存储芯片股(Micron/AMD/Intel同步下跌)</span><span class="chain-arrow">→</span><span class="chain-node">SOXX半导体ETF承压</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">英伟达8/26盘后财报前波动率被进一步推高</span></div><p class="field-row"><span class="field-label">逻辑</span>阿里选择用股权而非债权为AI基础设施融资，市场解读为&quot;连现金流最健康的大厂都需要稀释股东来追AI军备竞赛&quot;，这直接冲击了投资者对&quot;AI资本开支能否被现有资产负债表消化&quot;的信心；这种信心动摇不受地域限制，迅速传染到同样处于AI供应链核心、且今年涨幅巨大（Intel年内+144%）的美股半导体股，形成&quot;获利了结+叙事质疑&quot;的双重抛压；由于这一切恰好发生在英伟达财报前48小时内，任何数据中心营收指引的边际疲软都可能被放大解读为&quot;整个AI资本开支周期见顶&quot;的信号。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">目前市场仅对阿里巴巴一家做出反应，尚未系统性重新评估其他大厂（微软/亚马逊/Meta）的AI资本开支融资结构是否存在类似风险，若英伟达财报指引偏弱，这条&quot;融资模式质疑&quot;的逻辑链有可能被迅速激活并扩散，值得财报后重点跟踪。</span></p></article><article class="card" style="--accent-light:#eb6834;--accent-dark:#d95926"><h3 class="card-title">美债信任危机 → 贵金属避险 → &quot;法币贬值交易&quot;叙事外溢 → 比特币同步走强</h3><div class="chain-flow"><span class="chain-node">美国财政赤字/40万亿美债担忧</span><span class="chain-arrow">→</span><span class="chain-node">黄金续创新高(法币购买力担忧驱动)</span><span class="chain-arrow">→</span><span class="chain-node">&quot;对冲货币贬值&quot;叙事被部分投资者延伸至比特币</span><span class="chain-arrow">→</span><span class="chain-node">空头集中强平+ETF资金加速流入</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">比特币三个月来首度重返8万美元</span></div><p class="field-row"><span class="field-label">逻辑</span>黄金本轮上涨的核心驱动是财政部被迫回购长债、体现出对法币购买力的深层担忧，这套叙事历史上曾在2020-2021年一度外溢到比特币的&quot;数字黄金&quot;定位；本次两个资产几乎同期走强（黄金稳于历史高位、比特币单周大涨22%）并非巧合，而是流动性宽松预期（Warsh讲话前的鸽派猜测）叠加&quot;另类价值储存&quot;的资金再配置逻辑共同作用；比特币的强平潮进一步说明杠杆空头此前低估了这一叙事外溢的速度。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">比特币这类&quot;数字黄金&quot;叙事历史上多次被证明是短期共振而非稳定的联动关系（2022年两者一度背离），眼下的同步上涨更可能是Warsh讲话前的流动性预期博弈，而非可持续的基本面共振，追高比特币的边际风险显著高于黄金。</span></p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">阿里巴巴股权融资&quot;翻车&quot;暴露AI热潮的一个软肋</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>大家都在讨论博通、OpenAI靠举债扩张AI算力，阿里巴巴反其道而行之直接卖股权融资，结果市场用脚投票——股价重挫近10%，这说明&quot;用什么方式为AI买单&quot;本身正在变成一个被交易的变量，而不只是&quot;要不要投AI&quot;这个问题了。</p></div><div class="bilingual-col"><div class="bilingual-caption">Français</div><p>Tout le monde parlait de Broadcom et OpenAI qui s&#x27;endettent pour financer l&#x27;IA — Alibaba a fait l&#x27;inverse en vendant des actions directement, et le marché a voté avec ses pieds: l&#x27;action a chuté de près de 10%. La vraie question n&#x27;est plus &quot;faut-il investir dans l&#x27;IA&quot; mais &quot;comment le financer sans effrayer les actionnaires&quot;.</p></div></div></article><article class="card"><h3 class="card-title">比特币和黄金一起涨，但理由可能完全不同</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>黄金涨是因为大家担心美元购买力被稀释，比特币这次暴涨更像是&quot;空头被逼平仓&quot;的技术性行情——两个资产表面上讲的是同一个&quot;避险+反法币&quot;故事，但驱动力其实一个偏基本面、一个偏杠杆机制，混着看很容易高估这轮联动的持续性。</p></div><div class="bilingual-col"><div class="bilingual-caption">Français</div><p>L&#x27;or grimpe par peur de la dévaluation du dollar, mais la flambée du bitcoin ressemble davantage à un short squeeze technique qu&#x27;à une vraie conviction macro. Les deux racontent la même histoire &quot;anti-fiat&quot; en surface, mais l&#x27;un est porté par des fondamentaux, l&#x27;autre par de l&#x27;effet de levier — les confondre risque de surestimer la durabilité du mouvement.</p></div></div></article><article class="card"><h3 class="card-title">加拿大&quot;降级&quot;报复反而可能是理性信号</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>卡尼把&quot;美元对美元&quot;对等报复改成&quot;精准打击&quot;，听起来像是服软，但换个角度看，这其实更像是一种更成熟的谈判姿态——精准打击能最大化对美方施压、同时最小化本国经济自伤，比一味硬碰硬更考验执行力也更难被市场简单定价。</p></div><div class="bilingual-col"><div class="bilingual-caption">Français</div><p>Carney abandonne les représailles &quot;dollar pour dollar&quot; au profit d&#x27;un ciblage précis — à première vue, ça ressemble à un recul. Mais c&#x27;est en réalité une posture plus mature: maximiser la pression sur les États-Unis tout en minimisant l&#x27;auto-sabotage économique, une stratégie plus difficile à lire pour le marché qu&#x27;un simple bras de fer.</p></div></div></article><article class="card"><h3 class="card-title">霍尔木兹海峡的&quot;两条平行故事线&quot;很少被同时提及</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>美国财政部这周把伊朗制裁包装成&quot;经济末日&quot;，同一时间阿曼外长却悄悄飞往德黑兰谈&quot;最后阶段&quot;的航道安排协议——两条新闻线几乎从不出现在同一篇报道里，但放在一起看，说明外交渠道可能比制裁头条更接近解决问题的真相。</p></div><div class="bilingual-col"><div class="bilingual-caption">Français</div><p>Le Trésor américain a présenté ses sanctions contre l&#x27;Iran comme &quot;l&#x27;apocalypse économique&quot; cette semaine, pendant que le ministre omanais des Affaires étrangères s&#x27;envolait discrètement pour Téhéran afin de finaliser un accord sur les routes maritimes. Ces deux récits ne se croisent presque jamais dans les médias, mais ensemble, ils suggèrent que la diplomatie discrète est peut-être plus proche d&#x27;une résolution que les gros titres sur les sanctions.</p></div></div></article><article class="card"><h3 class="card-title">金银比&quot;缩窄&quot;这件小事可能比头条数字更有信息量</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>上一期简报里金银比是70，这次回落到67.5，看似只是个小数字变化，但历史上这种比值从极端值往回收缩，往往是白银开始追赶黄金涨幅的早期信号，比单纯盯着金价创新高更值得留意。</p></div><div class="bilingual-col"><div class="bilingual-caption">Français</div><p>Dans le dernier point, le ratio or/argent était à 70; il est redescendu à 67.5. Ça semble être un détail statistique, mais historiquement, quand ce ratio recule depuis un extrême, c&#x27;est souvent le signe précoce que l&#x27;argent commence à rattraper l&#x27;or — un signal plus subtil, mais parfois plus utile, que le simple record du prix de l&#x27;or.</p></div></div></article></div></section><section class="report-section"><h2>🎬 花絮 · À la légère</h2><div class="card-grid"><article class="card"><p>本时段未见足够独立于主线财经新闻、且有实质新鲜度的文化/娱乐/科技花絮，故本板块省略。</p></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- 加拿大报复性关税：上一期为&quot;9月8日启动&quot;的表态，本期已更新为&quot;策略调整为精准打击+今日(8/25)正式公布&quot;，属于逻辑推进但非方向性反转。
+- 金银比：从上一期的约70回落至约67.5，说明白银相对黄金的弱势略有修复，此前判断的&quot;值得跟踪&quot;逻辑正在缓慢演进中。
+- 霍尔木兹海峡风险：上一期聚焦&quot;美国制裁威胁+伊朗扬言封锁&quot;的对抗面，本期新增阿曼-伊朗谈判&quot;进入最后阶段&quot;的缓和面，两条线索同步存在，尚未有明确胜负，风险溢价尚未被证实或证伪。
+- 新增增量事件：阿里巴巴AI增发引发的亚股抛售、比特币突破8万美元，均为上一期未覆盖的全新进展。
+- 英伟达财报（8/26盘后）与Warsh Jackson Hole演讲（8/28）仍是未来48-96小时的核心待验证事件，上一期的&quot;财报前抛售&quot;逻辑仍在延续验证中。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成，仅供研究参考，不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (24)</summary><ol><li><a href="https://intellectia.ai/blog/nvidia-earnings-august-2026" target="_blank" rel="noopener">NVIDIA Earnings August 2026: AI Chip Leader&#x27;s Q2 Preview &amp; Investment Outlook</a></li><li><a href="https://www.cnbc.com/2026/08/24/us-iran-war-trump-hormuz-bessent-economic-sanctions-.html" target="_blank" rel="noopener">Iran warns of Hormuz ship seizures ahead of Bessent&#x27;s planned sanctions push</a></li><li><a href="https://www.cnbc.com/2026/08/24/oil-price-today-wti-brent-us-sanctions-iran.html" target="_blank" rel="noopener">Oil prices fall as U.S. rolls out global sanctions focused on Iran</a></li><li><a href="https://www.bloomberg.com/news/articles/2026-08-24/latest-oil-market-news-and-analysis-for-aug-25" target="_blank" rel="noopener">Oil Steadies as US Plan Offers Little Clarity on Hormuz Deadlock - Bloomberg</a></li><li><a href="https://finance.yahoo.com/personal-finance/investing/article/gold-prices-today-monday-august-24-2026-gold-to-stay-hot-through-the-end-of-the-month-123911561.html" target="_blank" rel="noopener">Gold prices today, Monday, August 24, 2026 - Yahoo Finance</a></li><li><a href="https://spectrumlocalnews.com/hi/hawaii/politics/2026/08/24/canada-retaliatory-tariffs" target="_blank" rel="noopener">Canada will announce retaliatory tariffs against the United States on Tuesday</a></li><li><a href="https://www.bnnbloomberg.ca/tariffs/2026/08/25/canada-to-announce-retaliatory-tariffs-against-the-us-on-tuesday-sources-tell-ctv-news/" target="_blank" rel="noopener">Canada to announce retaliatory tariffs against the U.S. on Tuesday - BNN Bloomberg</a></li><li><a href="https://www.pbs.org/newshour/world/canada-will-announce-retaliatory-tariffs-against-u-s-on-tuesday-official-tells-ap" target="_blank" rel="noopener">Canada will announce retaliatory tariffs against U.S. on Tuesday - PBS News</a></li><li><a href="https://www.forbes.com/advisor/investing/silver-price/" target="_blank" rel="noopener">Silver Price Today August 24, 2026 – Forbes Advisor</a></li><li><a href="https://www.jmbullion.com/charts/gold-silver-ratio/" target="_blank" rel="noopener">Gold-to-Silver Ratio Price Charts | JM Bullion</a></li><li><a href="https://www.bloomberg.com/news/articles/2026-08-22/kevin-warsh-to-make-first-jackson-hole-speech-as-fed-chair" target="_blank" rel="noopener">Kevin Warsh to Make First Jackson Hole Speech as Fed Chair - Bloomberg</a></li><li><a href="https://investinglive.com/central-banks/jackson-hole-hype-outruns-warsh-playbook-of-saying-as-little-as-possible/" target="_blank" rel="noopener">Jackson Hole hype outruns Warsh playbook of saying as little as possible</a></li><li><a href="https://ts2.tech/en/stock-market-today-08-25-2026-asia/" target="_blank" rel="noopener">Asia Stock Market Today 25/08/2026 - ts2.tech</a></li><li><a href="https://www.bloomberg.com/news/articles/2026-08-24/us-eyes-china-overcapacity-tariffs-of-7-5-before-xi-trump-talks" target="_blank" rel="noopener">US Plans 7.5% Tariff on Chinese Goods Before Xi-Trump Summit - Bloomberg</a></li><li><a href="https://finance.yahoo.com/technology/ai/articles/alibaba-shares-fall-8-10-015142456.html" target="_blank" rel="noopener">Alibaba shares fall 8% after $10 billion Hong Kong share sale - Yahoo Finance</a></li><li><a href="https://www.bloomberg.com/news/articles/2026-08-23/alibaba-to-raise-10-billion-by-selling-shares-for-ai-expansion" target="_blank" rel="noopener">Alibaba Raises $10 Billion for AI in Record Hong Kong Share Sale - Bloomberg</a></li><li><a href="https://www.cnbc.com/2026/08/24/alibaba-share-placement-drop-ai-hong-kong.html" target="_blank" rel="noopener">Alibaba plunges after announcing $10.2 billion share placement to fund AI push - CNBC</a></li><li><a href="https://www.cnbc.com/2026/08/23/stock-market-today-live-updates.html" target="_blank" rel="noopener">Stock market news for Aug. 24, 2026 - CNBC</a></li><li><a href="https://www.bloomberg.com/news/articles/2026-08-25/bitcoin-reaches-three-month-high-of-80-000-as-momentum-returns" target="_blank" rel="noopener">Bitcoin (BTC) Reaches Three-Month High of $80,000 as Momentum Returns - Bloomberg</a></li><li><a href="https://www.cnbc.com/2026/08/24/crypto-extends-gains-after-biggest-3-day-rally-since-2023.html" target="_blank" rel="noopener">Crypto extends gains after biggest 3-day rally since 2023 - CNBC</a></li><li><a href="https://www.coindesk.com/business/2026/08/24/live-updates-bitcoin-holds-usd77-000-as-xrp-zcash-pull-back-after-a-big-weekly-rally" target="_blank" rel="noopener">Live updates: Bitcoin moves closer to $80,000 - CoinDesk</a></li><li><a href="https://www.cnbc.com/2026/07/05/opec-set-to-approve-another-oil-output-increase.html" target="_blank" rel="noopener">OPEC+ approves further oil output increase as Hormuz exports start to recover - CNBC</a></li><li><a href="https://www.aljazeera.com/news/2026/8/2/iran-says-negotiations-with-oman-over-strait-of-hormuz-in-final-stages" target="_blank" rel="noopener">Iran says negotiations with Oman over Strait of Hormuz in final stages - Al Jazeera</a></li><li><a href="https://www.cnn.com/2026/08/04/world/live-news/iran-war-trump" target="_blank" rel="noopener">August 4, 2026 - Iran continues Hormuz talks with Oman, US signals optimism on deal - CNN</a></li></ol></details>
+  </footer>
+</div>
+</body>
+</html>

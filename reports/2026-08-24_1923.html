@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="archive-nav"><a href="../archive.html">📚 历史简报归档</a></nav>
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-08-24 19:23 CEST &middot; 渲染于 2026-08-24 19:26</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>美国同时对伊朗启动&quot;经济末日&quot;制裁、对加拿大加征50%关税，芯片股在英伟达财报前重挫，黄金续创新高但金银比骤升至70</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li>美财长贝森特宣布&quot;Operation Economic Outcast&quot;，对伊朗实施&quot;史上最严厉&quot;制裁，威胁封锁霍尔木兹海峡通道，油价反而下跌逾1美元（获利了结）</li><li>美加贸易谈判周五破裂，美国对加拿大200亿美元商品加征50%关税，加拿大将于9月8日&quot;美元对美元&quot;报复</li><li>彭博社独家：美国拟在9月Xi-Trump会晤前对中国&quot;产能过剩&quot;商品加征7.5%关税</li><li>半导体板块在英伟达周三财报前遭抛售，费城半导体指数跌3%，英特尔-5%、AMD-4%、台积电-3%；同时英伟达AI服务器涨价超15%传导给大客户</li><li>黄金因美国财政/债务担忧（美国国债突破40万亿美元、30年期收益率19年新高）续涨至4600美元上方；金银比升至约70，白银报约69美元</li><li>博通就600亿美元AI芯片债务融资展开谈判，部分资金将惠及Anthropic</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">伊朗&quot;经济末日&quot;制裁 / Operation Economic Outcast</h3><p class="field-row"><span class="field-label">事件</span>美财长贝森特周一（8/24）宣布对伊朗实施新一轮&quot;史上最严厉&quot;制裁，威胁将资助伊朗的实体逐出美元体系；此前伊朗安全高层曾扬言封锁霍尔木兹海峡（Reuters/CNBC/CNN，8/23-24）</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>原油、油轮运输股（VLCC运价）、能源板块、避险资产（黄金）、通胀预期/美债收益率</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">油价周一反而下跌逾1美元（获利了结式反应），说明市场尚未把霍尔木兹海峡实际中断的尾部风险计入价格，若局势升级存在快速重新定价空间，值得持续跟踪。</span></p></article><article class="card"><h3 class="card-title">美加贸易战全面升级</h3><p class="field-row"><span class="field-label">事件</span>美加贸易谈判上周五破裂，美国对200亿美元加拿大商品加征50%关税，加拿大总理卡尼称&quot;处于战争状态&quot;，宣布9月8日起对等报复（NPR/WaPo/CNBC，8/21-23）</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>跨境供应链股（汽车、能源、木材、农产品）、加元汇率、USMCA相关个股</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">谈判破裂原因双方各执一词、政策反复性极高（历史上美加多次&quot;极限施压后达成协议&quot;），基本面冲击有限但头条噪音大，追涨杀跌博弈成分重。</span></p></article><article class="card"><h3 class="card-title">中国&quot;产能过剩&quot;关税7.5%（Xi-Trump会晤前）</h3><p class="field-row"><span class="field-label">事件</span>彭博社8/24独家报道，美国拟在9月24日Xi-Trump峰会前对中国商品加征7.5%关税，理由为&quot;产能过剩&quot;，将使对华关税恢复至约20%水平</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>中国出口链（光伏、钢铁、电池）、美国进口商成本、人民币汇率、贸易敏感消费股</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">中美关税拉锯是2025-2026年反复上演的剧本，且该关税水平被视为与此前&quot;贸易休战&quot;框架一致，市场大概率已计入此类边际调整，除非峰会破裂否则难有超预期冲击。</span></p></article><article class="card"><h3 class="card-title">芯片股在英伟达财报前遭抛售</h3><p class="field-row"><span class="field-label">事件</span>费城半导体指数抛售速度是大盘科技股的两倍，英特尔-5%、AMD-4%、台积电-3%（8/24），同时英伟达AI服务器涨价超15%传导给大客户；英伟达8/26盘后公布财报</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>AI算力芯片（NVDA/AMD/INTC/TSM）、AI服务器代工（富士康、纬创）、云资本开支（微软/亚马逊/谷歌）、电力/数据中心基建</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">这是典型的&quot;财报前获利了结+波动率交易&quot;，英特尔今年已涨144%，持仓者倾向于在高方差事件前减仓，方向性判断意义有限，波动本身就是交易对象。</span></p></article><article class="card"><h3 class="card-title">黄金创新高，金银比骤升至70</h3><p class="field-row"><span class="field-label">事件</span>黄金因美债突破40万亿美元、30年期收益率触19年高位、财政部被迫扩大长债回购操作等财政可持续性担忧，续涨至4600美元上方；同期白银约69美元，金银比升至70（今年1月一度低于45）</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>贵金属（黄金/白银）、矿业股、美元指数、长端美债</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">本轮黄金上涨驱动力是&quot;财政/债务信任危机&quot;而非传统避险情绪，市场尚未充分讨论；金银比从&lt;45急升至70的剧烈摆动本身也是被忽视的信号，值得持续关注白银是否补涨或进一步分化。</span></p></article><article class="card"><h3 class="card-title">博通600亿美元AI芯片债务融资</h3><p class="field-row"><span class="field-label">事件</span>博通就超600亿美元债务融资展开谈判，用于AI芯片产能扩张，部分资金将惠及Anthropic等客户（Bloomberg，8/20起持续发酵）</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>AI基础设施债、私募信贷、博通及其AI客户（Anthropic/OpenAI）、数据中心REITs</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">AI资本开支&quot;举债扩张&quot;叙事已持续数月（此前OpenAI、Meta等均有类似操作），市场对这类超大规模融资的敏感度已明显钝化。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><h3 class="card-title">伊朗制裁 → 油价风险溢价 → 通胀预期 → 新任Fed主席鹰派压力</h3><div class="chain-flow"><span class="chain-node">伊朗&quot;经济末日&quot;制裁</span><span class="chain-arrow">→</span><span class="chain-node">霍尔木兹海峡威胁</span><span class="chain-arrow">→</span><span class="chain-node">原油尾部风险</span><span class="chain-arrow">→</span><span class="chain-node">通胀预期升温</span><span class="chain-arrow">→</span><span class="chain-node">Jackson Hole新任Fed主席Warsh表态承压</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">利率敏感型AI/成长股估值</span></div><p class="field-row"><span class="field-label">逻辑</span>若伊朗真的采取行动干扰霍尔木兹海峡（全球约1/5原油运输经过此处），短期油价可能跳涨，直接推高通胀预期；这恰好撞上8/28新任Fed主席Kevin Warsh在Jackson Hole的首次公开讲话——若通胀风险上升，其&quot;首秀&quot;被迫偏鹰派的概率增加；而利率路径的不确定性会直接冲击本已因财报前抛售而承压的AI/半导体高估值板块，形成&quot;地缘政治→大宗商品→货币政策→科技股估值&quot;的完整传导。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">目前油价仍在下跌（获利了结主导），市场尚未将Fed政策路径与霍尔木兹风险联动定价，这条链条的中间环节（原油→通胀→Fed）存在时间差，值得在Jackson Hole前重点跟踪。</span></p></article><article class="card" style="--accent-light:#eb6834;--accent-dark:#d95926"><h3 class="card-title">财政赤字担忧 → 黄金避险 → 金银比失衡 → 白银高贝塔机会与风险并存</h3><div class="chain-flow"><span class="chain-node">美债突破40万亿+财政部扩大回购</span><span class="chain-arrow">→</span><span class="chain-node">黄金因&quot;债务贬值&quot;逻辑上涨</span><span class="chain-arrow">→</span><span class="chain-node">金银比从&lt;45骤升至70（历史均值附近上沿）</span><span class="chain-arrow">→</span><span class="chain-node">白银工业属性+小市值放大波动</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">白银矿业股/ETF双向波动风险</span></div><p class="field-row"><span class="field-label">逻辑</span>财政部被迫用短债置换长债本质上是&quot;财政主导货币政策&quot;的信号，市场解读为法币购买力被稀释，黄金作为对冲工具率先反应；但白银今年初金银比一度跌破45（白银强于黄金），如今又反弹至70附近，说明白银今年经历了一轮&quot;大起大落&quot;，其市值远小于黄金、工业属性又受AI/新能源需求扰动，使其成为同一逻辑下波动更剧烈的资产——但这种&quot;高贝塔&quot;是双向的，比值均值回归的方向和时点都不确定，不构成单边看多或看空的依据。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">白银历史上在金银比极端值附近常出现剧烈但方向不定的补涨或补跌，叠加其流动性相对黄金更薄，短期波动更多是资金博弈而非稳定的基本面兑现。</span></p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">黄金上涨的&quot;真实原因&quot;被市场低估</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>这轮金价创新高，市场直觉会归因于&quot;避险情绪&quot;，但真正的驱动其实是美国财政部被迫扩大回购、美债突破40万亿——本质上是&quot;美元购买力被稀释&quot;的担忧，而不是传统意义上的恐慌买盘，这个区别很重要，因为它意味着这轮涨势的耐力可能比一次性地缘冲击驱动的行情更持久。</p></div><div class="bilingual-col"><div class="bilingual-caption">Français</div><p>Cette envolée de l&#x27;or n&#x27;est pas vraiment de la &quot;peur&quot; au sens classique — c&#x27;est plutôt une réaction à la dette américaine qui dépasse les 40 000 milliards de dollars et au Trésor qui doit racheter ses propres obligations pour calmer les taux longs. C&#x27;est un pari sur la dévaluation du dollar, pas sur une panique ponctuelle, ce qui rend potentiellement ce mouvement plus durable.</p></div></div></article><article class="card"><h3 class="card-title">油价对&quot;最严厉制裁&quot;的反应耐人寻味</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>贝森特把对伊朗的制裁形容为&quot;史上最严厉&quot;&quot;经济末日&quot;，措辞堪称戏剧化，但油价当天反而下跌超1美元——说明交易员对制裁&quot;雷声大雨点小&quot;的历史剧本已经审美疲劳，真正让市场紧张的不是制裁文件本身，而是伊朗会不会真的动霍尔木兹海峡这张牌。</p></div><div class="bilingual-col"><div class="bilingual-caption">Français</div><p>Bessent a qualifié ses sanctions contre l&#x27;Iran de &quot;les plus dures de l&#x27;histoire&quot;, un vocabulaire très théâtral — pourtant le pétrole a baissé de plus d&#x27;un dollar le même jour. Les traders ont vu ce film plusieurs fois: ce n&#x27;est pas le communiqué de sanctions qui les inquiète, c&#x27;est de savoir si l&#x27;Iran va vraiment fermer le détroit d&#x27;Ormuz.</p></div></div></article><article class="card"><h3 class="card-title">金银比的&quot;过山车&quot;很少有人在讨论</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>今年1月金银比一度跌破45（白银比黄金涨得猛），现在又反弹到70附近——半年多时间摆动了这么大的幅度，却几乎没有主流财经媒体拿这个当头条，这种&quot;安静的剧烈波动&quot;往往比头条新闻更值得多看两眼。</p></div><div class="bilingual-col"><div class="bilingual-caption">Français</div><p>En janvier, le ratio or/argent était tombé sous 45 — l&#x27;argent surperformait nettement l&#x27;or. Aujourd&#x27;hui il est remonté vers 70. Un tel écart en quelques mois, et pourtant presque personne n&#x27;en fait un titre — ce genre de volatilité &quot;silencieuse&quot; mérite souvent plus d&#x27;attention que les gros titres bruyants.</p></div></div></article><article class="card"><h3 class="card-title">芯片股抛售像一场&quot;英伟达财报前的仪式&quot;</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>英特尔今年已经涨了144%，这次在财报前跟着大盘一起跌，与其说是基本面恶化，不如说是&quot;落袋为安&quot;的机械动作——历史上每逢英伟达财报周，半导体板块的波动率都会被人为放大，这更像是一场重复上演的仪式而非新的信息。</p></div><div class="bilingual-col"><div class="bilingual-caption">Français</div><p>Intel a grimpé de 144% cette année, et le voilà qui recule juste avant les résultats — moins un signal fondamental qu&#x27;un réflexe classique de prise de bénéfices avant un événement à forte volatilité. Chaque trimestre de résultats Nvidia déclenche le même rituel dans tout le secteur des semi-conducteurs.</p></div></div></article><article class="card"><h3 class="card-title">美国同时对&quot;敌人&quot;和&quot;盟友&quot;开火</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>很少见到美国在同一周内，既对伊朗祭出&quot;史上最严厉&quot;制裁，又对北方邻国加拿大加征50%关税——传统盟友和对手在这周的政策工具箱里被同等对待，这种&quot;全面出击&quot;的姿态本身就值得留意，因为它压缩了市场判断&quot;谁是真正风险&quot;的注意力带宽。</p></div><div class="bilingual-col"><div class="bilingual-caption">Français</div><p>On voit rarement Washington sortir l&#x27;artillerie lourde contre l&#x27;Iran et son voisin canadien dans la même semaine — un &quot;ennemi&quot; et un allié historique traités avec la même intensité. Cette approche tous azimuts brouille la lecture du marché sur où se situe le vrai risque.</p></div></div></article></div></section><section class="report-section"><h2>🎬 花絮 · À la légère</h2><div class="card-grid"><article class="card"><p>本时段未见足够独立于主线财经新闻、值得单独一提的文化/娱乐/科技花絮，故本板块省略。</p></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>本次为首次运行，无上一期简报可比对，后续版本将标注哪些逻辑（如霍尔木兹海峡风险、金银比走势、英伟达财报反应）已兑现或被证伪。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成，仅供研究参考，不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (28)</summary><ol><li><a href="https://www.bloomberg.com/news/articles/2026-08-24/us-eyes-china-overcapacity-tariffs-of-7-5-before-xi-trump-talks" target="_blank" rel="noopener">US Eyes China Overcapacity Tariffs of 7.5% Before Xi-Trump Talks</a></li><li><a href="https://finance.yahoo.com/economy/policy/articles/us-eyes-china-overcapacity-tariffs-155346208.html" target="_blank" rel="noopener">US eyes China overcapacity tariffs of 7.5% before Xi-Trump talks</a></li><li><a href="https://www.bloomberg.com/news/articles/2026-08-20/broadcom-seeks-more-than-60-billion-in-latest-ai-debt-deal" target="_blank" rel="noopener">AI Infrastructure Boom Drives Broadcom&#x27;s $60 Billion Debt Financing Talks - Bloomberg</a></li><li><a href="https://www.bloomberg.com/news/articles/2026-08-23/stock-market-today-dow-s-p-live-updates" target="_blank" rel="noopener">Stocks Waver as Chipmaker Rout Offsets Oil Decline: Markets Wrap - Bloomberg</a></li><li><a href="https://finance.yahoo.com/markets/stocks/articles/semiconductor-stocks-slide-ahead-nvidia-144350563.html" target="_blank" rel="noopener">Semiconductor Stocks Slide Ahead of NVIDIA Earnings - Yahoo Finance</a></li><li><a href="https://247wallst.com/investing/2026/08/24/semiconductor-stocks-slide-ahead-of-nvidia-earnings-intel-falls-5-amd-slides-4-taiwan-semiconductor-slips-3/" target="_blank" rel="noopener">Semiconductor Stocks Slide Ahead of NVIDIA Earnings - 24/7 Wall St.</a></li><li><a href="https://www.techtimes.com/articles/325228/20260821/jackson-hole-2026-what-watch-when-warsh-steps-podium-friday.htm" target="_blank" rel="noopener">Jackson Hole 2026: What to Watch When Warsh Steps to the Podium Friday</a></li><li><a href="https://finance.yahoo.com/personal-finance/investing/article/gold-prices-today-monday-august-24-2026-gold-to-stay-hot-through-the-end-of-the-month-123911561.html" target="_blank" rel="noopener">Gold prices today, Monday, August 24, 2026 - Yahoo Finance</a></li><li><a href="https://fortune.com/article/current-price-of-gold-08-24-2026/" target="_blank" rel="noopener">Current price of gold: August 24, 2026 | Fortune</a></li><li><a href="https://finance.yahoo.com/news/oil-falls-1-ahead-us-231835385.html" target="_blank" rel="noopener">Oil falls as US prepares to unveil new Iran sanctions - Yahoo Finance</a></li><li><a href="https://www.cnn.com/2026/08/23/world/live-news/iran-war-trump" target="_blank" rel="noopener">August 23, 2026 — Bessent promises &#x27;economic D-Day&#x27; ahead of expected Iran sanctions | CNN</a></li><li><a href="https://www.techtimes.com/articles/325291/20260824/iran-sanctions-launch-nvidia-week-oil-shock-tests-ai-stock-multiples.htm" target="_blank" rel="noopener">Iran Sanctions Launch Into Nvidia Week: Oil Shock Tests AI Stock Multiples</a></li><li><a href="https://www.cnbc.com/2026/08/23/treasury-secretary-bessent-iran-sanctions-press-conference.html" target="_blank" rel="noopener">Treasury Secretary to announce Iran sanctions - CNBC</a></li><li><a href="https://www.npr.org/2026/08/24/g-s1-139743/treasury-secretary-scott-bessent-to-unveil-new-economic-sanctions-on-iran" target="_blank" rel="noopener">Treasury Secretary Scott Bessent is set to unveil new economic sanctions on Iran - NPR</a></li><li><a href="https://www.cbsnews.com/news/bessent-press-conference-iran-sanctions-economic-d-day/" target="_blank" rel="noopener">Bessent announces new economic sanctions against Iran - CBS News</a></li><li><a href="https://www.cnbc.com/2026/08/20/treasury-bond-buybacks-long-term-yields.html" target="_blank" rel="noopener">Treasury bond buybacks ease long-term yields - CNBC</a></li><li><a href="https://www.cnbc.com/2026/08/19/treasury-announces-upscaled-buyback-operation-for-longer-term-debt-sending-yields-lower.html" target="_blank" rel="noopener">Treasury doubles debt buybacks as Bessent moves to steady bond market - CNBC</a></li><li><a href="https://www.bloomberg.com/news/articles/2026-08-19/long-dated-treasuries-rally-as-treasury-boosts-bond-buybacks" target="_blank" rel="noopener">Bessent Deploys Debt Buybacks in Sign of Concern Over Yield Rise - Bloomberg</a></li><li><a href="https://www.forbes.com/sites/jamesbroughel/2026/08/22/treasury-is-buying-its-own-bonds-where-is-the-money-coming-from/" target="_blank" rel="noopener">Treasury Is Buying Its Own Bonds. Where Is The Money Coming From? - Forbes</a></li><li><a href="https://goldsilver.com/industry-news/article/gold-silver-ratio-2026/" target="_blank" rel="noopener">Gold Silver Ratio at 64: What It Signals for Silver in 2026 - GoldSilver</a></li><li><a href="https://www.usagold.com/daily-precious-metals-market-report-august-4-2026/" target="_blank" rel="noopener">Silver Surges 2.5% To $59 As The Gold-Silver Ratio Compresses Below 69 - USAGOLD</a></li><li><a href="https://www.cnbc.com/2026/08/21/us-canada-fail-to-reach-a-tariff-deal-deepen-trade-war.html" target="_blank" rel="noopener">U.S., Canada fail to reach a tariff deal, deepening trade war - CNBC</a></li><li><a href="https://www.washingtonpost.com/business/2026/08/22/new-50-percent-tariffs-canada-go-into-effect-after-deal-with-us-falls-through/" target="_blank" rel="noopener">Canada sets new tariffs on U.S. after Trump&#x27;s 50% levies, trade talks fail - Washington Post</a></li><li><a href="https://www.npr.org/2026/08/22/nx-s1-5941584/us-canada-tariffs" target="_blank" rel="noopener">As Canada readies retaliatory tariffs, Mark Carney says his nation is &#x27;at war&#x27; with U.S. - NPR</a></li><li><a href="https://www.cnbc.com/2026/08/22/us-canada-trade-talks-collapse-ushering-in-wave-of-new-tariffs.html" target="_blank" rel="noopener">As U.S.-Canada trade talks collapse, Carney says retaliatory tariffs will start Sept. 8 - CNBC</a></li><li><a href="https://finance.yahoo.com/markets/live/stock-market-today-monday-august-24-dow-sp-500-nasdaq-080306047.html" target="_blank" rel="noopener">Stock market today: S&amp;P 500, Nasdaq slip as tech stocks sag, US-Canada trade spat escalates - Yahoo Finance</a></li><li><a href="https://finance.yahoo.com/markets/stocks/articles/stock-market-midday-aug-24-163502736.html" target="_blank" rel="noopener">Stock Market Midday, Aug. 24: Dow Edges Higher as Chip Weakness Pressures Nasdaq - Yahoo Finance</a></li><li><a href="https://www.cnbc.com/2026/05/15/trump-wraps-up-two-day-china-trip-invites-xi-for-a-september-visit.html" target="_blank" rel="noopener">Trump wraps up two-day China trip, invites Xi for a September visit - CNBC</a></li></ol></details>
+  </footer>
+</div>
+</body>
+</html>

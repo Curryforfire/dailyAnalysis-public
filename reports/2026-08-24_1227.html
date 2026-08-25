@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="archive-nav"><a href="../archive.html">📚 历史简报归档</a></nav>
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-08-24 12:27 CEST &middot; 渲染于 2026-08-24 12:32</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>更正:现美联储主席为沃什非鲍威尔,市场转向押注9月或加息;阿里巴巴百亿美元配售股价重挫10%,三星800亿美元回馈韩股仍跌。</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>重大更正</strong>：现任美联储主席为Kevin Warsh（2026年5月13日就职），非鲍威尔；杰克逊霍尔年会为8月27-29日、尚未召开，沃什将于8月28日发表任内首场主旨演讲</li><li>受伊朗冲突推升能源成本及沃什鹰派表态影响，摩根大通财富管理等机构已将9月议息会议基准情形从&quot;降息&quot;调整为&quot;或加息25bp&quot;，7月FOMC已有3票支持加息</li><li>阿里巴巴8月24日完成800亿港元(约102亿美元)新股配售用于AI投资，股价应声重挫近10%，此前刚公布利润因AI支出暴跌75%</li><li>三星电子宣布年内股东回馈规模最高达110万亿韩元(约800亿美元，韩国企业史上最大)，叠加SK海力士286亿美元回购计划，Kospi周一大跌2.49%</li><li>黄金升至4600美元/盎司上方创5月以来新高，驱动因素是美国财政可持续性担忧而非单纯降息预期</li><li>英伟达8月26日盘后财报临近，市场预期营收930-950亿美元，财报周恰逢利率不确定性升温</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">美联储主席更迭+政策转向：从&quot;降息&quot;到&quot;或加息&quot;</h3><p class="field-row"><span class="field-label">事件</span>现任美联储主席为Kevin Warsh（2026年5月13日就职，取代鲍威尔）；7月FOMC以分裂投票维持利率在3.50%-3.75%，但3名委员投票支持加息；受伊朗冲突持续推高能源价格及沃什鹰派表态影响，摩根大通财富管理已将9月议息会议基准情形调整为加息25bp（来源：CNBC/Chase，8月19-21日）；沃什将于8月28日杰克逊霍尔年会发表任内首场主旨演讲。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>美债收益率（尤其短端）、美元指数、黄金/贵金属、成长股/高估值科技股、REITs、新兴市场货币</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">这是对市场此前长期&quot;降息&quot;预期的重大方向逆转，且沃什8月28日首场演讲尚未召开，若确认鹰派立场，成长股/长久期资产的重新定价可能尚未充分反映在当前股价中，是本期最值得紧盯的变量。</span></p></article><article class="card"><h3 class="card-title">阿里巴巴百亿美元配售融资AI，股价重挫10%</h3><p class="field-row"><span class="field-label">事件</span>阿里巴巴8月24日完成800亿港元(约102亿美元)新股配售，为港股史上最大规模主板增发之一，所得资金100%用于AI全栈能力建设；股价应声重挫约10%，此前公司刚公布因AI支出加大导致利润同比暴跌75%（来源：Bloomberg/CNBC，8月23-24日）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>中国科技股/港股AI概念、云计算资本开支链、国产AI芯片替代链、港股新股发行市场情绪</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">配售定价较前收盘价折让3.6%，与股价跌幅基本对应，属于典型的融资摊薄兑现式反应；但后续AI资本开支能否兑现盈利仍需持续跟踪。</span></p></article><article class="card"><h3 class="card-title">三星、SK海力士巨额股东回馈，韩股AI芯片红利兑现</h3><p class="field-row"><span class="field-label">事件</span>三星电子宣布年内股东回馈规模最高达110万亿韩元(约800亿美元)，SK海力士此前已宣布286亿美元回购并全部注销计划；消息公布后Kospi周一大跌2.49%，三星股价反而下跌（来源：Bloomberg/CNBC，8月19-21日）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>存储芯片(三星/SK海力士)、韩国综合指数、全球AI服务器供应链、HBM高带宽存储需求</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">&quot;越回馈股价越跌&quot;的反直觉走势，显示市场担忧巨额资本承诺可持续性、或将其解读为&quot;增长见顶&quot;信号，短期博弈成分强，需观察英伟达财报后AI需求指引能否消解这一顾虑。</span></p></article><article class="card"><h3 class="card-title">加拿大对美反制关税+中国官媒借势发声</h3><p class="field-row"><span class="field-label">事件</span>加拿大对美国钢铁、乳制品、家电等商品的对等反制关税定于劳动节后首个周二(9月8日左右)生效；中国官媒《环球时报》发文称加拿大&quot;中国式&quot;反制验证了北京反对美国保护主义的立场（来源：Bloomberg，8月24日）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>北美钢铁/乳制品/家电供应链、中美贸易谈判舆论氛围、人民币汇率预期</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">中国官媒借加拿大关税议题造势，可能为后续中美贸易摩擦或谈判中的舆论博弈埋下伏笔，值得关注是否影响接下来的中美经贸表态节奏。</span></p></article><article class="card"><h3 class="card-title">黄金冲高4600美元，驱动逻辑生变</h3><p class="field-row"><span class="field-label">事件</span>黄金升至4600美元/盎司以上，创5月以来新高，本周涨约5%；驱动因素是美国财政部意外扩大长期国债购买计划引发的财政可持续性担忧，压低收益率和美元，而非此前市场熟悉的&quot;降息预期&quot;叙事（来源：GoldSilver.com，8月23日）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>贵金属(黄金/白银)、美元指数、长端美债、避险资产</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">驱动逻辑从&quot;降息交易&quot;切换为&quot;财政赤字/信用担忧交易&quot;，与&quot;美联储或转鹰&quot;预期形成对冲式拉扯，两种逻辑同时存在但尚未被市场厘清定价，是本期最值得跟踪的矛盾信号。</span></p></article><article class="card"><h3 class="card-title">英伟达财报临近(8月26日)</h3><p class="field-row"><span class="field-label">事件</span>英伟达将于8月26日美股盘后公布Q2财报，市场预期营收930-950亿美元(受AI加速器需求及Blackwell产能爬坡驱动)，当前股价约220美元，分析师目标价均值约305美元，恰逢韩股AI芯片股巨震及利率政策不确定性升温（来源：多方分析，8月19-24日）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>半导体设备、存储芯片、AI服务器/电源链、云计算资本开支链</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">财报前市场对预期差极度敏感，叠加本期新增的&quot;利率不确定性&quot;变量，任何指引措辞的细微变化都可能引发超预期波动。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><h3 class="card-title">加息预期升温却撞上黄金新高的矛盾信号</h3><div class="chain-flow"><span class="chain-node">沃什鹰派转向/9月或加息预期</span><span class="chain-arrow">→</span><span class="chain-node">财政部意外扩大长债购买</span><span class="chain-arrow">→</span><span class="chain-node">长端收益率与美元不涨反跌</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">黄金逆势冲高4600美元</span></div><p class="field-row"><span class="field-label">逻辑</span>按传统逻辑，加息预期升温应压制黄金（持有黄金的机会成本上升），但财政部扩大长债购买这一动作反而压低了实际收益率并削弱美元信用叙事，市场因此把&quot;联邦赤字融资担忧&quot;重新定价进黄金，形成&quot;利率与黄金同向背离历史规律&quot;的反常组合。金银比是否因此偏离历史均值，白银作为更小市值、工业属性更强的品种可能呈现更高贝塔（双向：涨跌均可能被放大），值得持续观察。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">矛盾信号通常意味着市场尚未就&quot;货币政策叙事&quot;与&quot;财政信用叙事&quot;哪个占主导达成共识，相关比价关系可能仍未充分反映。</span></p></article><article class="card" style="--accent-light:#eb6834;--accent-dark:#d95926"><h3 class="card-title">大型科技/芯片公司资本动作分化，落点在英伟达财报</h3><div class="chain-flow"><span class="chain-node">阿里巴巴配售融资AI(股价跌10%) + 三星巨额回馈仍维持高资本开支(股价反跌)</span><span class="chain-arrow">→</span><span class="chain-node">市场对&quot;AI资本开支能否兑现盈利&quot;耐心变薄</span><span class="chain-arrow">→</span><span class="chain-node">任何融资/分配决策细节被过度解读</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">落点在英伟达8月26日财报指引</span></div><p class="field-row"><span class="field-label">逻辑</span>两家公司的资本动作方向相反（一个是&quot;要钱搞AI&quot;，一个是&quot;分钱但仍搞AI&quot;），但股价反应却同样负面，说明市场当前对AI资本开支叙事的容忍度已经下降，不再无条件买单&quot;讲AI故事&quot;。这种情绪如果延续，英伟达财报若不能提供强有力的需求指引来支撑&quot;AI仍在加速&quot;的叙事，可能触发对整个AI产业链估值的连锁重新校准。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">财报结果尚未公布，当前是纯粹的预期博弈阶段，任何超预期或不及预期的措辞都可能被放大交易。</span></p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">三星&quot;发红包&quot;却股价下跌</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>三星画了史上最大的&quot;发红包&quot;广告——800亿美元回馈股东，结果股价当天却往下走。这说明投资者读出的潜台词不是&quot;我们赚翻了愿意分享&quot;，而是&quot;资本开支已经见顶，接下来只能靠分红撑估值&quot;，市场有时候比公告更诚实。</p></div><div class="bilingual-col"><div class="bilingual-caption">Français</div><p>Samsung promet le plus gros chèque de retour aux actionnaires de l&#x27;histoire coréenne — 80 milliards de dollars — et pourtant l&#x27;action recule le jour même. Le marché a lu entre les lignes : ce n&#x27;est pas « on partage nos profits », c&#x27;est « la croissance du capex plafonne, il faut désormais séduire avec du cash ».</p></div></div></article><article class="card"><h3 class="card-title">沃什还没开口，市场已经在给他的鹰派信号定价</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>很多&quot;降息还是加息&quot;的讨论其实还停留在旧叙事里——真正决定风向的沃什连他任内首场杰克逊霍尔演讲都还没开口，市场已经在为一个还没发生的&quot;鹰派信号&quot;重新定价。有时候价格走在事实前面，叙事走在价格前面，而&quot;共识&quot;永远是最后一个到场的。</p></div><div class="bilingual-col"><div class="bilingual-caption">Français</div><p>Ce qui est piquant, c&#x27;est que le marché repositionne déjà ses paris sur une posture « faucon » de Warsh — alors que son tout premier discours en tant que président de la Fed n&#x27;a même pas encore eu lieu. Le prix anticipe le discours, qui anticipe la donnée. Le consensus, lui, arrive toujours en dernier.</p></div></div></article><article class="card"><h3 class="card-title">黄金买的不是降息，是对赤字的不放心</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>教科书告诉我们&quot;加息预期升温=黄金承压&quot;，但这次黄金反而冲上4600美元新高——因为驱动它的不是利率高低，而是&quot;美国财政部要不要多印债&quot;的信任问题。这一轮黄金买的不是降息，买的是对赤字的不放心。</p></div><div class="bilingual-col"><div class="bilingual-caption">Français</div><p>Le manuel dit qu&#x27;une hausse des attentes de taux devrait plomber l&#x27;or — pourtant il vient de toucher un nouveau sommet à 4600 dollars. Cette fois, l&#x27;or n&#x27;achète pas une baisse des taux, il achète la méfiance envers la dette américaine.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p><strong>重要更正</strong>：上一期简报（12:00 CEST）中&quot;鲍威尔8月22日Jackson Hole讲话转鸽，9月降息概率升至89%&quot;这一表述有误——经核实，现任美联储主席自2026年5月13日起已是Kevin Warsh，杰克逊霍尔年会2026年安排在8月27-29日、尚未召开（上期引用的疑似是2025年8月22日鲍威尔讲话的旧闻）。实际情况是：7月FOMC三票支持加息，受伊朗局势推升能源价格影响，市场基准情形已转向&quot;9月或加息25bp&quot;，与上期&quot;降息&quot;叙事方向相反。特此更正并建议此后跟踪均以此为准。
+新增实质信息：阿里巴巴800亿港元AI配售引发股价重挫、三星/SK海力士巨额股东回馈计划扰动韩股、黄金驱动逻辑从&quot;降息交易&quot;切换为&quot;财政信用担忧交易&quot;，均为本期新增，上一期未涉及。加拿大关税、英伟达财报等主线维持原判断，无实质新增进展。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成，仅供研究参考，不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (21)</summary><ol><li><a href="https://www.bloomberg.com/news/articles/2026-08-23/stock-market-today-dow-s-p-live-updates" target="_blank" rel="noopener">Asian Stocks Dip With AI in Focus, Oil Declines: Markets Wrap</a></li><li><a href="https://www.bloomberg.com/news/articles/2026-08-24/china-media-hails-canada-s-chinese-style-tariff-retaliation" target="_blank" rel="noopener">China Media Hails Canada&#x27;s &#x27;Chinese-Style&#x27; Tariff Retaliation</a></li><li><a href="https://www.foxbusiness.com/economy/us-canada-trade-negotiations-suspended-carney-vows-dollar-for-dollar-retaliation-against-trumps-50-tariffs" target="_blank" rel="noopener">US-Canada trade negotiations suspended, Carney vows dollar-for-dollar retaliation</a></li><li><a href="https://intellectia.ai/blog/nvidia-earnings-preview-august-2026-analysis" target="_blank" rel="noopener">Nvidia Earnings Preview August 2026</a></li><li><a href="https://finance.sina.com.cn/stock/y/2026-08-24/doc-inipkkzy2043378.shtml" target="_blank" rel="noopener">财经早报 2026年8月24日 - 新浪财经</a></li><li><a href="https://ts2.tech/en/stock-market-today-08-24-2026-asia/" target="_blank" rel="noopener">Asia Stock Market Today 24/08/2026 - Alibaba Dilution and Samsung Disappointment Deepen Asia Tech Selloff</a></li><li><a href="https://www.federalreserve.gov/newsevents/pressreleases/other20260522a.htm" target="_blank" rel="noopener">Federal Reserve Board - Kevin Warsh takes oath of office as chairman</a></li><li><a href="https://www.cnbc.com/2026/05/13/kevin-warsh-wins-senate-confirmation-as-the-next-federal-reserve-chair.html" target="_blank" rel="noopener">Kevin Warsh wins Senate confirmation as the next Federal Reserve chair - CNBC</a></li><li><a href="https://www.npr.org/2026/05/13/nx-s1-5816235/kevin-warsh-federal-reserve-chair-jerome-powell" target="_blank" rel="noopener">Senate confirms Kevin Warsh as next chair of the Federal Reserve - NPR</a></li><li><a href="https://www.cnbc.com/2026/08/24/alibaba-share-placement-drop-ai-hong-kong.html" target="_blank" rel="noopener">Alibaba plunges after announcing $10.2 billion share placement to fund AI push - CNBC</a></li><li><a href="https://www.bloomberg.com/news/articles/2026-08-23/alibaba-to-raise-10-billion-by-selling-shares-for-ai-expansion" target="_blank" rel="noopener">Alibaba Raises $10 Billion for AI in Record Hong Kong Share Sale - Bloomberg</a></li><li><a href="https://www.bnnbloomberg.ca/business/company-news/2026/08/21/samsung-electronics-expects-shareholder-returns-up-to-us80-billion-this-year/" target="_blank" rel="noopener">Samsung Electronics expects shareholder returns up to US$80 billion this year</a></li><li><a href="https://www.cnbc.com/2026/08/21/samsung-shareholder-return-package-sk-hynix-buyback-ai-chip-boom.html" target="_blank" rel="noopener">Samsung plans up to $80 billion in shareholder returns after SK Hynix buyback - CNBC</a></li><li><a href="https://www.bloomberg.com/news/articles/2026-08-20/samsung-plans-as-much-as-79-billion-in-shareholder-returns" target="_blank" rel="noopener">Samsung Plans as Much as $79 Billion in Shareholder Returns - Bloomberg</a></li><li><a href="https://www.cnbc.com/2026/08/20/sk-hynixs-south-korean-shares-surge-stock-buyback-.html" target="_blank" rel="noopener">SK Hynix shares surge over 12% after buyback announcement - CNBC</a></li><li><a href="https://www.techtimes.com/articles/325228/20260821/jackson-hole-2026-what-watch-when-warsh-steps-podium-friday.htm" target="_blank" rel="noopener">Jackson Hole 2026: What to Watch When Warsh Steps to the Podium Friday</a></li><li><a href="https://www.regardsofwallstreet.com/news/jackson-hole-2026-dates-schedule-warsh-first-speech" target="_blank" rel="noopener">Jackson Hole 2026: Dates, Schedule, and Warsh&#x27;s First Speech as Fed Chair</a></li><li><a href="https://goldsilver.com/industry-news/article/gold-price-outlook-august-2026/" target="_blank" rel="noopener">Gold Price Outlook August 2026: What Three Data Prints in One Week Mean for Your Metals</a></li><li><a href="https://www.bls.gov/news.release/cpi.nr0.htm" target="_blank" rel="noopener">Consumer Price Index Summary - 2026 M07 Results - BLS</a></li><li><a href="https://www.chase.com/personal/investments/learning-and-insights/article/september-2026-rate-hike-now-expected-amid-energy-shocks" target="_blank" rel="noopener">Will the Fed Hike Rates in September? - Chase</a></li><li><a href="https://www.cnbc.com/2026/07/29/fed-rate-decision-july-2026.html" target="_blank" rel="noopener">Divided Fed holds interest rates steady, but three members voted to hike - CNBC</a></li></ol></details>
+  </footer>
+</div>
+</body>
+</html>

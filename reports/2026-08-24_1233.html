@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="archive-nav"><a href="../archive.html">📚 历史简报归档</a></nav>
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-08-24 12:33 CEST &middot; 渲染于 2026-08-24 12:36</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>长鑫存储科创板上市募资86亿美元冲击DRAM格局，大摩下调三星海力士评级；美联储9月加息概率实为约33%，非鹰派共识。</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li>中国存储芯片厂长鑫存储(CXMT)科创板挂牌，募资约86亿美元(579亿人民币)扩产DRAM，股价上市首日暴涨超465%；摩根士丹利同期下调三星电子、SK海力士评级</li><li>美联储9月加息概率数据分歧明显：CME FedWatch最新显示约33%概率加息、67%概率维持不变，7月非农骤降2.3万、8月新增仅2.2万(预期7.5万)均低于预期，部分抵消沃什鹰派信号</li><li>阿里巴巴配售定价明细公布：每股112.7港元，较上周五收盘123港元折让约8.4%，为阿里2019年港股双重上市以来首次配股</li><li>美伊60天谈判期限已于8月17日到期，特朗普称目前无在谈进程，霍尔木兹海峡紧张持续，布伦特原油维持在97美元/桶附近高位</li><li>黄金续创新高至4645.74美元/盎司，为5月以来最高，日内涨0.83%</li><li>英伟达8月26日盘后财报临近，市场预期营收上修至930-950亿美元区间，同比增速或达67%-75%</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">长鑫存储(CXMT)科创板上市，摩根士丹利下调三星/SK海力士评级</h3><p class="field-row"><span class="field-label">事件</span>中国最大DRAM芯片厂长鑫存储在上海科创板挂牌，募资约579亿人民币(约86亿美元)，股价上市首日暴涨逾465%；摩根士丹利以&quot;中国存储厂商扩产速度远超预期、将削弱三星/SK海力士/美光长期供给主导地位&quot;为由，下调三星电子、SK海力士评级（来源：钛媒体/新浪财经/鉅亨网/IBTimes，8月中下旬）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>韩国存储芯片股(三星/SK海力士)、美股美光科技、A股/科创板半导体设备与材料国产替代链、全球DRAM/HBM定价预期</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">此前市场对三星/SK海力士的负面解读多归因于&quot;股东回馈/资本开支见顶&quot;，而CXMT募资扩产这一更具体的供给端冲击逻辑（国产DRAM份额已升至全球第四，7.7%）尚未被充分纳入定价，大摩下调评级说明机构才刚开始重新校准，值得持续跟踪后续产能释放节奏。</span></p></article><article class="card"><h3 class="card-title">美联储9月加息/维持概率数据分歧，弱非农抵消鹰派叙事</h3><p class="field-row"><span class="field-label">事件</span>CME FedWatch最新数据显示9月议息会议维持利率不变概率约67%、加息25bp概率约33%，与此前&quot;基准情形转向加息&quot;的市场表述有出入；7月非农意外骤减2.3万(预期+8.5万)，8月非农仅增2.2万(预期+7.5万)，为疫情以来第三大月度降幅之一，部分抵消沃什鹰派信号及霍尔木兹供应风险推高通胀预期的逻辑（来源：CNBC/CBS News/经济观察网/中国基金报，8月7-21日）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>美债收益率、美元指数、黄金、成长股/高估值科技股、新兴市场货币</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">市场目前处于&quot;加息叙事&quot;与&quot;弱就业数据&quot;两股力量拉锯、概率在33%-67%区间反复摇摆的状态，尚未形成一致共识，8月28日沃什在杰克逊霍尔的首场演讲将是关键催化剂，当前价格可能尚未完全反映任一方向的确定性结果。</span></p></article><article class="card"><h3 class="card-title">阿里巴巴配售定价明细：8.4%折让，创2019年以来首次配股</h3><p class="field-row"><span class="field-label">事件</span>阿里巴巴此次配售定价为每股112.7港元，较上周五收盘价123港元折让约8.4%，发行7.1亿股，为阿里2019年港股双重上市以来首次启动新股配售，所得款项净额100%投入AI全栈业务布局（来源：新浪财经/hk01/腾讯新闻，8月23-24日）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>中国科技股/港股AI概念、云计算资本开支链、港股新股发行市场情绪</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">8.4%折让幅度与股价约10%的实际跌幅基本吻合，属于典型的融资摊薄兑现式反应，市场已充分消化短期定价冲击；后续需跟踪的是AI资本开支能否转化为阿里云ARR增长（已突破495亿元人民币）。</span></p></article><article class="card"><h3 class="card-title">美伊60天期限已过，霍尔木兹海峡紧张持续</h3><p class="field-row"><span class="field-label">事件</span>美国与伊朗此前设定的60天谈判期限已于8月17日到期，特朗普8月18日表示目前无在谈进程；此前一周特朗普曾威胁如阿曼干预霍尔木兹海峡局势将对其采取行动，卡塔尔呼吁通过谈判达成停火并保障航行自由（来源：CNN，8月16-18日）。布伦特原油目前维持在97美元/桶附近（来源：Trading Economics，8月21日）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>原油/能源板块、航运保险成本、全球通胀预期、避险资产(黄金)</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">谈判期限到期但无新一轮实质性军事升级，处于&quot;悬而未决&quot;状态，油价对该地缘风险的定价高度依赖零星消息面，任何突发进展(无论缓和还是升级)都可能引发油价剧烈波动。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><h3 class="card-title">国产存储替代冲击链：从CXMT上市到AI算力成本预期</h3><div class="chain-flow"><span class="chain-node">长鑫存储科创板上市募资86亿美元扩产</span><span class="chain-arrow">→</span><span class="chain-node">大摩下调三星/SK海力士评级</span><span class="chain-arrow">→</span><span class="chain-node">市场担忧DRAM/HBM全球供给格局生变</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">情绪波及AI服务器成本与英伟达财报博弈预期</span></div><p class="field-row"><span class="field-label">逻辑</span>CXMT此次募资规模远超市场此前预期，直接指向&quot;中国存储厂商扩产速度可能快于韩系巨头调整节奏&quot;这一具体供给端逻辑，与此前&quot;三星回馈股东意味着增长见顶&quot;的模糊解读不同，是更具体、更可验证的基本面冲击；大摩率先下调评级意味着机构开始把&quot;国产替代&quot;从长期叙事转为中期定价变量。若三星/SK海力士的HBM(AI服务器核心存储)供给预期因此被重新评估，可能间接影响市场对英伟达等AI硬件公司毛利率/供应链成本的预期，尤其是在8月26日财报窗口。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">CXMT在传统DRAM之外，距离HBM高端产能仍有数年差距，市场可能过度线性外推短期股价冲击，也可能低估中期产能释放的实际速度，两种误判风险并存，需持续跟踪季度产能数据而非单次股价反应。</span></p></article><article class="card" style="--accent-light:#eb6834;--accent-dark:#d95926"><h3 class="card-title">美联储政策叙事拉锯链：弱就业数据 vs 鹰派信号的对冲</h3><div class="chain-flow"><span class="chain-node">7-8月非农连续不及预期(弱经济信号) ↔ 沃什鹰派表态+霍尔木兹供应风险推高通胀预期(鹰派信号)</span><span class="chain-arrow">→</span><span class="chain-node">9月加息概率在33%-67%区间反复摇摆、无一致共识</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">黄金/美债同时定价&quot;降息预期&quot;与&quot;财政赤字担忧&quot;两种逻辑，形成罕见的同向背离</span></div><p class="field-row"><span class="field-label">逻辑</span>通常&quot;就业转弱&quot;应直接压低加息概率、利好黄金和债券，但由于沃什上任以来刻意维持模糊前瞻指引(&quot;a blank piece of paper&quot;)，加之霍尔木兹海峡供应风险持续推高能源成本预期，市场无法排除&quot;滞胀式加息&quot;的可能性，导致概率始终无法收敛到一端。这种&quot;两条逻辑同时被定价却互相矛盾&quot;的状态，恰恰是黄金能在加息预期尚未完全消失的背景下仍创新高的深层原因——避险与赤字担忧盖过了单纯的利率博弈。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">8月28日沃什在杰克逊霍尔的首场演讲(距9月17日议息会议仅19天)大概率是打破当前拉锯状态的关键催化剂，在此之前任何单边押注都可能面临方向反转风险。</span></p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">中国存储股一上市，韩国巨头就成了&quot;心魔&quot;</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>长鑫存储刚在科创板挂牌，股价当天就暴涨465%，几乎是同一时间，大摩就把三星和SK海力士的评级往下调了——这种&quot;东边刚点起一把火，西边评级机构立刻改口&quot;的联动速度，说明市场对&quot;国产替代&quot;这件事的敏感度已经练出了肌肉记忆，不需要等财报验证，光是一场上市敲钟就够了。</p></div><div class="bilingual-col"><div class="bilingual-caption">Français</div><p>À peine CXMT entré en bourse à Shanghai, son action bondit de 465 % — et presque au même moment, Morgan Stanley dégrade Samsung et SK Hynix. Le marché n&#x27;a même plus besoin d&#x27;attendre des résultats trimestriels pour réagir à la « substitution chinoise » : une simple cloche d&#x27;introduction en bourse suffit désormais à faire trembler les géants coréens.</p></div></div></article><article class="card"><h3 class="card-title">加息概率吵不出共识，本身就是一种信号</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>33%还是67%，不同数据源给出的加息概率能差出一倍，这不是谁算错了，而是市场自己也没想明白——弱就业数据在拉一头，沃什的鹰派沉默和霍尔木兹的供应风险在拉另一头。有时候&quot;没有共识&quot;这件事本身，就是最诚实的市场情绪。</p></div><div class="bilingual-col"><div class="bilingual-caption">Français</div><p>33 % ou 67 % de chances de hausse des taux selon la source — ce n&#x27;est pas une erreur de calcul, c&#x27;est que le marché lui-même hésite. Les données d&#x27;emploi molles tirent d&#x27;un côté, le silence faucon de Warsh et les risques sur Ormuz tirent de l&#x27;autre. Parfois, l&#x27;absence de consensus est le signal le plus honnête que le marché puisse envoyer.</p></div></div></article><article class="card"><h3 class="card-title">美伊谈判期限过了，但没人敢庆祝也没人敢慌</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>60天谈判期限8月17日就已经过了，特朗普说没有在谈的进程，但油价也没有因此暴涨——市场处在一种奇怪的&quot;既不相信会打起来，也不相信会谈成&quot;的悬置状态，这种不上不下的沉默，往往比明确的坏消息更考验持仓的耐心。</p></div><div class="bilingual-col"><div class="bilingual-caption">Français</div><p>Le délai de 60 jours pour un accord entre Washington et Téhéran a expiré le 17 août, Trump dit qu&#x27;aucune négociation n&#x27;est en cours — et pourtant le pétrole ne s&#x27;envole pas. Le marché est suspendu dans un entre-deux étrange, ni convaincu d&#x27;une escalade ni d&#x27;un accord, et ce silence ambigu met parfois plus à l&#x27;épreuve les nerfs des investisseurs qu&#x27;une vraie mauvaise nouvelle.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>本期距上一期仅间隔约6分钟，未出现全新突发事件，但本轮检索补充了三处实质性细化/更正：(1) <strong>新增关键驱动</strong>——三星/SK海力士承压的更具体成因是长鑫存储(CXMT)科创板上市募资86亿美元扩产、大摩随即下调评级，而非上期仅归因于&quot;股东回馈引发增长见顶担忧&quot;，这是本期新增的核心信息；(2) <strong>美联储9月加息概率更正</strong>——上期引用摩根大通&quot;基准情形转向加息&quot;的表述，本期核实CME FedWatch实际数据显示概率约33%(加息) vs 67%(维持不变)，且受7-8月连续疲软非农数据拖累，市场并未形成&quot;转鹰&quot;的一致共识，此前表述略显夸大，特此更正；(3) 阿里巴巴配售折让精确数据更正为8.4%(此前引用3.6%为不准确数据)；美伊谈判期限已于8月17日到期的背景信息为新增细化，油价、黄金走势延续原判断无实质反转。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成，仅供研究参考，不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (17)</summary><ol><li><a href="https://www.stcn.com/article/detail/4028014.html" target="_blank" rel="noopener">长鑫科技扛起DRAM国产化大旗 中国大厂多久能追上三星、SK海力士？</a></li><li><a href="https://zhuanlan.zhihu.com/p/2054284349416141084" target="_blank" rel="noopener">长鑫存储，能否挑战全球存储三巨头 - 知乎</a></li><li><a href="https://news.cnyes.com/news/id/6536234" target="_blank" rel="noopener">中國長鑫存儲上市募資擴產引憂慮 美光、SanDisk、SK海力士ADR崩超8% - 鉅亨網</a></li><li><a href="https://www.ibtimes.com.au/cxmt-rise-memory-chip-market-1873082" target="_blank" rel="noopener">5 Ways China&#x27;s Newly Public CXMT Could Threaten Samsung and SK Hynix - IBTimes</a></li><li><a href="https://finance.yahoo.com/markets/stocks/articles/samsung-sk-hynix-slide-amid-005745736.html" target="_blank" rel="noopener">Asian chip stocks slide as China competition fears rattle AI trade - Yahoo Finance</a></li><li><a href="http://www.eeo.com.cn/2026/0817/1001110.shtml" target="_blank" rel="noopener">美联储加息预期生变，9月加息概率降至约33% - 经济观察网</a></li><li><a href="https://www.cnbc.com/2026/08/07/odds-the-fed-hikes-in-september-tumble-following-big-july-jobs-miss.html" target="_blank" rel="noopener">Odds the Fed will hike in September tumble following big July jobs miss - CNBC</a></li><li><a href="https://www.cbsnews.com/news/federal-reserve-september-rate-decision-jobs-report-kevin-warsh/" target="_blank" rel="noopener">The Fed was expected to hike interest rates in September. Don&#x27;t bet on that now - CBS News</a></li><li><a href="https://www.chase.com/personal/investments/learning-and-insights/article/kevin-warsh-july-2026-federal-reserve-will-deliver-price-stability" target="_blank" rel="noopener">Kevin Warsh Says Fed Will &#x27;Deliver Price Stability&#x27; After Decision to Hold Rates at July Meeting - Chase</a></li><li><a href="https://www.regardsofwallstreet.com/news/jackson-hole-2026-dates-schedule-warsh-first-speech" target="_blank" rel="noopener">Jackson Hole 2026: Dates, Schedule, and Warsh&#x27;s First Speech as Fed Chair</a></li><li><a href="https://www.hk01.com/%E8%B2%A1%E7%B6%93%E5%BF%AB%E8%A8%8A/60382907/%E9%98%BF%E9%87%8C%E6%8A%98%E8%AE%93%E9%85%8D%E8%82%A1%E6%8A%BC%E6%B3%A8ai-%E8%82%A1%E5%83%B9%E4%BD%8E%E9%96%8B8-%E5%A4%A7%E7%A9%BA%E9%A0%AD%E6%94%BE%E7%8B%A0%E8%A9%B1-%E8%B7%8C%E4%B8%80%E5%8D%8A%E5%86%8D%E8%80%83%E6%85%AE" target="_blank" rel="noopener">阿里折讓配股押注AI 股價低開8% 大空頭放狠話 - HK01</a></li><li><a href="https://news.qq.com/rain/a/20260823A07N4N00" target="_blank" rel="noopener">七年来首次！阿里拟配售800亿港元新股，全部投入AI建设 - 腾讯新闻</a></li><li><a href="https://www.cnn.com/2026/08/17/world/live-news/iran-war-trump" target="_blank" rel="noopener">August 17, 2026 — Deadline to reach US-Iran deal expires - CNN</a></li><li><a href="https://www.cnn.com/2026/08/18/world/live-news/iran-war-trump" target="_blank" rel="noopener">August 18, 2026 - Trump says no talks underway with Iran - CNN</a></li><li><a href="https://tradingeconomics.com/commodity/brent-crude-oil" target="_blank" rel="noopener">Brent crude oil - Price - Chart - Historical Data - Trading Economics</a></li><li><a href="https://goldsilver.com/industry-news/article/gold-price-outlook-august-2026/" target="_blank" rel="noopener">Gold Price Outlook August 2026 - GoldSilver.com</a></li><li><a href="https://intellectia.ai/blog/nvidia-earnings-preview-august-2026" target="_blank" rel="noopener">NVIDIA Earnings Preview August 2026</a></li></ol></details>
+  </footer>
+</div>
+</body>
+</html>
