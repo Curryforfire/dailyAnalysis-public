@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+.fr-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speak-btn {
+  border: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.speak-btn:hover { border-color: var(--accent-blue-l); color: var(--accent-blue-l); }
+.speak-btn.speaking { background: var(--accent-blue-l); border-color: var(--accent-blue-l); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .speak-btn:hover { border-color: var(--accent-blue-d); color: var(--accent-blue-d); }
+  .speak-btn.speaking { background: var(--accent-blue-d); border-color: var(--accent-blue-d); color: #fff; }
+}
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="archive-nav"><a href="../archive.html">📚 历史简报归档</a></nav>
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-10-12 06:10 CEST &middot; 渲染于 2026-10-12 06:10</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>美股10/9收涨，标普约7,812点，十年期美债收益率约5.24%；这些数字仅有单一来源，油价和AI新闻仍未查到</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>美股10/9收盘（单一来源）</strong>：La Nación 转载的 AP 行情稿称，标普500涨约0.6%至约7,811.54点，道指约51,654.95点，纳指约27,366.17点，罗素2000约2,806.98点。</li><li><strong>十年期美债收益率约5.24%（单一来源）</strong>：同一篇稿子给出，数字偏高，需要第二个信源确认。</li><li><strong>标普纪录日期冲突</strong>：上述稿子称纪录在&quot;三天前&quot;，但其他报道把纪录收盘定在8/13的7,816.70点。两个说法无法同时成立，仍未解决。</li><li><strong>Brent 现价仍未查到</strong>：只有无日期的聚合文章，称10月合约约91.93美元并提到伊朗与霍尔木兹的紧张。它无日期，且与上期提到的10/5–10/6约99–102美元不一致，不能当现价。</li><li><strong>AI 出口管制</strong>：搜到的仍是2025年的 H20、H200 旧闻，没有2026年10月的新政策。</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">美股10/9收盘与收益率（单一来源）</h3><p class="field-row"><span class="field-label">事件</span>La Nación 转载 AP 的 10/9 收盘表，称美股周五上涨、本周创纪录。收盘价是我找到的唯一有日期的新数据，没有第二个信源印证。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>大盘指数、成长股（对长端利率敏感）、银行、房地产、美元。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">若十年期真在5.24%附近，高利率与指数接近纪录并存，这种组合历史上往往让估值对利率更敏感，但股市是否已充分定价还要看周一的反应。收益率数字尚未交叉验证，这个判断只是条件性的。</span></p></article><article class="card"><h3 class="card-title">Brent 原油（现价未核实）</h3><p class="field-row"><span class="field-label">事件</span>一篇无日期聚合文章称10月合约约91.93美元，并提到伊朗与霍尔木兹的对峙。Kalshi 页面显示10/9合约高于99.99美元的概率约69%，那是赔率，不是价格。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>炼化、航空、能源股、通胀预期、美债收益率。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">几个来源互相矛盾（约92美元对约100美元），都没有可核实日期。在拿到 Reuters 或 Bloomberg 结算价之前，不应把任何一个当作基本面依据。</span></p></article><article class="card"><h3 class="card-title">AI 芯片出口管制（无2026年新进展）</h3><p class="field-row"><span class="field-label">事件</span>检索只返回2025年的 H20 许可、15%收入分成、H200 获批讨论、中国网信办限购 Nvidia 等旧闻。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>Nvidia、AMD、半导体设备、国产替代链。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">这些是一年前的事件，当时的反应早已完成，我不把它们当作本时段的催化剂。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><p>本时段无适合展开多级传导的新闻。唯一的新数据（美股收盘与收益率）来自单一来源，且油价、美债数字互相对不上，不足以支撑一条有实质内容的链条。</p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">接近纪录，却差一口气</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>标普收在7,811.54，离8/13的纪录7,816.70只差约5点，不到0.1%。如果这两个数字都对，周一开盘一个普通的上涨就能刷新纪录。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Le S&amp;P 500 aurait fini à 7 811,54, à peine cinq points du record du 13 août (7 816,70). Si les deux chiffres sont exacts, une hausse ordinaire lundi suffirait à le battre." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Le S&amp;P 500 aurait fini à 7 811,54, à peine cinq points du record du 13 août (7 816,70). Si les deux chiffres sont exacts, une hausse ordinaire lundi suffirait à le battre.</p></div></div></article><article class="card"><h3 class="card-title">5.24% 的十年期，值得多看一眼</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>单一来源给出的十年期收益率是5.24%，股市却在纪录附近。要么市场很从容，要么这个数字有误，得等第二个信源来裁决。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Un rendement à 10 ans de 5,24 % avec des actions près de leurs sommets : soit le marché est serein, soit le chiffre est faux. Il faut une seconde source pour trancher." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Un rendement à 10 ans de 5,24 % avec des actions près de leurs sommets : soit le marché est serein, soit le chiffre est faux. Il faut une seconde source pour trancher.</p></div></div></article><article class="card"><h3 class="card-title">两个 Brent，一个都不能信</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>一个说约92美元，一个赔率押100美元以上。价格差了近10%，却都没有日期。数据相互打架的时候，诚实地说&quot;不知道&quot;比挑一个更有用。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Un Brent à environ 92 dollars d&#x27;un côté, des paris à plus de 100 de l&#x27;autre : près de 10 % d&#x27;écart, et aucune date fiable. Quand les chiffres se contredisent, avouer qu&#x27;on ne sait pas vaut mieux que d&#x27;en choisir un." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Un Brent à environ 92 dollars d&#x27;un côté, des paris à plus de 100 de l&#x27;autre : près de 10 % d&#x27;écart, et aucune date fiable. Quand les chiffres se contredisent, avouer qu&#x27;on ne sait pas vaut mieux que d&#x27;en choisir un.</p></div></div></article><article class="card"><h3 class="card-title">一篇稿子里的矛盾</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>同一篇行情稿说纪录是&quot;三天前&quot;，别处却说纪录在8/13。这提醒我们，转载稿可能把旧模板套在新数字上。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Le même article parle d&#x27;un record « il y a trois jours », alors que d&#x27;autres sources le situent au 13 août. Une dépêche reprise ailleurs peut très bien greffer un vieux gabarit sur des chiffres neufs." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Le même article parle d&#x27;un record « il y a trois jours », alors que d&#x27;autres sources le situent au 13 août. Une dépêche reprise ailleurs peut très bien greffer un vieux gabarit sur des chiffres neufs.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- <strong>新进展</strong>：找到了上期缺失的10/9美股收盘（标普约7,811.54，道指约51,654.95，纳指约27,366.17），以及十年期收益率约5.24%。两者都只有 La Nación 转载 AP 这一个信源，未交叉验证。
+- <strong>仍未核实</strong>：10/9与周一的 Brent 和金价收盘、铜价、周一亚洲盘表现、地缘政治和公司动态。标普纪录日期的冲突依然存在。
+- <strong>上期判断的更新</strong>：上期把油价标为【情绪博弈-高风险】，这次新找到的两个价格（约92美元与赔率隐含的100美元以上）仍然互相矛盾，该判断维持不变。
+- <strong>下期关注点</strong>：Reuters 或 Bloomberg 的 Brent 与黄金结算价、十年期收益率的第二信源，以及标普周一是否收于7,816.70点之上。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成，仅供研究参考，不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (5)</summary><ol><li><a href="https://www.lanacion.com.ar/usa/how-major-us-stock-indexes-fared-friday-1092026-nid09102026/" target="_blank" rel="noopener">How major US stock indexes fared Friday 10/9/2026 (La Nación, AP reprint)</a></li><li><a href="https://www.perspectify.com/article/935590743/brent-oil-price-nears-92" target="_blank" rel="noopener">Brent oil price nears 92 (Perspectify, undated)</a></li><li><a href="https://kalshi.com/markets/kxbrentw/brent-oil/kxbrentw-26oct0917" target="_blank" rel="noopener">Kalshi Brent weekly contract, Oct 9 (prediction market, not a price)</a></li><li><a href="https://www.nasdaq.com/articles/nvidia-gains-path-ship-older-h200-ai-chips-china-washington-debates-export-limits" target="_blank" rel="noopener">Nvidia gains path to ship older H200 AI chips to China (Nasdaq/RTTNews)</a></li><li><a href="https://siliconangle.com/2025/08/11/nvidia-amd-pay-us-government-15-revenue-ai-chip-exports-china/" target="_blank" rel="noopener">Nvidia, AMD to pay US government 15% of China AI chip revenue (SiliconANGLE, Aug 2025)</a></li></ol></details>
+  </footer>
+</div>
+<script>
+(function() {
+  var synth = window.speechSynthesis;
+  var currentBtn = null;
+
+  function pickFrenchVoice() {
+    if (!synth) return null;
+    var voices = synth.getVoices().filter(function(v) {
+      return v.lang && v.lang.toLowerCase().indexOf('fr') === 0;
+    });
+    if (!voices.length) return null;
+    var femaleNames = /amelie|amélie|audrey|marie|celine|céline|julie|chantal|female|femme/i;
+    var preferred = voices.find(function(v) { return femaleNames.test(v.name); });
+    return preferred || voices[0];
+  }
+
+  function stopSpeaking() {
+    if (synth) synth.cancel();
+    if (currentBtn) {
+      currentBtn.classList.remove('speaking');
+      currentBtn.textContent = '🔊';
+    }
+    currentBtn = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.speak-btn') : null;
+    if (!btn) return;
+    if (!synth) {
+      alert('当前浏览器不支持语音朗读');
+      return;
+    }
+    if (currentBtn === btn) {
+      stopSpeaking();
+      return;
+    }
+    stopSpeaking();
+    var text = btn.getAttribute('data-fr-text') || '';
+    if (!text) return;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    var voice = pickFrenchVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = stopSpeaking;
+    utter.onerror = stopSpeaking;
+    currentBtn = btn;
+    btn.classList.add('speaking');
+    btn.textContent = '⏸';
+    synth.speak(utter);
+  });
+})();
+</script>
+</body>
+</html>
