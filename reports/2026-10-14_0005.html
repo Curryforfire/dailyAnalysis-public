@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+.fr-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speak-btn {
+  border: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.speak-btn:hover { border-color: var(--accent-blue-l); color: var(--accent-blue-l); }
+.speak-btn.speaking { background: var(--accent-blue-l); border-color: var(--accent-blue-l); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .speak-btn:hover { border-color: var(--accent-blue-d); color: var(--accent-blue-d); }
+  .speak-btn.speaking { background: var(--accent-blue-d); border-color: var(--accent-blue-d); color: #fff; }
+}
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="archive-nav"><a href="../archive.html">📚 历史简报归档</a></nav>
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-10-14 00:05 CEST &middot; 渲染于 2026-10-14 00:05</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>四大行财报日美股大致持平，道指跌0.35%；高盛、摩根大通收盘均小幅下跌；今晚CPI预期偏热</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>美股收盘</strong>：据搜索摘要，标普500基本持平，纳指小幅收低，存储芯片股走弱。道指跌180.45点（-0.35%）至51,670.10。</li><li><strong>银行股收盘</strong>：摘要称摩根大通收跌约0.9%，高盛收跌约0.2%，富国收跌约3%。高盛盘前涨超4%的涨幅没能守住。</li><li><strong>摩根大通指引</strong>：财报EPS和营收未达预期，但上调了2026年净利息收入指引（摘要，未核对原文）。</li><li><strong>CPI</strong>：美国9月CPI今天（10/14）发布。摘要称市场预期同比3.6%，前值3.4%。偏热的读数可能重新点燃加息预期。</li><li><strong>未解决项</strong>：10/13油价、金价、铜价没有可靠读数。</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">四大行财报后的收盘表现</h3><p class="field-row"><span class="field-label">事件</span>据CNBC、FXStreet摘要（10/13美东时段）：</p><p>高盛EPS 17.01美元，预期约13.00美元，盘前涨超4%，收盘小幅下跌约0.2%。</p><p>摩根大通收跌约0.9%。</p><p>富国收跌约3%，原因是业绩喜忧参半。</p><p>FXStreet标题称道指&quot;回吐了500点的财报涨幅&quot;，说明盘中一度大涨。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>大型银行、投行与交易业务、区域银行、金融板块ETF。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">上期已提到财报前银行指数从8月高点回落约13%，期权隐含波动也很高。高盛大超预期，股价却从盘前高点回吐到小幅收跌，这是&quot;利好兑现&quot;的典型形态。这个判断基于摘要里的收盘数字，我没有核对原文。</span></p></article><article class="card"><h3 class="card-title">CPI前夜的市场定位</h3><p class="field-row"><span class="field-label">事件</span>摘要称9月CPI预期同比3.6%，前值3.4%（摘要，未核对原文）。CNBC摘要称，偏热的读数可能重新点燃加息预期。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>美债收益率（10年期10/9为5.24%）、美元、黄金、银行股、利率敏感的成长股。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">指数收盘持平，说明市场在等数据，还没有提前定价。若实际读数明显高于预期，调整会集中在发布后。这是条件判断。</span></p></article><article class="card"><h3 class="card-title">存储芯片股走弱</h3><p class="field-row"><span class="field-label">事件</span>CNBC标题称存储芯片股下跌，拖累纳指。我没有读到原文，不知道下跌原因和幅度。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>存储芯片、AI服务器链、半导体设备。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">原因不明。没有可核对的催化剂，我不做归因。</span></p></article><article class="card"><h3 class="card-title">油价</h3><p class="field-row"><span class="field-label">事件</span>最近能确认的读数是10/2：Brent收于102.25美元，WTI收于91.11美元。当时G7/IEA释放紧急柴油储备的计划压低了WTI。距今已有11天，我不能把它当作当前价格。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">缺乏带时间戳的最新读数，我不引用任何当前价格。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><h3 class="card-title">CPI → 利率预期 → 银行与成长股</h3><div class="chain-flow"><span class="chain-node">今日CPI</span><span class="chain-arrow">→</span><span class="chain-node">加息押注</span><span class="chain-arrow">→</span><span class="chain-node">长端收益率</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">银行与成长股</span></div><p class="field-row"><span class="field-label">逻辑</span>若CPI高于预期的3.6%，市场会提高10月底FOMC加息的概率，短端收益率先上行，长端跟随。银行的息差可能受益，但上期提到的资金成本和信贷质量压力会被放大。高估值成长股对折现率更敏感，通常比银行更脆弱。若CPI符合预期或偏低，上述链条反向。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">取决于今天的实际数字，现在无法预知。</span></p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">盘前的涨幅没能留到收盘</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>高盛盘前涨了4%以上，收盘却小幅下跌。早上的掌声，到下午已经散场了。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Goldman gagnait plus de 4 % avant l&#x27;ouverture et a fini la séance en léger repli. Les applaudissements du matin s&#x27;étaient dissipés dès l&#x27;après-midi." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Goldman gagnait plus de 4 % avant l&#x27;ouverture et a fini la séance en léger repli. Les applaudissements du matin s&#x27;étaient dissipés dès l&#x27;après-midi.</p></div></div></article><article class="card"><h3 class="card-title">财报好，股价未必好</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>高盛每股赚17美元，比预期高了三成，股价照样收跌。市场早就把&quot;会大超预期&quot;算进去了，惊喜没有超出想象。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Goldman gagne 17 dollars par action, bien au-dessus des attentes, et l&#x27;action recule quand même. Le marché avait déjà intégré la bonne surprise." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Goldman gagne 17 dollars par action, bien au-dessus des attentes, et l&#x27;action recule quand même. Le marché avait déjà intégré la bonne surprise.</p></div></div></article><article class="card"><h3 class="card-title">摩根大通：成绩差，指引好</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>摩根大通这季成绩单没考好，但把全年净利息收入的目标调高了。这像考砸了的学生说&quot;下学期我会更努力&quot;，市场只信了一半，收盘跌了不到1%。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="JPMorgan rate un peu son trimestre mais relève sa prévision annuelle de revenus d&#x27;intérêts. Comme un élève qui promet de se rattraper: le marché y croit à moitié, et l&#x27;action cède moins de 1 %." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>JPMorgan rate un peu son trimestre mais relève sa prévision annuelle de revenus d&#x27;intérêts. Comme un élève qui promet de se rattraper: le marché y croit à moitié, et l&#x27;action cède moins de 1 %.</p></div></div></article><article class="card"><h3 class="card-title">大家都在等同一个数字</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>指数收盘几乎没动，不是因为没消息，而是所有人都在等今天的CPI。市场这时像考前的教室，安静得有点紧张。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Les indices n&#x27;ont presque pas bougé, non par manque de nouvelles, mais parce que tout le monde attend le chiffre de l&#x27;inflation. Une salle d&#x27;examen, juste avant le début de l&#x27;épreuve." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Les indices n&#x27;ont presque pas bougé, non par manque de nouvelles, mais parce que tout le monde attend le chiffre de l&#x27;inflation. Une salle d&#x27;examen, juste avant le début de l&#x27;épreuve.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- <strong>兑现</strong>：上期说&quot;银行指数已为分化做了准备&quot;。收盘表现印证了这一点：高盛盘前大涨后回吐，摩根大通跌不到1%，没有出现单边行情。
+- <strong>新增</strong>：10/13收盘数据（待核实）：道指51,670.10（-0.35%），标普基本持平，纳指小幅收低。CPI预期值（3.6%，前值3.4%）。摩根大通上调净利息收入指引。
+- <strong>仍未解决</strong>：标普500和纳指的精确收盘点位、10/13油价、金价、铜价、Nvidia对UAE出口许可的日期。
+- <strong>下期关注</strong>：9月CPI的实际数字与市场反应、美银和摩根士丹利财报、10年期美债收益率能否维持在5.2%上方。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成，仅供研究参考，不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (3)</summary><ol><li><a href="https://www.cnbc.com/2026/10/12/stock-market-today-live-updates.html" target="_blank" rel="noopener">S&amp;P 500 closes near flat after big banks post earnings and memory chip stocks decline (CNBC)</a></li><li><a href="https://fxstreet.com/news/dow-jones-industrial-average-gives-back-a-500-point-earnings-jump-202610132112" target="_blank" rel="noopener">Dow Jones gives back a 500-point earnings jump (FXStreet)</a></li><li><a href="https://energynow.com/2026/10/oil-ends-volatile-week-mixed-as-emergency-reserve-release-knocks-wti-lower-but-brent-holds-above-102/" target="_blank" rel="noopener">Oil ends volatile week mixed as emergency reserve release knocks WTI lower but Brent holds above $102 (Energy Now)</a></li></ol></details>
+  </footer>
+</div>
+<script>
+(function() {
+  var synth = window.speechSynthesis;
+  var currentBtn = null;
+
+  function pickFrenchVoice() {
+    if (!synth) return null;
+    var voices = synth.getVoices().filter(function(v) {
+      return v.lang && v.lang.toLowerCase().indexOf('fr') === 0;
+    });
+    if (!voices.length) return null;
+    var femaleNames = /amelie|amélie|audrey|marie|celine|céline|julie|chantal|female|femme/i;
+    var preferred = voices.find(function(v) { return femaleNames.test(v.name); });
+    return preferred || voices[0];
+  }
+
+  function stopSpeaking() {
+    if (synth) synth.cancel();
+    if (currentBtn) {
+      currentBtn.classList.remove('speaking');
+      currentBtn.textContent = '🔊';
+    }
+    currentBtn = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.speak-btn') : null;
+    if (!btn) return;
+    if (!synth) {
+      alert('当前浏览器不支持语音朗读');
+      return;
+    }
+    if (currentBtn === btn) {
+      stopSpeaking();
+      return;
+    }
+    stopSpeaking();
+    var text = btn.getAttribute('data-fr-text') || '';
+    if (!text) return;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    var voice = pickFrenchVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = stopSpeaking;
+    utter.onerror = stopSpeaking;
+    currentBtn = btn;
+    btn.classList.add('speaking');
+    btn.textContent = '⏸';
+    synth.speak(utter);
+  });
+})();
+</script>
+</body>
+</html>
