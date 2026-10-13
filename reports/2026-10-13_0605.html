@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+.fr-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speak-btn {
+  border: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.speak-btn:hover { border-color: var(--accent-blue-l); color: var(--accent-blue-l); }
+.speak-btn.speaking { background: var(--accent-blue-l); border-color: var(--accent-blue-l); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .speak-btn:hover { border-color: var(--accent-blue-d); color: var(--accent-blue-d); }
+  .speak-btn.speaking { background: var(--accent-blue-d); border-color: var(--accent-blue-d); color: #fff; }
+}
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="archive-nav"><a href="../archive.html">📚 历史简报归档</a></nav>
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-10-13 06:05 CEST &middot; 渲染于 2026-10-13 06:05</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>仍无10/12美股收盘；新增10/9标普收7,811.54，Fed已加息，10月再加概率64%</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>美股10/9收盘（新增）</strong>：标普500涨0.6%至7,811.54，道指涨0.8%至51,654.95，纳指涨0.6%至27,366.17。标普离三个交易日前创下的纪录高点很近，周线再创新高。</li><li><strong>纠正上期的框架</strong>：上期把 Fed 加息写成&quot;概率&quot;。搜索显示 Fed 9月已经加了25个基点，是三年来第一次加息，并暗示还会加。上期的&quot;高利率&quot;背景更具体了。</li><li><strong>10月加息预期</strong>：Kitco 9/25引用 CME FedWatch，10月加息概率约64%，12月累计加息概率约93%。这是9/25的数据，不是现值。</li><li><strong>10年期美债</strong>：9月中旬突破5%，是2023年以来首次（同一批报道）。</li><li><strong>油价</strong>：10/8 WTI 涨3.16%至91.07美元，能源板块领涨（+2.34%）。另有一条标注&quot;10/8&quot;的 IDN Financials 称 Brent 约84.46美元，等待伊朗-阿曼航线协议。两个数字来源不同，我无法核对它们为什么相差，也不确定后者的年份和日期。</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">美股创周线纪录，标普接近历史高点（10/9）</h3><p class="field-row"><span class="field-label">事件</span>10/9标普收7,811.54，上期问的&quot;能否收于7,816.70之上&quot;答案是：10/9没有，差约5点。10/8科技股下跌（纳指-1.25%）后，10/9三大指数都反弹。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>大型科技、半导体、周期股、利率敏感板块。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">指数在加息周期里仍接近纪录，说明加息本身已被消化。纳指27,366比10/8的27,193回升，但没有给出10/12的数据，边际赔率要看本周 CPI 和银行财报，那是新的触发点。</span></p></article><article class="card"><h3 class="card-title">Fed 加息周期与10月会议（9月数据）</h3><p class="field-row"><span class="field-label">事件</span>Fed 9月加息25个基点，是三年来首次，并暗示继续加息；9/25市场对10月再加定价约64%（Kitco/CME FedWatch，9/25）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>黄金与金矿股、美元、长久期债券、房贷利率、银行净息差、成长股估值。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">64%不是确定，10月真实结果会让黄金和短端利率重新定价。但9/25之后的概率没有数据，所以这是条件判断，不是结论。</span></p></article><article class="card"><h3 class="card-title">油价与霍尔木兹（数据来源分歧）</h3><p class="field-row"><span class="field-label">事件</span>10/8 WTI 91.07美元（+3.16%）；另一条 Brent 约84.46美元的报道日期不清。仍无10/12–13读数。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>原油、油轮、炼化、航空、通胀预期、能源股。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">价格受伊朗-美国条件谈判的单条消息驱动，来源分歧，且没有 Reuters/Bloomberg 确认。能源股10/8的强势说明市场在交易风险溢价。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><h3 class="card-title">加息周期 → 利率 → 黄金与科技</h3><div class="chain-flow"><span class="chain-node">Fed 首次加息</span><span class="chain-arrow">→</span><span class="chain-node">10年期破5%</span><span class="chain-arrow">→</span><span class="chain-node">金价承压</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">成长股折现率上升</span></div><p class="field-row"><span class="field-label">逻辑</span>Fed 9月加息并暗示后续，10年期收益率升破5%。收益率越高，持有不生息的黄金机会成本越大，所以黄金在9月连续走弱。同一机制抬高成长股折现率，10/8纳指跌幅大于标普就符合这个方向。但10/9指数又同步反弹，说明市场没有把加息当成衰退信号。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">起点是9月，黄金和收益率的主要移动已发生。新的变数是10月会议结果和油价是否推高通胀预期，这两项本期都没有最新数据。</span></p></article><article class="card" style="--accent-light:#eb6834;--accent-dark:#d95926"><h3 class="card-title">油价反弹 → 通胀预期 → 加息路径</h3><div class="chain-flow"><span class="chain-node">伊朗谈判僵持</span><span class="chain-arrow">→</span><span class="chain-node">WTI 升到91美元</span><span class="chain-arrow">→</span><span class="chain-node">通胀预期上行</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">Fed 加息更久</span></div><p class="field-row"><span class="field-label">逻辑</span>10/8能源板块领涨，油价上行直接抬高汽油和运输成本，进入通胀预期。Fed 本来就在加息，油价冲击会让它更难暂停，这又回到利率和黄金。链条有逻辑，但油价读数分歧大。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">起点依赖尚未确认的油价读数，每一跳都建立在伊朗谈判结果上，不确定性高。</span></p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">加息了，股市还在创纪录</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>Fed 三年来第一次加息，10年期收益率冲破5%，标普却还贴着历史高点。市场像是在说：只要不是衰退，利率高一点我扛得住。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="La Fed relève ses taux pour la première fois en trois ans, le 10 ans dépasse 5 %, et le S&amp;P 500 frôle pourtant son record. Le marché semble dire: tant qu&#x27;il n&#x27;y a pas de récession, je tiens le coup." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>La Fed relève ses taux pour la première fois en trois ans, le 10 ans dépasse 5 %, et le S&amp;P 500 frôle pourtant son record. Le marché semble dire: tant qu&#x27;il n&#x27;y a pas de récession, je tiens le coup.</p></div></div></article><article class="card"><h3 class="card-title">差五个点的纪录</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>上期问标普能不能收在7,816.70之上，10/9的答案是7,811.54，差不到5点。离纪录这么近，却没站上去，像爬山到了最后一级台阶前停了一下。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="La dernière fois, on demandait si le S&amp;P clôturerait au-dessus de 7 816,70. Réponse le 9 octobre: 7 811,54, à moins de cinq points. Un alpiniste arrêté à une marche du sommet." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>La dernière fois, on demandait si le S&amp;P clôturerait au-dessus de 7 816,70. Réponse le 9 octobre: 7 811,54, à moins de cinq points. Un alpiniste arrêté à une marche du sommet.</p></div></div></article><article class="card"><h3 class="card-title">同一天，两个油价</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>同一周里，WTI 在91美元，另一条报道里 Brent 在84美元。原油本来该比 Brent 便宜，这次倒过来了。要么是日期对不上，要么是市场真的在撕裂。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Dans la même semaine, le WTI est à 91 dollars et un autre article place le Brent à 84. Normalement le WTI est moins cher. Soit les dates ne collent pas, soit le marché se déchire vraiment." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Dans la même semaine, le WTI est à 91 dollars et un autre article place le Brent à 84. Normalement le WTI est moins cher. Soit les dates ne collent pas, soit le marché se déchire vraiment.</p></div></div></article><article class="card"><h3 class="card-title">能源板块的一天</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>10/8科技股掉了1.25%，能源板块却涨了2.34%。同一个交易日，华尔街一边是芯片，另一边是油井，各讲各的故事。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Le 8 octobre, la tech lâche 1,25 % pendant que l&#x27;énergie gagne 2,34 %. Même séance, deux Wall Street: l&#x27;une parle puces, l&#x27;autre parle pétrole." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Le 8 octobre, la tech lâche 1,25 % pendant que l&#x27;énergie gagne 2,34 %. Même séance, deux Wall Street: l&#x27;une parle puces, l&#x27;autre parle pétrole.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- <strong>已回答的问题</strong>：10/9标普收7,811.54，没有收于7,816.70之上，但差距很小。
+- <strong>纠正</strong>：上期的加息概率背景是旧的。Fed 9月其实已经加息，而且暗示后续，10月再加概率约64%（9/25）。
+- <strong>新增数据</strong>：10/9三大指数收盘、10/8 WTI 91.07美元。
+- <strong>仍未核实</strong>：10/12–13美股、Brent 现价（84.46美元那条日期不清）、10/9之后的 Fed 概率、本周 CPI 与银行财报的实际结果、Nvidia 出口管制的最新状态（只找到8月前后的H200零星批准）。
+- <strong>下期关注点</strong>：10/12收盘、美国9月 CPI、JPMorgan 等银行财报、10月 FOMC 的最新概率。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成，仅供研究参考，不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (5)</summary><ol><li><a href="https://www.lanacion.com.ar/usa/how-major-us-stock-indexes-fared-friday-1092026-nid09102026/" target="_blank" rel="noopener">How major US stock indexes fared Friday, 10/9/2026 (La Nación)</a></li><li><a href="https://tapeboard.com/blog/market-pulse-2026-10-08" target="_blank" rel="noopener">Market pulse 2026-10-08 (Tapeboard)</a></li><li><a href="https://www.kitco.com/news/off-the-wire/2026-09-25/mounting-rate-hike-bets-keep-weekly-loss-sight-gold" target="_blank" rel="noopener">Mounting rate hike bets keep weekly loss in sight for gold (Kitco, Sep 25)</a></li><li><a href="https://www.businesstoday.com.my/2026/09/01/gold-slides-over-1-as-treasury-yields-surge-fed-rate-fears-bite/" target="_blank" rel="noopener">Gold slides over 1% as Treasury yields surge (Business Today Malaysia, Sep 1)</a></li><li><a href="https://www.idnfinancials.com/news/67206/iran-withholds-certainty-over-hormuz-reopening-brent-tops-usd-84" target="_blank" rel="noopener">Iran withholds certainty over Hormuz reopening, Brent tops USD 84 (IDN Financials)</a></li></ol></details>
+  </footer>
+</div>
+<script>
+(function() {
+  var synth = window.speechSynthesis;
+  var currentBtn = null;
+
+  function pickFrenchVoice() {
+    if (!synth) return null;
+    var voices = synth.getVoices().filter(function(v) {
+      return v.lang && v.lang.toLowerCase().indexOf('fr') === 0;
+    });
+    if (!voices.length) return null;
+    var femaleNames = /amelie|amélie|audrey|marie|celine|céline|julie|chantal|female|femme/i;
+    var preferred = voices.find(function(v) { return femaleNames.test(v.name); });
+    return preferred || voices[0];
+  }
+
+  function stopSpeaking() {
+    if (synth) synth.cancel();
+    if (currentBtn) {
+      currentBtn.classList.remove('speaking');
+      currentBtn.textContent = '🔊';
+    }
+    currentBtn = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.speak-btn') : null;
+    if (!btn) return;
+    if (!synth) {
+      alert('当前浏览器不支持语音朗读');
+      return;
+    }
+    if (currentBtn === btn) {
+      stopSpeaking();
+      return;
+    }
+    stopSpeaking();
+    var text = btn.getAttribute('data-fr-text') || '';
+    if (!text) return;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    var voice = pickFrenchVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = stopSpeaking;
+    utter.onerror = stopSpeaking;
+    currentBtn = btn;
+    btn.classList.add('speaking');
+    btn.textContent = '⏸';
+    synth.speak(utter);
+  });
+})();
+</script>
+</body>
+</html>
