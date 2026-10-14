@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+.fr-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speak-btn {
+  border: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.speak-btn:hover { border-color: var(--accent-blue-l); color: var(--accent-blue-l); }
+.speak-btn.speaking { background: var(--accent-blue-l); border-color: var(--accent-blue-l); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .speak-btn:hover { border-color: var(--accent-blue-d); color: var(--accent-blue-d); }
+  .speak-btn.speaking { background: var(--accent-blue-d); border-color: var(--accent-blue-d); color: #fff; }
+}
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="archive-nav"><a href="../archive.html">📚 历史简报归档</a></nav>
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-10-14 06:05 CEST &middot; 渲染于 2026-10-14 06:05</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>本时段无新增可核实消息；美国9月CPI今晚公布，市场静待数据</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>美国9月CPI</strong>今天（10/14）美东早间公布，结果尚未出炉。上期摘要给出的预期是同比3.6%，前值3.4%，本期没有找到更新的预期值。</li><li><strong>最近可核对的美股收盘</strong>是10/9（周五）：标普500涨0.6%至7,811.54，道指涨0.8%至51,654.95，纳指涨0.6%至27,366.17，标普距历史高点很近（Lanacion转载的美联社周报式数据）。</li><li><strong>10/13收盘</strong>仍没有可核对来源。上期的道指51,670.10（-0.35%）未能在本期复核。</li><li><strong>油价、金价、铜价</strong>没有带日期的可靠读数。</li><li><strong>Nvidia出口许可</strong>没有新增信息。</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">美国9月CPI（今日公布）</h3><p class="field-row"><span class="field-label">事件</span>数据在欧洲时段下午公布，本时段内尚无结果。上期摘要称预期同比3.6%，前值3.4%，本期未能复核。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>美债收益率、美元、黄金、银行股、利率敏感的成长股。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">标普距高点很近，说明市场没有为偏热读数留出太多余地。实际数字出来之前，价格还没有反映结果。这是条件判断，不是预测。</span></p></article><article class="card"><h3 class="card-title">美股位置：接近高点，但分化</h3><p class="field-row"><span class="field-label">事件</span>10/9标普500收于7,811.54，离10月7日创下的年内第28个收盘新高很近。道指仍比8月5日的历史收盘高点低约5%（来自搜索摘要）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>大盘指数、大型科技股、金融股、道指成分股。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">标普已多次创新高，上涨趋势被充分交易。道指落后说明资金集中在少数权重股，追高的边际赔率不高。依据是搜索摘要里的点位，没有读到原文。</span></p></article><article class="card"><h3 class="card-title">油价与大宗商品</h3><p class="field-row"><span class="field-label">事件</span>一个没有时间戳的页面显示WTI约96.60美元，Brent约104.25美元，我无法确认日期。上期最近可确认的读数是10/2的Brent 102.25美元、WTI 91.11美元。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>能源股、航空与化工、通胀预期、CPI能源分项。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">缺乏可确认日期的读数，我不把任何数字当作当前价格。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><h3 class="card-title">CPI → 利率预期 → 银行与成长股</h3><div class="chain-flow"><span class="chain-node">今日CPI</span><span class="chain-arrow">→</span><span class="chain-node">加息押注</span><span class="chain-arrow">→</span><span class="chain-node">长端收益率</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">银行与成长股</span></div><p class="field-row"><span class="field-label">逻辑</span>沿用上期的条件推演。若CPI高于预期，市场会提高10月底FOMC加息的概率，短端收益率先动，长端跟随。高估值成长股对折现率更敏感，通常比银行更脆弱。标普接近高点，意味着下行时回撤的空间更大。若读数符合预期或偏低，链条反向。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">取决于实际数字，现在无法预知。</span></p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">指数在高点附近等一个数字</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>标普离纪录只差一步，却没人敢往前跨。大家都盯着同一张成绩单，今天下午发。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Le S&amp;P 500 flirte avec son record sans oser le franchir. Tout le monde attend le même bulletin de notes, publié cet après-midi." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Le S&amp;P 500 flirte avec son record sans oser le franchir. Tout le monde attend le même bulletin de notes, publié cet après-midi.</p></div></div></article><article class="card"><h3 class="card-title">道指落后，指数在讲两个故事</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>标普接近新高，道指却还差5%。同样叫&quot;大盘&quot;，涨的是少数几个领头羊，不是整支队伍。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Le S&amp;P 500 touche presque un sommet, le Dow en est encore à 5 %. Même mot « marché », mais ce sont quelques locomotives qui tirent, pas tout le train." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Le S&amp;P 500 touche presque un sommet, le Dow en est encore à 5 %. Même mot « marché », mais ce sont quelques locomotives qui tirent, pas tout le train.</p></div></div></article><article class="card"><h3 class="card-title">没有数据本身也是信息</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>这一期我没找到可核对的新收盘价，就不写。写不出来的地方留白，比拿旧数字凑一个&quot;当前价&quot;诚实。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Cette fois, pas de cours de clôture vérifiable, donc pas de chiffre. Mieux vaut un blanc honnête qu&#x27;un vieux prix déguisé en prix du jour." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Cette fois, pas de cours de clôture vérifiable, donc pas de chiffre. Mieux vaut un blanc honnête qu&#x27;un vieux prix déguisé en prix du jour.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- <strong>没有实质新增</strong>：CPI尚未公布，10/13收盘、油价、金价、铜价、Nvidia出口许可均未找到可核对的来源。
+- <strong>新增的可核对背景</strong>：10/9的三大指数收盘值，以及标普接近10/7历史高点的位置。
+- <strong>未验证项</strong>：上期的道指51,670.10（-0.35%）、银行股收盘涨跌幅，本期都没能复核。注意10/9道指收于51,654.95，这与上期数字的方向和幅度是否自洽，需要等10/12的数据再核对。
+- <strong>下期关注</strong>：9月CPI实际数字与市场反应、美银和摩根士丹利财报、10年期美债收益率。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成，仅供研究参考，不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (2)</summary><ol><li><a href="https://www.lanacion.com.ar/usa/how-major-us-stock-indexes-fared-friday-1092026-nid09102026/" target="_blank" rel="noopener">How major US stock indexes fared Friday 10/9/2026 (La Nación)</a></li><li><a href="https://www.oilpriceapi.com/oil-prices-today" target="_blank" rel="noopener">Oil Price Today (OilPriceAPI, undated)</a></li></ol></details>
+  </footer>
+</div>
+<script>
+(function() {
+  var synth = window.speechSynthesis;
+  var currentBtn = null;
+
+  function pickFrenchVoice() {
+    if (!synth) return null;
+    var voices = synth.getVoices().filter(function(v) {
+      return v.lang && v.lang.toLowerCase().indexOf('fr') === 0;
+    });
+    if (!voices.length) return null;
+    var femaleNames = /amelie|amélie|audrey|marie|celine|céline|julie|chantal|female|femme/i;
+    var preferred = voices.find(function(v) { return femaleNames.test(v.name); });
+    return preferred || voices[0];
+  }
+
+  function stopSpeaking() {
+    if (synth) synth.cancel();
+    if (currentBtn) {
+      currentBtn.classList.remove('speaking');
+      currentBtn.textContent = '🔊';
+    }
+    currentBtn = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.speak-btn') : null;
+    if (!btn) return;
+    if (!synth) {
+      alert('当前浏览器不支持语音朗读');
+      return;
+    }
+    if (currentBtn === btn) {
+      stopSpeaking();
+      return;
+    }
+    stopSpeaking();
+    var text = btn.getAttribute('data-fr-text') || '';
+    if (!text) return;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    var voice = pickFrenchVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = stopSpeaking;
+    utter.onerror = stopSpeaking;
+    currentBtn = btn;
+    btn.classList.add('speaking');
+    btn.textContent = '⏸';
+    synth.speak(utter);
+  });
+})();
+</script>
+</body>
+</html>
