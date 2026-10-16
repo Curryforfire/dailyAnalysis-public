@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+.fr-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speak-btn {
+  border: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.speak-btn:hover { border-color: var(--accent-blue-l); color: var(--accent-blue-l); }
+.speak-btn.speaking { background: var(--accent-blue-l); border-color: var(--accent-blue-l); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .speak-btn:hover { border-color: var(--accent-blue-d); color: var(--accent-blue-d); }
+  .speak-btn.speaking { background: var(--accent-blue-d); border-color: var(--accent-blue-d); color: #fff; }
+}
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-10-16 12:05 CEST &middot; 渲染于 2026-10-16 12:07</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>美国9月CPI/PPI双双偏热，10年期美债收益率冲到5.3%，KOSPI单日暴跌7.6%，周五亚洲反弹</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>9月CPI偏热已确认</strong>（XTB，10/14）：整体CPI同比3.7%（前值3.4%，预期3.6%），核实际同比2.6%（预期2.5%）。汽油环比+9.1%，业主等价租金（OER）单项拉高了核心读数。10年期收益率盘中触及5.33%，收于约5.27%。</li><li><strong>PPI更热</strong>（Saxo，10/15美股时段）：9月PPI环比+1.3%，预期0.5%，为2022年3月以来最大涨幅，能源项+10.8%。零售销售也偏强。</li><li><strong>亚洲芯片股暴跌</strong>（CNBC，10/15）：KOSPI收跌7.57%至5,554.22，SK海力士跌逾11%，三星跌近10%，软银跌7.9%，爱德万测试跌6.9%。CNBC称全球20只最大AI和半导体股本周市值蒸发超1万亿美元。</li><li><strong>美股10/15收盘</strong>：道指+1.08%至52,177.69，纳指+0.08%至26,713，SOXX已连续八个交易日下跌（单一来源）。TSMC三季度业绩超预期（净利润同比+68.7%，营业利润率58.7%），但股价收跌1.8%。</li><li><strong>周五早盘反弹</strong>（Saxo）：KOSPI涨约1.6%至5,644，日经和澳股走高。美债收益率回落至5.09%。布伦特约106美元，WTI约97美元，金价约4,154美元。</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">通胀双击：CPI + PPI → 加息预期</h3><p class="field-row"><span class="field-label">事件</span>XTB（10/14）和Saxo（10/15–16）。CPI偏热后，10月加息概率升到约50%。XTB的另一篇文章写29%，转载的第三方文章写40%，各处不一致，我只把50%当作CPI发布当时的读数。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>长端美债、美元、高估值科技与半导体、银行、能源。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">（对收益率）—— 10年期从5.33%回落到5.09%，说明债市已先消化一轮，周五的反弹也是兑现的表现。但PPI+1.3%是2022年以来最大涨幅，传导到明后月CPI的路径还没走完，这部分【可能滞后】。</span></p></article><article class="card"><h3 class="card-title">亚洲芯片股崩盘：KOSPI -7.6%</h3><p class="field-row"><span class="field-label">事件</span>CNBC（10/15亚洲时段）。直接原因是美国芯片股前一天大跌，加上存储芯片过剩的担忧（中国竞争）、AI融资担忧，以及韩国金融监管机构呼吁限制过度信贷。这印证了上期&quot;单一来源&quot;的BullionVault说法，幅度基本一致（KOSPI -7.57%，另一来源写-8%）。CNBC把日期写成10/14，应该是美东日期，亚洲实际是周四。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>SK海力士和三星、HBM与存储链、日本设备商（爱德万、东京电子）、软银、韩元和台币。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">（短期）—— 单日-7.6%加周五反弹，是典型的恐慌式出清。但存储过剩的叙事是新的基本面疑问，不是纯利率问题，所以中期逻辑仍需要&quot;需求信号&quot;来验证（CNBC引述的分析师观点）。</span></p></article><article class="card"><h3 class="card-title">TSMC：创纪录业绩，股价收跌1.8%</h3><p class="field-row"><span class="field-label">事件</span>10/15，二级来源。净利润+68.7%，利润率高于预期，股价仍跌。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>Nvidia、ASML、应用材料、台股。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">上期标的【可能滞后】，现在被证伪了一半：跌幅只有1.8%，远小于存储链的暴跌。晶圆代工的需求信号相对稳固，真正被砸的是存储和高杠杆AI概念。这次&quot;好财报也下跌&quot;确实重演了，但幅度温和。</span></p></article><article class="card"><h3 class="card-title">能源与黄金：布伦特约106美元，金价约4,154美元</h3><p class="field-row"><span class="field-label">事件</span>Saxo，10/16。波斯湾航运的不确定性仍在。金价较9/23的约4,344美元低约4%。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>油气股、航空和化工（成本端）、黄金和矿企、通胀预期。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">能源是CPI/PPI的直接推手（汽油+9.1%、PPI能源+10.8%），油价高位如果持续，通胀读数还会被推高。黄金在加息预期下反而走弱，是实际利率上行的压力。这些数字只有一个来源，且没有找到当天的路透或彭博确认。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><h3 class="card-title">油价 → 通胀 → 加息 → 存储芯片</h3><div class="chain-flow"><span class="chain-node">波斯湾风险推高油价</span><span class="chain-arrow">→</span><span class="chain-node">汽油与PPI能源暴涨</span><span class="chain-arrow">→</span><span class="chain-node">加息预期与5%+收益率</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">AI与存储估值重估</span></div><p class="field-row"><span class="field-label">逻辑</span>汽油环比+9.1%让整体CPI升至3.7%，PPI能源项+10.8%则说明成本压力还在往上游传。通胀偏热让市场重新定价10月加息，10年期美债冲到5.3%。高收益率提高了折现率，也抬高了AI基础设施的融资成本。再加上存储过剩的担忧，对高度依赖周期的SK海力士和三星冲击最大，KOSPI因此一天跌7.6%。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">（芯片端）/【可能滞后】（通胀端）—— 股价已先崩后弹，但PPI的能源成本还没完全传导到消费端，下个月CPI才是检验。</span></p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">韩国的一天</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>KOSPI一天跌7.57%，SK海力士跌11%，三星跌近10%。这就像一整座城市的人同时冲向同一个出口。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Le Kospi cède 7,57 % en une séance, SK hynix plus de 11 %. On dirait toute une ville qui se rue vers la même sortie." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Le Kospi cède 7,57 % en une séance, SK hynix plus de 11 %. On dirait toute une ville qui se rue vers la même sortie.</p></div></div></article><article class="card"><h3 class="card-title">一万亿美元的一周</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>全球20只最大的AI和芯片股，本周已经蒸发超过一万亿美元。这笔钱够买下好几个中型国家的年度GDP。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Les vingt plus grosses valeurs mondiales de l&#x27;IA et des puces ont perdu plus de mille milliards de dollars cette semaine, de quoi acheter le PIB annuel de plusieurs pays moyens." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Les vingt plus grosses valeurs mondiales de l&#x27;IA et des puces ont perdu plus de mille milliards de dollars cette semaine, de quoi acheter le PIB annuel de plusieurs pays moyens.</p></div></div></article><article class="card"><h3 class="card-title">TSMC的&quot;跌得很礼貌&quot;</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>TSMC净利润涨68.7%，股价只跌1.8%。同样的利空，它挨的巴掌比存储股轻得多。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="TSMC gagne 68,7 % de bénéfice de plus et ne recule que de 1,8 %. Face à la même tempête, elle reçoit bien moins de gifles que les fabricants de mémoire." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>TSMC gagne 68,7 % de bénéfice de plus et ne recule que de 1,8 %. Face à la même tempête, elle reçoit bien moins de gifles que les fabricants de mémoire.</p></div></div></article><article class="card"><h3 class="card-title">汽油才是通胀的真凶</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>CPI里汽油一个月涨9.1%，贡献了超过一半的涨幅。通胀有时候不是在超市，而是在加油站。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="L&#x27;essence a grimpé de 9,1 % en un mois et explique plus de la moitié de la hausse de l&#x27;inflation. Parfois, l&#x27;inflation se cache à la pompe, pas au supermarché." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>L&#x27;essence a grimpé de 9,1 % en un mois et explique plus de la moitié de la hausse de l&#x27;inflation. Parfois, l&#x27;inflation se cache à la pompe, pas au supermarché.</p></div></div></article><article class="card"><h3 class="card-title">道指涨、芯片崩</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>道指站上52,000点，同时芯片股连跌八天。指数的&quot;面子&quot;和板块的&quot;里子&quot;在这里分家了。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Le Dow dépasse 52 000 points pendant que les puces reculent huit séances d&#x27;affilée. La vitrine de l&#x27;indice cache une arrière-boutique en difficulté." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Le Dow dépasse 52 000 points pendant que les puces reculent huit séances d&#x27;affilée. La vitrine de l&#x27;indice cache une arrière-boutique en difficulté.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- <strong>已核实</strong>：9月CPI（3.7%/2.6%，XTB 10/14带日期）。上期&quot;热通胀&quot;这一条已从待核实升级为可用。上期写的&quot;通胀数据预期3.6%&quot;也确实对应得上。
+- <strong>新增</strong>：PPI环比+1.3%（预期0.5%）；KOSPI -7.57%、SK海力士-11%、三星-10%、软银-7.9%；周五亚洲早盘反弹；10年期收益率从5.27–5.33%回落至5.09%；布伦特约106美元，WTI约97美元，金价约4,154美元。
+- <strong>被修正</strong>：上期的&quot;TSMC可能滞后&quot;只有部分应验。TSMC本身只跌1.8%，真正的暴跌发生在存储和日本设备链。
+- <strong>上期遗留的矛盾</strong>：上期写的&quot;10/14，SOX -4.3%、纳指-1.9%&quot;，本期XTB的10/14文章写的是S&amp;P -1.3%、纳指100 -2.1%（后续更新）。两者方向一致，数字有差异，我没有用SOX的具体数字。
+- <strong>仍未查到</strong>：10/16欧美盘中数据；CPI实际公布的美联储官员回应；10月议息会议的最新期货定价（来源之间差异大：29%、40%、50%）；CoreWeave的具体跌幅；Nvidia出口许可和摩根士丹利的股价反应。
+- <strong>下期关注</strong>：周五美股开盘和收盘；10月加息概率的CME FedWatch读数；存储价格（DRAM/HBM）是否出现&quot;需求信号&quot;；波斯湾航运消息。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成，仅供研究参考，不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (7)</summary><ol><li><a href="https://www.xtb.com/en/market-analysis/daily-summary-rising-inflation-weighs-on-markets-semiconductors-suffer-most-14-10-2026" target="_blank" rel="noopener">US inflation concerns rise (XTB)</a></li><li><a href="https://www.home.saxo/en-sg/content/articles/macro/asia-market-quick-take-16-october-2026-16102026" target="_blank" rel="noopener">Asia Market Quick Take, 16 October 2026 (Saxo)</a></li><li><a href="https://www.home.saxo/content/articles/macro/market-quick-take--meltdown-in-ai-stocks-yields-to-late-recovery---16-october-2026-16102026" target="_blank" rel="noopener">Market Quick Take: Meltdown in AI stocks yields to late recovery (Saxo)</a></li><li><a href="https://www.cnbc.com/amp/2026/10/15/sk-hynix-samsung-softbank-stocks-asia-tech-rout-ai-funding-worries.html" target="_blank" rel="noopener">Nvidia, SK Hynix, ASML, SoftBank stocks: Global tech rout, AI funding worries (CNBC)</a></li><li><a href="https://finance.yahoo.com/markets/stocks/articles/stock-market-today-oct-15-140429285.html" target="_blank" rel="noopener">Stock Market Today (Oct. 15, 2026) (Yahoo Finance)</a></li><li><a href="https://www.benzinga.com/news/26/10/62393393/dow-52000-chip-carnage-rate-hike-bets-stock-market-today" target="_blank" rel="noopener">Dow Hits 52,000, Chip Carnage Rages On As Rate-Hike Bets Grow (Benzinga)</a></li><li><a href="https://www.tradingkey.com/analysis/stocks/us-stocks/262217401-us-skhy-oracle-cpi-oil-skhynix-tradingkey" target="_blank" rel="noopener">Today&#x27;s Market Recap: September CPI Beat Ignites Rate-Hike Concerns (TradingKey)</a></li></ol></details>
+  </footer>
+</div>
+<script>
+(function() {
+  var synth = window.speechSynthesis;
+  var currentBtn = null;
+
+  function pickFrenchVoice() {
+    if (!synth) return null;
+    var voices = synth.getVoices().filter(function(v) {
+      return v.lang && v.lang.toLowerCase().indexOf('fr') === 0;
+    });
+    if (!voices.length) return null;
+    var femaleNames = /amelie|amélie|audrey|marie|celine|céline|julie|chantal|female|femme/i;
+    var preferred = voices.find(function(v) { return femaleNames.test(v.name); });
+    return preferred || voices[0];
+  }
+
+  function stopSpeaking() {
+    if (synth) synth.cancel();
+    if (currentBtn) {
+      currentBtn.classList.remove('speaking');
+      currentBtn.textContent = '🔊';
+    }
+    currentBtn = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.speak-btn') : null;
+    if (!btn) return;
+    if (!synth) {
+      alert('当前浏览器不支持语音朗读');
+      return;
+    }
+    if (currentBtn === btn) {
+      stopSpeaking();
+      return;
+    }
+    stopSpeaking();
+    var text = btn.getAttribute('data-fr-text') || '';
+    if (!text) return;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    var voice = pickFrenchVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = stopSpeaking;
+    utter.onerror = stopSpeaking;
+    currentBtn = btn;
+    btn.classList.add('speaking');
+    btn.textContent = '⏸';
+    synth.speak(utter);
+  });
+})();
+</script>
+</body>
+</html>
