@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+.fr-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speak-btn {
+  border: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.speak-btn:hover { border-color: var(--accent-blue-l); color: var(--accent-blue-l); }
+.speak-btn.speaking { background: var(--accent-blue-l); border-color: var(--accent-blue-l); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .speak-btn:hover { border-color: var(--accent-blue-d); color: var(--accent-blue-d); }
+  .speak-btn.speaking { background: var(--accent-blue-d); border-color: var(--accent-blue-d); color: #fff; }
+}
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-10-18 06:14 CEST &middot; 渲染于 2026-10-18 09:48</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>周日早间,四类新闻均无可核实的新进展;周一油价开盘、10年期收益率与周三20年期国债拍卖仍是下一个验证点</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>无可核实的新事件</strong>:AI、地缘、大宗商品、公司动态四类,在近6–12小时内都没有找到合格的英文来源。</li><li><strong>油价</strong>:最新能确认的数据是9月9日布伦特升破100美元,距今已超过一个月。上期引用的约110美元,本期依然无法核实,也看不出周一开盘方向。</li><li><strong>英伟达对华出口</strong>:搜到的H200批准(收25%费用)和参议院限制法案,都是旧背景,没有10月的进展。</li><li><strong>俄乌与制裁</strong>:9月17日的报道称美国国会通过制裁方案并送交总统签署,和平谈判停滞。这份方案后来是否签署,我没有找到来源。</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><p>本时段没有可分析的新事件。下面只列出旧线索的状态,它们都缺少新证据:</p><p class="field-row"><span class="field-label">美国对俄制裁方案(9月17日报道)</span>【可能滞后】—— 目前只确认众议院通过并送交总统,是否签署和生效日期未知。如果落地,能源、航运(影子船队)和国防相关资产最先受影响。</p><p class="field-row"><span class="field-label">英伟达H200对华出口</span>【已Price in】—— 批准和25%费用的消息发布已久,市场已经交易过一轮。要变化,得有新的国会立法或许可调整,本期没有看到。</p><p class="field-row"><span class="field-label">布伦特油价</span>【可能滞后】—— 9月9日升破100美元后的走势没有可靠数据,周一开盘前不应下结论。</p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><p>本时段无适合展开多级传导的新闻。上期的&quot;油价 → 通胀 → 加息 → 科技估值&quot;链条既没有新证据支持,也没有被推翻,仍标注【可能滞后】,等周一开盘和周三国债拍卖来验证。</p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">最新的消息可能已经一个月了</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>搜索框里&quot;最新&quot;的油价新闻,日期停在9月9日。一个月前的头条,读起来还是像今天早上的。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Le « dernier » article sur le pétrole date du 9 septembre. Un mois plus tard, il se lit encore comme s&#x27;il avait été écrit ce matin." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Le « dernier » article sur le pétrole date du 9 septembre. Un mois plus tard, il se lit encore comme s&#x27;il avait été écrit ce matin.</p></div></div></article><article class="card"><h3 class="card-title">周末的空白</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>周末没有收盘价,也没有新数据,只剩各种传闻。这时候最好的做法,是把问题列出来,等周一开盘再回答。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Le week-end, il n&#x27;y a ni clôture ni chiffres frais, seulement des rumeurs. Le plus sage est de poser ses questions maintenant et d&#x27;attendre l&#x27;ouverture de lundi pour y répondre." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Le week-end, il n&#x27;y a ni clôture ni chiffres frais, seulement des rumeurs. Le plus sage est de poser ses questions maintenant et d&#x27;attendre l&#x27;ouverture de lundi pour y répondre.</p></div></div></article><article class="card"><h3 class="card-title">法案通过不等于法案生效</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>国会通过制裁方案,只是走完了一半的路。签署、生效日期和执行细则,才决定市场到底要交易多大的冲击。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Qu&#x27;un Congrès adopte un texte de sanctions, c&#x27;est la moitié du chemin. La signature, la date d&#x27;entrée en vigueur et les règles d&#x27;application décident de l&#x27;ampleur réelle du choc." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Qu&#x27;un Congrès adopte un texte de sanctions, c&#x27;est la moitié du chemin. La signature, la date d&#x27;entrée en vigueur et les règles d&#x27;application décident de l&#x27;ampleur réelle du choc.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- <strong>没有新进展</strong>:本期没有找到能确认或证伪上期判断的新来源,所以没有数字被更新。
+- <strong>仍未证实</strong>:美股官方收盘、纳指下跌的具体日期、9月CPI、黄金周五收盘、布伦特约110美元、12月加息概率约74%、OpenAI IPO传闻。
+- <strong>新增的背景</strong>:9月17日的制裁方案报道。它只是背景,日期早于本时段。
+- <strong>下期关注</strong>:周日晚到周一亚洲开盘的布伦特和股指期货;美伊、俄乌的周末消息;周一的10年期收益率;周二房屋开工、周三130亿美元的20年期国债拍卖、周四初请失业金、周五PMI初值。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成,仅供研究参考,不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (4)</summary><ol><li><a href="https://www.tbsnews.net/world/oil-prices-rise-no-sign-end-iran-war-1426796" target="_blank" rel="noopener">Oil prices rise with no sign of an end to Iran war (TBS News)</a></li><li><a href="https://www.atlantanewsfirst.com/video/2026/09/10/trump-oil-prices-likely-wont-come-down-until-after-midterms-iran-war-continues/" target="_blank" rel="noopener">Trump: Oil prices likely won&#x27;t come down until after midterms as Iran war continues (Atlanta News First, 2026-09-10)</a></li><li><a href="https://finance.yahoo.com/news/nvidia-gains-u-approves-h200-110646900.html" target="_blank" rel="noopener">Nvidia Gains After U.S. Approves H200 Chip Exports to China With 25% Fee (Yahoo Finance)</a></li><li><a href="https://bdnews24.com/world/a5xblb8qgb" target="_blank" rel="noopener">September 17, 2026 (bdnews24, Reuters-sourced sanctions report)</a></li></ol></details>
+  </footer>
+</div>
+<script>
+(function() {
+  var synth = window.speechSynthesis;
+  var currentBtn = null;
+
+  function pickFrenchVoice() {
+    if (!synth) return null;
+    var voices = synth.getVoices().filter(function(v) {
+      return v.lang && v.lang.toLowerCase().indexOf('fr') === 0;
+    });
+    if (!voices.length) return null;
+    var femaleNames = /amelie|amélie|audrey|marie|celine|céline|julie|chantal|female|femme/i;
+    var preferred = voices.find(function(v) { return femaleNames.test(v.name); });
+    return preferred || voices[0];
+  }
+
+  function stopSpeaking() {
+    if (synth) synth.cancel();
+    if (currentBtn) {
+      currentBtn.classList.remove('speaking');
+      currentBtn.textContent = '🔊';
+    }
+    currentBtn = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.speak-btn') : null;
+    if (!btn) return;
+    if (!synth) {
+      alert('当前浏览器不支持语音朗读');
+      return;
+    }
+    if (currentBtn === btn) {
+      stopSpeaking();
+      return;
+    }
+    stopSpeaking();
+    var text = btn.getAttribute('data-fr-text') || '';
+    if (!text) return;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    var voice = pickFrenchVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = stopSpeaking;
+    utter.onerror = stopSpeaking;
+    currentBtn = btn;
+    btn.classList.add('speaking');
+    btn.textContent = '⏸';
+    synth.speak(utter);
+  });
+})();
+</script>
+</body>
+</html>
