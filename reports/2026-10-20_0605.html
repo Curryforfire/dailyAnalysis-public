@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+.fr-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speak-btn {
+  border: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.speak-btn:hover { border-color: var(--accent-blue-l); color: var(--accent-blue-l); }
+.speak-btn.speaking { background: var(--accent-blue-l); border-color: var(--accent-blue-l); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .speak-btn:hover { border-color: var(--accent-blue-d); color: var(--accent-blue-d); }
+  .speak-btn.speaking { background: var(--accent-blue-d); border-color: var(--accent-blue-d); color: #fff; }
+}
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-10-20 06:05 CEST &middot; 渲染于 2026-10-20 06:06</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>周一美股AI股反弹，但周二亚洲芯片股转跌：SK海力士跌约4%，软银跌约4.5%，Kospi一度跌超2%</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>亚洲周二早盘多数下跌</strong>：美股AI股周一反弹，亚洲没有跟涨。Kospi 开盘跌0.6%，一度扩大到约2.2%；Nikkei 225 跌约0.8%；恒生跌近1%至约23,947；上证基本持平（约3,732）。</li><li><strong>亚洲芯片和AI股领跌</strong>：SK海力士跌约4.1%，三星电子跌约1.0%，软银跌约4.5%。</li><li><strong>美股涨幅很集中</strong>：周一 Nasdaq 涨约1.1%、标普涨约0.4%。AI和科技以外的多数个股下跌，道指收跌约0.1%。上周标普是6月以来最差的一周。</li><li><strong>市场在等一批密集财报</strong>，对AI投入可持续性的担忧还在。有报道称油价仍处高位，但我没拿到具体价格。</li><li><strong>上一个亚洲交易日波动很大</strong>：摘要称 Kospi 周一上涨3.6%，此前一日曾下跌7.6%并触发暂停交易。这一点来自摘要，未经原文核实。</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">亚洲芯片和AI股没有跟随美股反弹</h3><p class="field-row"><span class="field-label">事件</span>周二早盘 SK海力士、软银、三星走弱，Kospi 跌幅一度超2%（AP及行情摘要，2026年10月20日亚洲早盘）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>存储芯片（HBM）、日韩半导体设备和材料、软银及其AI投资敞口、日韩杠杆散户资金。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">（部分）—— 上周Kospi已出现大幅下跌，周一的反弹被周二回吐，说明美股的反弹没有在亚洲得到确认。亚洲存储股已经经历一轮剧烈的兑现式波动。目前不能判断下跌趋势是否结束。</span></p><p class="field-row"><span class="field-label">来源提醒</span>数据是早盘读数，且来自摘要。</p></article><article class="card"><h3 class="card-title">美股反弹的结构：只有AI和科技在涨</h3><p class="field-row"><span class="field-label">事件</span>周一多数美股个股下跌，只有AI和科技带动指数上涨（AP转述，10月19日收盘）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>大型科技股、半导体、等权重指数与市值加权指数的差异、周期股和利率敏感板块。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">如果本周财报让AI股再度走弱，指数缺少其他板块支撑，回撤可能更明显。这是对结构的推断，不是已发生的事实。</span></p></article><article class="card"><h3 class="card-title">本周财报与AI投入可持续性</h3><p class="field-row"><span class="field-label">事件</span>分析人士称市场谨慎面对密集财报，AI投入的可持续性仍是主要担忧（摘要，10月20日）。具体公司名单和日期我仍未核实到。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>云厂商资本开支指引、GPU与存储芯片、数据中心电力和融资。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">财报指引是检验上期&quot;AI融资压力链&quot;的直接数据，但我没拿到具体数字，需要下期跟踪。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><h3 class="card-title">美股AI反弹 → 亚洲存储股的&quot;不跟涨&quot;</h3><div class="chain-flow"><span class="chain-node">美股AI反弹</span><span class="chain-arrow">→</span><span class="chain-node">亚洲芯片未跟涨</span><span class="chain-arrow">→</span><span class="chain-node">存储股回吐</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">杠杆资金承压</span></div><p class="field-row"><span class="field-label">逻辑</span>美股收盘后，日韩存储和AI概念股没有同步上涨，说明买盘并不认为反弹有持续性。SK海力士、软银这类高贝塔股下跌，可能触发杠杆资金减仓，进一步放大跌幅。摘要提到Kospi前几日出现过大幅下跌并暂停交易，说明这个市场对流动性冲击很敏感。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">这一环节主要由情绪和资金流驱动。我没有看到融资余额等一手数据，只是依据价格走势推断。</span></p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">美股涨了，亚洲不买账</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>华尔街周一收了一根阳线，亚洲周二早盘就把其中一部分还了回去。上一期问的是&quot;反弹能不能走远&quot;，目前看，至少在存储股上还没有。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Wall Street a clôturé en hausse lundi, et l&#x27;Asie en a rendu une partie dès l&#x27;ouverture de mardi. Notre dernière note demandait si le rebond irait loin : du côté des mémoires, pas encore." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Wall Street a clôturé en hausse lundi, et l&#x27;Asie en a rendu une partie dès l&#x27;ouverture de mardi. Notre dernière note demandait si le rebond irait loin : du côté des mémoires, pas encore.</p></div></div></article><article class="card"><h3 class="card-title">指数在涨，多数股票在跌</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>周一纳指涨约1.1%，但美股多数个股其实是下跌的。指数是靠少数AI龙头拉起来的，看指数会比看个股乐观。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Lundi, le Nasdaq gagne environ 1,1 %, mais la majorité des actions américaines ont reculé. L&#x27;indice est tiré par quelques géants de l&#x27;IA : il paraît plus optimiste que le marché réel." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Lundi, le Nasdaq gagne environ 1,1 %, mais la majorité des actions américaines ont reculé. L&#x27;indice est tiré par quelques géants de l&#x27;IA : il paraît plus optimiste que le marché réel.</p></div></div></article><article class="card"><h3 class="card-title">一天涨3.6%，前一天跌7.6%</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>摘要称Kospi前一天暂停交易，随后单日反弹3.6%。这样的波动更像杠杆资金的踩踏，不太像基本面的更新。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Selon les résumés consultés, le Kospi a connu une interruption de cotation, puis un rebond de 3,6 % en une séance. Ce type de mouvement ressemble plus à une ruée de capitaux à effet de levier qu&#x27;à une mise à jour des fondamentaux." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Selon les résumés consultés, le Kospi a connu une interruption de cotation, puis un rebond de 3,6 % en une séance. Ce type de mouvement ressemble plus à une ruée de capitaux à effet de levier qu&#x27;à une mise à jour des fondamentaux.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- <strong>没有兑现</strong>：上一期的下期关注点是&quot;周二亚洲和欧洲开盘对美股反弹的反应&quot;。亚洲的答案是没有跟涨，芯片股转跌。欧洲开盘尚无数据。
+- <strong>新增</strong>：Kospi、Nikkei、恒生、SK海力士、软银的早盘读数（来自摘要）；周一美股反弹集中在AI和科技的结构性细节。
+- <strong>仍未核实</strong>：布油价格（上期约108.5美元，本次没有新数据）、伊朗最新动向、黄金、铜、美债收益率、本周具体财报名单、CoreWeave 融资动态、周一收盘点位的原文确认。
+- <strong>下期关注</strong>：欧洲和美股盘前的反应；本周财报中的AI资本开支指引；亚洲芯片股收盘情况；油价与伊朗。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成，仅供研究参考，不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (4)</summary><ol><li><a href="https://www.clickondetroit.com/business/2026/10/20/asian-shares-mostly-decline-after-ai-stocks-lead-a-rebound-on-wall-street/" target="_blank" rel="noopener">Asian shares mostly decline after AI stocks lead a rebound on Wall Street (ClickOnDetroit/AP)</a></li><li><a href="https://tradingkey.com/analysis/stocks/more/262224664-japan-south-korea-stocks-kospi-nikkei-softbank-sk-hynix-samsung-kioxia-tradingkey" target="_blank" rel="noopener">Japan and South Korea Stocks Open Lower (TradingKey)</a></li><li><a href="https://www.cnbc.com/2026/10/19/stock-market-today-live-updates.html" target="_blank" rel="noopener">Stock futures rise slightly after tech shares rebound to start the week (CNBC)</a></li><li><a href="https://hdfcsky.com/news/us-stock-market-today-nasdaq-gains-dow-falls" target="_blank" rel="noopener">US Stock Market Today: Nasdaq Rises 1.11%, Dow Falls (HDFC Sky)</a></li></ol></details>
+  </footer>
+</div>
+<script>
+(function() {
+  var synth = window.speechSynthesis;
+  var currentBtn = null;
+
+  function pickFrenchVoice() {
+    if (!synth) return null;
+    var voices = synth.getVoices().filter(function(v) {
+      return v.lang && v.lang.toLowerCase().indexOf('fr') === 0;
+    });
+    if (!voices.length) return null;
+    var femaleNames = /amelie|amélie|audrey|marie|celine|céline|julie|chantal|female|femme/i;
+    var preferred = voices.find(function(v) { return femaleNames.test(v.name); });
+    return preferred || voices[0];
+  }
+
+  function stopSpeaking() {
+    if (synth) synth.cancel();
+    if (currentBtn) {
+      currentBtn.classList.remove('speaking');
+      currentBtn.textContent = '🔊';
+    }
+    currentBtn = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.speak-btn') : null;
+    if (!btn) return;
+    if (!synth) {
+      alert('当前浏览器不支持语音朗读');
+      return;
+    }
+    if (currentBtn === btn) {
+      stopSpeaking();
+      return;
+    }
+    stopSpeaking();
+    var text = btn.getAttribute('data-fr-text') || '';
+    if (!text) return;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    var voice = pickFrenchVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = stopSpeaking;
+    utter.onerror = stopSpeaking;
+    currentBtn = btn;
+    btn.classList.add('speaking');
+    btn.textContent = '⏸';
+    synth.speak(utter);
+  });
+})();
+</script>
+</body>
+</html>
