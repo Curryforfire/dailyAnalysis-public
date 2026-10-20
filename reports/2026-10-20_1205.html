@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+.fr-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speak-btn {
+  border: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.speak-btn:hover { border-color: var(--accent-blue-l); color: var(--accent-blue-l); }
+.speak-btn.speaking { background: var(--accent-blue-l); border-color: var(--accent-blue-l); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .speak-btn:hover { border-color: var(--accent-blue-d); color: var(--accent-blue-d); }
+  .speak-btn.speaking { background: var(--accent-blue-d); border-color: var(--accent-blue-d); color: #fff; }
+}
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-10-20 12:05 CEST &middot; 渲染于 2026-10-20 12:07</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>本时段无可核实的新增行情；Netflix今晚盘后、Tesla与Meta周三发财报，成为AI投入可持续性的下一个检验点</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>财报周日程</strong>：摘要称Netflix周二盘后（10月20日）发财报，市场预期EPS约0.82美元；Tesla（预期EPS约0.45美元、营收约279亿美元）和Meta周三（10月21日）发。本周共约200多家公司发财报。各来源日程略有出入（有的把GM、SpaceX列在周二），以公司日历为准。</li><li><strong>周一美股反弹的背景</strong>：TheStreet和Reuters转载的摘要称，周一科技股从上周抛售中反弹。上周五美股收跌，原因是投资者对AI投入回报的怀疑。有摘要称纳指期货上涨0.7%，此前经历了4.48%的下跌，具体对应哪个时间窗口我没有核实。</li><li><strong>欧洲央行预期</strong>：最近能找到的摘要（10月12日前后）称，交易员预计欧洲央行10月维持利率不变，并定价12月加息25个基点（LSEG数据）。这是较早数据，不是本时段新增。</li><li><strong>亚洲芯片股</strong>：上一期的早盘读数（SK海力士约-4%、Kospi一度-2%）本期没有找到收盘数据。</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">财报周：Netflix、Tesla、Meta</h3><p class="field-row"><span class="field-label">事件</span>Netflix周二盘后、Tesla与Meta周三发财报（来源：Stocktwits、Nasdaq周度预览摘要，日期未经公司公告核实）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>Meta的资本开支指引直接影响GPU、存储芯片、数据中心电力和光模块；Tesla关联AI算力与自动驾驶叙事；Netflix偏消费/广告，与AI主线关系较弱。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">上周市场因&quot;AI投入回报&quot;而下跌，Meta的资本开支和AI变现表述是最直接的检验。价格尚未反映这些数字，所以值得看。这是对事件结构的判断，不是方向预测。</span></p></article><article class="card"><h3 class="card-title">科技股反弹的持续性</h3><p class="field-row"><span class="field-label">事件</span>周一科技股反弹，亚洲周二早盘未跟涨（上一期内容）。本时段没有新的美股盘前数据。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>纳指/半导体、存储股、软银等AI敞口、等权重与市值加权指数的差异。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">一天反弹加一天回吐，更像是波动中的来回，而不是趋势确认。财报前流动性偏谨慎，单日信号意义有限。</span></p></article><article class="card"><h3 class="card-title">利率路径：欧洲央行可能加息</h3><p class="field-row"><span class="field-label">事件</span>摘要称市场定价12月欧洲央行加息25个基点（10月中旬前后的数据）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>欧洲银行股、欧元、欧洲久期资产、成长股估值。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">（部分）—— 12月加息已在期货里被定价，10月议息若符合&quot;维持不变&quot;，边际影响有限。真正的变量是能源价格是否再推高通胀预期。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><h3 class="card-title">Meta资本开支 → 上游算力链</h3><div class="chain-flow"><span class="chain-node">大厂资本开支指引</span><span class="chain-arrow">→</span><span class="chain-node">GPU与存储订单</span><span class="chain-arrow">→</span><span class="chain-node">数据中心电力需求</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">亚洲存储股估值</span></div><p class="field-row"><span class="field-label">逻辑</span>云和AI大厂的资本开支就是上游芯片厂商的收入。如果Meta上调指引，会支撑HBM和GPU需求预期，亚洲存储股有机会修复上周的跌幅。如果指引偏谨慎，已经因&quot;回报存疑&quot;下跌的杠杆化存储股可能面临第二轮抛压。财报是双向的，不能默认利好。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">这个链条的触发点（财报数字）还没出，目前只是推演框架。</span></p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">财报周像一场期中考</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>上周市场先问&quot;AI投入到底值不值&quot;，这周大厂要用财报来回答。前几天的涨跌更像是考前的情绪，成绩单还没发。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="La semaine dernière, le marché a demandé si les dépenses en IA en valaient la peine. Cette semaine, les géants répondent avec leurs résultats. Les mouvements des derniers jours ressemblent à de la nervosité d&#x27;avant-examen : les notes ne sont pas encore tombées." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>La semaine dernière, le marché a demandé si les dépenses en IA en valaient la peine. Cette semaine, les géants répondent avec leurs résultats. Les mouvements des derniers jours ressemblent à de la nervosité d&#x27;avant-examen : les notes ne sont pas encore tombées.</p></div></div></article><article class="card"><h3 class="card-title">反弹与回吐：一天的信号不算趋势</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>周一美股涨、周二亚洲早盘就跌，两个方向都在一天里出现。这样的行情说明市场没有共识，而不是已经找到了方向。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Hausse à Wall Street lundi, repli en Asie mardi matin : les deux sens en moins de vingt-quatre heures. Cela montre un marché sans consensus, plus qu&#x27;un marché qui a trouvé sa direction." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Hausse à Wall Street lundi, repli en Asie mardi matin : les deux sens en moins de vingt-quatre heures. Cela montre un marché sans consensus, plus qu&#x27;un marché qui a trouvé sa direction.</p></div></div></article><article class="card"><h3 class="card-title">欧洲央行：加息已经写在价格里</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>如果12月加息已被定价，10月&quot;按兵不动&quot;就没什么新闻。真正会让市场动的，是能源价格再次推高通胀预期。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Si la hausse de décembre est déjà dans les prix, un statu quo en octobre n&#x27;a rien d&#x27;une surprise. Ce qui ferait bouger les marchés, ce serait un nouveau coup de chaud sur l&#x27;énergie qui relancerait les anticipations d&#x27;inflation." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Si la hausse de décembre est déjà dans les prix, un statu quo en octobre n&#x27;a rien d&#x27;une surprise. Ce qui ferait bouger les marchés, ce serait un nouveau coup de chaud sur l&#x27;énergie qui relancerait les anticipations d&#x27;inflation.</p></div></div></article><article class="card"><h3 class="card-title">我们没有的数据，也是信息</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>这一期没拿到油价、黄金、美债的当日数据。与其用两周前的数字填空，不如承认空白。看盘时请直接查行情终端。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Cette édition n&#x27;a pas de données du jour sur le pétrole, l&#x27;or ou les taux américains. Mieux vaut avouer le vide que le combler avec des chiffres vieux de deux semaines. Pour les cours, consultez directement un terminal de marché." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Cette édition n&#x27;a pas de données du jour sur le pétrole, l&#x27;or ou les taux américains. Mieux vaut avouer le vide que le combler avec des chiffres vieux de deux semaines. Pour les cours, consultez directement un terminal de marché.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- <strong>没有新进展可确认</strong>：上一期的下期关注点是欧洲和美股盘前的反应，以及亚洲芯片股收盘。这些我都没找到可靠的当日数据，所以无法判断&quot;亚洲不跟涨&quot;是否在收盘时延续。
+- <strong>新增</strong>：本周财报日程（Netflix周二盘后；Tesla、Meta周三），来自摘要，日期未经原文核实。欧洲央行12月加息定价（10月中旬前后数据）。
+- <strong>仍未核实</strong>：布油（较早摘要显示10月8日约104美元，已过时）、黄金（10月8日约4,132美元，已过时）、10年期美债（10月8日约5.2%，已过时）、铜、伊朗最新动向、CoreWeave融资。
+- <strong>下期关注</strong>：Netflix盘后反应；Meta和Tesla的资本开支与AI表述；欧洲收盘和美股开盘；亚洲芯片股收盘；油价与伊朗。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成，仅供研究参考，不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (6)</summary><ol><li><a href="https://www.thestreet.com/stock-market-today/stock-market-today-oct-19-2026-nasdaq-futures-climb-as-tech-rebound-from-sell-off" target="_blank" rel="noopener">Stock Market Today (Oct. 19, 2026): Nasdaq climbs as tech rebounds from sell-off (TheStreet)</a></li><li><a href="https://www.investing.com/news/economy-news/wall-st-futures-climb-as-ai-stocks-rebound-oil-yields-fall-4956777" target="_blank" rel="noopener">Wall St futures climb as AI stocks rebound; oil, yields fall (Reuters via Investing.com)</a></li><li><a href="https://tech-insider.org/stocks-rebound-nasdaq-futures-earnings-week-2026" target="_blank" rel="noopener">Nasdaq Futures Rebound 0.7% as Earnings Week Looms (Tech-Insider)</a></li><li><a href="https://www.nasdaq.com/articles/weekly-preview-earnings-to-watch-this-week-intc-nflx-tsla" target="_blank" rel="noopener">Weekly preview: earnings to watch this week (Nasdaq)</a></li><li><a href="https://www.khaleejtimes.com/europes-stoxx-600-ends-higher-as-bank-stocks-cushion-oil-price-hit" target="_blank" rel="noopener">Europe&#x27;s STOXX 600 ends higher as bank stocks cushion oil price hit (Khaleej Times/Reuters)</a></li><li><a href="https://www.kitco.com/news/article/2026-10-08/gold-rises-silver-falls-strong-bond-auction-tempers-yield-pressure-kitco-pm" target="_blank" rel="noopener">Gold rises, silver falls as strong bond auction tempers yield pressure (Kitco, Oct 8)</a></li></ol></details>
+  </footer>
+</div>
+<script>
+(function() {
+  var synth = window.speechSynthesis;
+  var currentBtn = null;
+
+  function pickFrenchVoice() {
+    if (!synth) return null;
+    var voices = synth.getVoices().filter(function(v) {
+      return v.lang && v.lang.toLowerCase().indexOf('fr') === 0;
+    });
+    if (!voices.length) return null;
+    var femaleNames = /amelie|amélie|audrey|marie|celine|céline|julie|chantal|female|femme/i;
+    var preferred = voices.find(function(v) { return femaleNames.test(v.name); });
+    return preferred || voices[0];
+  }
+
+  function stopSpeaking() {
+    if (synth) synth.cancel();
+    if (currentBtn) {
+      currentBtn.classList.remove('speaking');
+      currentBtn.textContent = '🔊';
+    }
+    currentBtn = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.speak-btn') : null;
+    if (!btn) return;
+    if (!synth) {
+      alert('当前浏览器不支持语音朗读');
+      return;
+    }
+    if (currentBtn === btn) {
+      stopSpeaking();
+      return;
+    }
+    stopSpeaking();
+    var text = btn.getAttribute('data-fr-text') || '';
+    if (!text) return;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    var voice = pickFrenchVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = stopSpeaking;
+    utter.onerror = stopSpeaking;
+    currentBtn = btn;
+    btn.classList.add('speaking');
+    btn.textContent = '⏸';
+    synth.speak(utter);
+  });
+})();
+</script>
+</body>
+</html>
