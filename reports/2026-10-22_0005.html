@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+.fr-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speak-btn {
+  border: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.speak-btn:hover { border-color: var(--accent-blue-l); color: var(--accent-blue-l); }
+.speak-btn.speaking { background: var(--accent-blue-l); border-color: var(--accent-blue-l); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .speak-btn:hover { border-color: var(--accent-blue-d); color: var(--accent-blue-d); }
+  .speak-btn.speaking { background: var(--accent-blue-d); border-color: var(--accent-blue-d); color: #fff; }
+}
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-10-22 00:05 CEST &middot; 渲染于 2026-10-22 00:06</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>Tesla Q3财报EPS 0.48美元超预期，盘后小幅波动；SpaceX财报后大涨约8%，马斯克称与Tesla合并是&quot;好主意&quot;</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>Tesla Q3财报（10月21日美股盘后）</strong>：调整后EPS 0.48美元（预期约0.43到0.44），营收约280.5亿美元（预期约279亿），小幅超预期。汽车收入同比降3%，毛利率19.6%，GAAP净利润降43%至7.87亿美元，营业利润降56%。</li><li><strong>盘后反应不明朗</strong>：早期报道称盘后基本持平到小幅上涨（一个来源称约+1.3%）。这只是初步反应，电话会后可能变化。</li><li><strong>SpaceX财报与合并话题</strong>：SpaceX（代码SPCX）Q3营收146亿美元，同比增161%，当日股价涨约7.8%到10%（来源之间有差异）。据CNBC，马斯克称与Tesla合并是&quot;好主意&quot;，两家公司董事会已设立特别委员会。</li><li><strong>美股10月21日收涨</strong>：道指约52,857，标普500约7,757，纳指约26,702。资金回流科技和工业，医疗、必需消费、公用事业落后。具体涨幅来源不一（约0.3%到0.6%）。</li><li><strong>个股</strong>：Alphabet因广告趋势评论跌约2.1%，AT&amp;T财报后下跌（均来自单一汇总来源，未交叉核实）。</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">Tesla Q3财报：盈利小超预期，质量偏弱</h3><p class="field-row"><span class="field-label">事件</span>CNBC等报道，10月21日盘后公布。EPS和营收均略超预期，自由现金流为正，资本开支好于预期。但营业利润同比大降，汽车收入下滑。来源：CNBC、Yahoo Finance、asktraders，时间为10月21日盘后。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>电动车、储能、自动驾驶与机器人叙事、锂电材料、AI算力资本开支。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">目前只有盘后初步反应，且来源间有冲突，电话会和次日盘前才是更可靠的状态。有一篇文章称股价&quot;盘后跌4%、次日跌12.7%&quot;，但此刻次日交易尚未发生，该说法与时间线矛盾，很可能是旧事件，我没有采信。</span></p></article><article class="card"><h3 class="card-title">SpaceX业绩与Tesla合并传闻</h3><p class="field-row"><span class="field-label">事件</span>SpaceX 10月21日公布Q3，营收同比增161%，股价大涨。马斯克说合并是&quot;好主意&quot;，两家公司董事会各设特别委员会（CNBC，10月21日）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>Tesla、航天与卫星通信、xAI与AI算力概念、治理类风险。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">合并目前只是&quot;讨论阶段&quot;，没有条款、估值和时间表。涨幅主要来自业绩和想象空间，一旦出现具体方案，少数股东利益、估值换股比例等问题会带来很大波动。</span></p></article><article class="card"><h3 class="card-title">美股科技回流与广告信号分歧</h3><p class="field-row"><span class="field-label">事件</span>10月21日收盘，科技和工业领涨，防御板块落后。Alphabet因广告趋势评论下跌约2.1%，与上一期Netflix广告指引下调形成呼应。来源为Investrade等收盘汇总，Alphabet一项为单一来源。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>数字广告、流媒体、社交平台、广告技术。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">两家公司的广告评论偏弱，但尚不足以判断整个行业走弱。Meta等同业财报是更直接的验证点，目前确切日期未核实。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><h3 class="card-title">SpaceX业绩 → Musk体系估值联动</h3><div class="chain-flow"><span class="chain-node">SpaceX业绩爆发</span><span class="chain-arrow">→</span><span class="chain-node">合并讨论升温</span><span class="chain-arrow">→</span><span class="chain-node">Tesla叙事重估</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">治理与估值风险</span></div><p class="field-row"><span class="field-label">逻辑</span>SpaceX营收增161%，提高了&quot;马斯克体系&quot;整体增长故事的权重。合并若推进，Tesla股东要接受一家增长更快、但风险和资本需求也更大的公司，Tesla自身盈利下滑（营业利润降56%）会削弱它在换股比例中的谈判位置。市场短期会把SpaceX的强势部分传导给Tesla，但具体条款出来前，这是预期而不是事实。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">只有口头表态和特别委员会，没有方案；上涨依赖叙事，反向风险也大。</span></p></article><article class="card" style="--accent-light:#eb6834;--accent-dark:#d95926"><h3 class="card-title">广告指引偏弱 → 平台估值分化</h3><div class="chain-flow"><span class="chain-node">Netflix与Alphabet广告评论偏弱</span><span class="chain-arrow">→</span><span class="chain-node">广告增长假设下调</span><span class="chain-arrow">→</span><span class="chain-node">平台估值分化</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">订阅与涨价依赖上升</span></div><p class="field-row"><span class="field-label">逻辑</span>两家公司的广告评论接连偏弱，会让市场重新检查同业的广告增长预期。如果广告增速放缓，平台更依赖订阅涨价和成本控制来守住利润率，这是下一步该观察的点。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">目前是两个孤立信号，Alphabet的细节未核实，链条后半段是推演。</span></p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">赚钱的Tesla，没那么好看</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>Tesla EPS超预期，但营业利润掉了56%。数字过关，成色却变了。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Tesla bat les attentes sur le bénéfice par action, mais son résultat d&#x27;exploitation chute de 56 %. Le chiffre passe l&#x27;examen, la qualité un peu moins." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Tesla bat les attentes sur le bénéfice par action, mais son résultat d&#x27;exploitation chute de 56 %. Le chiffre passe l&#x27;examen, la qualité un peu moins.</p></div></div></article><article class="card"><h3 class="card-title">一句话的市值</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>马斯克说合并是&quot;好主意&quot;，两家公司立刻成立特别委员会。从一句话到一份方案，中间隔着估值、换股和股东投票。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Musk juge une fusion « bonne idée », et deux comités spéciaux voient le jour. Entre une phrase et un plan, il reste la valorisation, l&#x27;échange d&#x27;actions et le vote des actionnaires." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Musk juge une fusion « bonne idée », et deux comités spéciaux voient le jour. Entre une phrase et un plan, il reste la valorisation, l&#x27;échange d&#x27;actions et le vote des actionnaires.</p></div></div></article><article class="card"><h3 class="card-title">增长161%的火箭</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>SpaceX营收同比翻了2.6倍多，市场当天就给了它接近两位数的涨幅。增速越高，市场越愿意把未来提前折现。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Le chiffre d&#x27;affaires de SpaceX a été multiplié par plus de 2,6 en un an, et le titre bondit presque de 10 % dans la journée. Plus la croissance est forte, plus le marché escompte l&#x27;avenir d&#x27;avance." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Le chiffre d&#x27;affaires de SpaceX a été multiplié par plus de 2,6 en un an, et le titre bondit presque de 10 % dans la journée. Plus la croissance est forte, plus le marché escompte l&#x27;avenir d&#x27;avance.</p></div></div></article><article class="card"><h3 class="card-title">数字会撞车</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>同一场财报，有的来源说盘后涨1.3%，有的说次日跌12.7%。后一个说法在时间上还没发生，说明搜索到的&quot;旧闻&quot;有多容易冒充新消息。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Pour la même publication, une source parle de +1,3 % après clôture, une autre d&#x27;une chute de 12,7 % le lendemain, alors que ce lendemain n&#x27;a pas encore eu lieu. Une vieille histoire se fait vite passer pour une nouvelle." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Pour la même publication, une source parle de +1,3 % après clôture, une autre d&#x27;une chute de 12,7 % le lendemain, alors que ce lendemain n&#x27;a pas encore eu lieu. Une vieille histoire se fait vite passer pour une nouvelle.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- <strong>已兑现</strong>：Tesla财报已出。上一期只知道共识EPS约0.41到0.44，实际0.48，略超预期，营收也略超。上一期提到&quot;上季是营收超预期、EPS低于预期，这次是否重演&quot;：这次没有重演，EPS和营收都超预期。
+- <strong>仍待确认</strong>：Tesla盘后到底涨还是跌。现有来源只说基本持平到小涨，电话会后和今日盘前才是更可靠的状态。
+- <strong>新进展</strong>：SpaceX财报与合并讨论；美股10月21日收盘数据；Alphabet广告评论。
+- <strong>未找到</strong>：Netflix 10月21日常规时段收盘表现、美伊谈判最新进展、10月21日油价与10年期收益率精确值。这几项本期没有可靠来源，不做判断。
+- <strong>下期关注</strong>：Tesla电话会内容与今日盘前表现、SpaceX与Tesla合并的具体进展、Meta等同业广告评论。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成，仅供研究参考，不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (7)</summary><ol><li><a href="https://www.cnbc.com/2026/10/21/tesla-tsla-q3-2026-earnings-report.html" target="_blank" rel="noopener">Tesla (TSLA) Q3 2026 earnings report (CNBC)</a></li><li><a href="https://www.asktraders.com/analysis/tesla-beats-q3-earnings-forecasts-as-operating-profit-falls-56-on-higher-costs/" target="_blank" rel="noopener">Tesla Beats Q3 Earnings Forecasts as Operating Profit Falls 56% (asktraders)</a></li><li><a href="https://shattered.io/tesla-q3-2026-earnings-margins-rebound-profit-falls-2026/" target="_blank" rel="noopener">Tesla Q3 2026 Earnings: Margins Hit 19.6%, Profit Falls (shattered.io)</a></li><li><a href="https://247wallst.com/investing/2026/10/21/live-will-tesla-smash-q3-earnings-tonight-following-spacexs-10-pop-today/" target="_blank" rel="noopener">Live: Will Tesla Smash Q3 Earnings Tonight Following SpaceX&#x27;s 10% Pop Today? (24/7 Wall St.)</a></li><li><a href="https://finance.yahoo.com/markets/stocks/articles/stock-market-today-oct-21-214001203.html" target="_blank" rel="noopener">Stock Market Today, Oct. 21: Space Exploration Technologies Surges on Q3 Earnings Beat (Yahoo Finance)</a></li><li><a href="https://investrade.com/market-review-october-21-2026/" target="_blank" rel="noopener">Market Review: October 21, 2026 (Investrade)</a></li><li><a href="https://investrade.com/mid-morning-look-october-21-2026/" target="_blank" rel="noopener">Mid-Morning Look: October 21, 2026 (Investrade)</a></li></ol></details>
+  </footer>
+</div>
+<script>
+(function() {
+  var synth = window.speechSynthesis;
+  var currentBtn = null;
+
+  function pickFrenchVoice() {
+    if (!synth) return null;
+    var voices = synth.getVoices().filter(function(v) {
+      return v.lang && v.lang.toLowerCase().indexOf('fr') === 0;
+    });
+    if (!voices.length) return null;
+    var femaleNames = /amelie|amélie|audrey|marie|celine|céline|julie|chantal|female|femme/i;
+    var preferred = voices.find(function(v) { return femaleNames.test(v.name); });
+    return preferred || voices[0];
+  }
+
+  function stopSpeaking() {
+    if (synth) synth.cancel();
+    if (currentBtn) {
+      currentBtn.classList.remove('speaking');
+      currentBtn.textContent = '🔊';
+    }
+    currentBtn = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.speak-btn') : null;
+    if (!btn) return;
+    if (!synth) {
+      alert('当前浏览器不支持语音朗读');
+      return;
+    }
+    if (currentBtn === btn) {
+      stopSpeaking();
+      return;
+    }
+    stopSpeaking();
+    var text = btn.getAttribute('data-fr-text') || '';
+    if (!text) return;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    var voice = pickFrenchVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = stopSpeaking;
+    utter.onerror = stopSpeaking;
+    currentBtn = btn;
+    btn.classList.add('speaking');
+    btn.textContent = '⏸';
+    synth.speak(utter);
+  });
+})();
+</script>
+</body>
+</html>
