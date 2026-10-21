@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+.fr-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speak-btn {
+  border: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.speak-btn:hover { border-color: var(--accent-blue-l); color: var(--accent-blue-l); }
+.speak-btn.speaking { background: var(--accent-blue-l); border-color: var(--accent-blue-l); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .speak-btn:hover { border-color: var(--accent-blue-d); color: var(--accent-blue-d); }
+  .speak-btn.speaking { background: var(--accent-blue-d); border-color: var(--accent-blue-d); color: #fff; }
+}
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-10-21 12:05 CEST &middot; 渲染于 2026-10-21 12:06</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>本时段无可核实的新增大事；Tesla今晚美股盘后发财报，共识EPS约0.41-0.44美元，结果未出</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>Tesla今日美股盘后发Q3财报</strong>：公司日程是美东17:30电话会，即CEST 23:30。结果未出。共识各来源不一：EPS 0.41（Benzinga）到0.44美元（Zacks），营收约276亿到278亿美元。Hudson Labs给的是GAAP EPS 0.26美元，口径不同。</li><li><strong>Tesla的已知数据</strong>：10月2日公布Q3交付超48.6万辆，产量超46.4万辆，储能装机13.7 GWh。S&amp;P Global称Q3营业利润预期被下调约56%至约6.61亿美元，市场主要盯毛利率。</li><li><strong>油价和金价只有10月19日的二手数据</strong>：一个印度聚合站称当日Brent约107.8美元（跌1.84%），WTI约100.2美元，现货金约4,175美元。该来源标题的单位有些混乱，只能当参考。</li><li><strong>Meta财报日期未确认</strong>：只有倒计时网站估计10月28日，这与上一期&quot;同周发布&quot;的说法不符，应以后者为未核实处理。</li><li><strong>Super Micro初步业绩未找到佐证</strong>：本次搜索没有找到公司对本季度的公告。</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">Tesla Q3财报（10月21日美股盘后）</h3><p class="field-row"><span class="field-label">事件</span>公司日程确认今日盘后发布。上季（Q2）营收约282.4亿美元、高于预期，但非GAAP EPS 0.33美元低于0.44美元共识。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>电动车、储能、自动驾驶与机器人叙事、AI算力资本开支（市场预期2026财年资本开支超250亿美元，仅一个来源）。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">数字未出，不做方向判断。市场关注点在毛利率和资本开支，不是营收。上季是营收超预期、利润低于预期，这次是否重演，要等结果。</span></p></article><article class="card"><h3 class="card-title">Super Micro盘后大涨的传闻</h3><p class="field-row"><span class="field-label">事件</span>上一期的来源是单一聚合站。这次没有找到公司原始公告，也没有任何第二来源。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>AI服务器、GPU供应链、散热与电源。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">仍无法核实，不应当作已发生的事实。该公司上一次可查的正式财报（5月，营收102亿美元，低于上季127亿美元）显示业绩波动大。</span></p></article><article class="card"><h3 class="card-title">油价与美伊局势</h3><p class="field-row"><span class="field-label">事件</span>10月19日的二手数据显示油价回落，同时有&quot;美伊紧张&quot;的说法。我没有找到10月20到21日的可靠报道。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>原油、黄金、航空、通胀预期。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">数据太旧，只能说明高油价背景仍在，无法判断当前阶段。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><p>本时段无适合展开多级传导的新闻。可用的新增信息只有Tesla财报日程，数字未出，推演只会是猜测。</p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">同一份答卷，两种分数</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>Tesla上一季营收超预期，EPS却低于预期。财报季里&quot;赚到的钱&quot;和&quot;卖出的车&quot;常常讲着不同的故事，这次也要分开看。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Au trimestre précédent, Tesla a dépassé les attentes sur le chiffre d&#x27;affaires mais déçu sur le bénéfice par action. Les ventes et les profits racontent souvent deux histoires différentes." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Au trimestre précédent, Tesla a dépassé les attentes sur le chiffre d&#x27;affaires mais déçu sur le bénéfice par action. Les ventes et les profits racontent souvent deux histoires différentes.</p></div></div></article><article class="card"><h3 class="card-title">共识不是一个数</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>同一份Tesla财报，EPS共识从0.26美元到0.44美元不等，差别全在口径（GAAP还是非GAAP）。看新闻标题前，先问&quot;比的是哪个数&quot;。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Pour un même résultat de Tesla, le consensus de BPA va de 0,26 à 0,44 dollar, selon la base GAAP ou non GAAP. Avant de lire un titre, demandez-vous de quel chiffre on parle." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Pour un même résultat de Tesla, le consensus de BPA va de 0,26 à 0,44 dollar, selon la base GAAP ou non GAAP. Avant de lire un titre, demandez-vous de quel chiffre on parle.</p></div></div></article><article class="card"><h3 class="card-title">一个传闻的保质期</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>Super Micro&quot;盘后大涨&quot;只有一个二手来源，一夜过去仍没有原始公告。传闻没被证实本身也是信号：别急着把它当事实。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="La hausse de Super Micro après la clôture ne repose que sur une source de seconde main, sans communiqué officiel douze heures plus tard. Une rumeur non confirmée reste une rumeur." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>La hausse de Super Micro après la clôture ne repose que sur une source de seconde main, sans communiqué officiel douze heures plus tard. Une rumeur non confirmée reste une rumeur.</p></div></div></article><article class="card"><h3 class="card-title">没消息也是消息</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>这个时段欧亚盘面没有可靠数据，宁可留白，也不凑一条&quot;看起来合理&quot;的行情。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Faute de données fiables sur les marchés européens et asiatiques, mieux vaut laisser une case vide que d&#x27;inventer un mouvement plausible." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Faute de données fiables sur les marchés européens et asiatiques, mieux vaut laisser une case vide que d&#x27;inventer un mouvement plausible.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- <strong>仍待兑现</strong>：Netflix开盘后的实际表现没有找到来源，仍未验证。Tesla财报今晚才出。
+- <strong>被削弱</strong>：上一期&quot;Meta同周发布&quot;没有被证实，目前只有一个未确认的10月28日估计。Super Micro的传闻仍无第二来源。
+- <strong>新增信息</strong>：Tesla财报时点（CEST 23:30电话会）、Q3交付与储能数据，以及不同来源的共识差异。
+- <strong>仍未核实</strong>：欧亚股市收盘、布油与金价当日数据、美债收益率、伊朗最新动向、欧洲央行议息日期。
+- <strong>下期关注</strong>：Tesla的毛利率、资本开支和机器人出租车进展；Netflix和美股开盘后的实际走势；Super Micro原始公告。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成，仅供研究参考，不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (7)</summary><ol><li><a href="https://www.hudson-labs.com/research/tesla-q3-2026-earnings-preview-tsla-revenue-margins-outlook" target="_blank" rel="noopener">Tesla (TSLA) — Q3 2026 Earnings Preview (Hudson Labs)</a></li><li><a href="https://offshoresource.com/business-wire/tesla-third-quarter-2026-production-deliveries-deployments/" target="_blank" rel="noopener">Tesla Q3 2026 production, deliveries, deployments (Business Wire via Offshore Source)</a></li><li><a href="https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/07/tesla-postq-revenue-beat-overshadowed-by-margin-pressure" target="_blank" rel="noopener">Tesla post-Q2 revenue beat overshadowed by margin pressure (S&amp;P Global)</a></li><li><a href="https://www.teslaoracle.com/?p=66789" target="_blank" rel="noopener">Tesla Q3 2026 earnings call date (Tesla Oracle)</a></li><li><a href="https://www.analyticsinsight.net/business/gold/mcx-gold-rises-037-to-rs-148465-amid-elevated-oil-prices-brent-rs-1078" target="_blank" rel="noopener">MCX Gold Rises 0.37% Amid Elevated Oil Prices (Analytics Insight)</a></li><li><a href="https://days.to/meta-earnings" target="_blank" rel="noopener">Meta earnings date estimate (days.to)</a></li><li><a href="https://seekingalpha.com/pr/20501874" target="_blank" rel="noopener">Supermicro Q3 FY2026 results (Seeking Alpha)</a></li></ol></details>
+  </footer>
+</div>
+<script>
+(function() {
+  var synth = window.speechSynthesis;
+  var currentBtn = null;
+
+  function pickFrenchVoice() {
+    if (!synth) return null;
+    var voices = synth.getVoices().filter(function(v) {
+      return v.lang && v.lang.toLowerCase().indexOf('fr') === 0;
+    });
+    if (!voices.length) return null;
+    var femaleNames = /amelie|amélie|audrey|marie|celine|céline|julie|chantal|female|femme/i;
+    var preferred = voices.find(function(v) { return femaleNames.test(v.name); });
+    return preferred || voices[0];
+  }
+
+  function stopSpeaking() {
+    if (synth) synth.cancel();
+    if (currentBtn) {
+      currentBtn.classList.remove('speaking');
+      currentBtn.textContent = '🔊';
+    }
+    currentBtn = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.speak-btn') : null;
+    if (!btn) return;
+    if (!synth) {
+      alert('当前浏览器不支持语音朗读');
+      return;
+    }
+    if (currentBtn === btn) {
+      stopSpeaking();
+      return;
+    }
+    stopSpeaking();
+    var text = btn.getAttribute('data-fr-text') || '';
+    if (!text) return;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    var voice = pickFrenchVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = stopSpeaking;
+    utter.onerror = stopSpeaking;
+    currentBtn = btn;
+    btn.classList.add('speaking');
+    btn.textContent = '⏸';
+    synth.speak(utter);
+  });
+})();
+</script>
+</body>
+</html>
