@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+.fr-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speak-btn {
+  border: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.speak-btn:hover { border-color: var(--accent-blue-l); color: var(--accent-blue-l); }
+.speak-btn.speaking { background: var(--accent-blue-l); border-color: var(--accent-blue-l); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .speak-btn:hover { border-color: var(--accent-blue-d); color: var(--accent-blue-d); }
+  .speak-btn.speaking { background: var(--accent-blue-d); border-color: var(--accent-blue-d); color: #fff; }
+}
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-10-21 06:05 CEST &middot; 渲染于 2026-10-21 06:06</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>美股周二收盘小涨，Netflix盘后跌约5%，Tesla今晚财报；油价与金价仍无可靠当日数据</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>美股周二小幅收涨</strong>：汇总称S&amp;P 500涨0.28%至7,712.57，纳指微跌0.02%至26,424.82，道指涨约1%。道指点位在同一份汇总里与纳指点位重复，数字存疑。对照10月16日收盘（S&amp;P 7,659.44，纳指26,140.03），这是上周五大跌后的小幅修复。</li><li><strong>Netflix盘后跌约5%</strong>：EPS 0.87美元高于预期的0.82美元，Q4营收指引约134.4亿美元，低于预期的135.1亿美元。常规盘收盘价约68.69美元，各来源略有出入。盘后跌幅比上一期的3-4%更大，仍是盘后初步状态。</li><li><strong>Tesla今日美股盘后发财报</strong>：Bloomberg共识营收约281.3亿美元，调整后EPS约0.44美元。周二收盘373.71美元，涨1.54%。Meta同周发布，具体时间未核实。</li><li><strong>Super Micro盘后涨约11%</strong>：称公布了强劲的初步业绩，只有一个聚合来源，未找到原始公告。</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">Netflix盘后跌幅扩大（10月20日盘后）</h3><p class="field-row"><span class="field-label">事件</span>Yahoo Finance、Benzinga转述，EPS超预期，Q4营收指引低于共识，盘后约跌5%。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>流媒体、数字广告、纳指大盘成长股。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">增速放缓与指引偏弱是7月财报后已经交易过的叙事，且常规盘收盘前股价已经下跌。但盘后数字稀薄，不一定代表今日开盘状态，需看美股开盘后的实际表现。</span></p></article><article class="card"><h3 class="card-title">Tesla财报（10月21日美股盘后）</h3><p class="field-row"><span class="field-label">事件</span>共识营收约281.3亿美元（同比持平），EPS约0.44美元。今日财报，结果未出。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>电动车、自动驾驶与AI叙事、Musk旗下关联公司、算力资本开支。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">数字未出，不做方向判断。前期关于Tesla与SpaceX合并的传闻是8月的旧闻，我没有找到10月的新证据。</span></p></article><article class="card"><h3 class="card-title">Super Micro初步业绩（10月20日盘后）</h3><p class="field-row"><span class="field-label">事件</span>KuCoin快讯转述，盘后涨约11%，未找到公司原始公告。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>AI服务器、GPU供应链、数据中心散热与电源。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">单一二手来源，盘后流动性薄，该公司历史上业绩与指引波动很大。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><p>本时段无适合展开多级传导的新闻。唯一较清晰的线索是Super Micro、Tesla、Meta这几份财报的AI资本开支叙事，但Super Micro只有单一来源，Tesla和Meta数字未出，现在推演链条只会是猜测。</p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">越跌越&quot;便宜&quot;，却没人接</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>Netflix的常规盘就已经下跌，盘后又跌了约5%。市场其实是提前把坏消息消化了一部分，盘后的跌幅是在补最后一刀。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Netflix avait déjà reculé pendant la séance, puis perd environ 5 % après la clôture. Le marché avait déjà digéré une partie de la mauvaise nouvelle ; la baisse en soirée n&#x27;est que le dernier coup." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Netflix avait déjà reculé pendant la séance, puis perd environ 5 % après la clôture. Le marché avait déjà digéré une partie de la mauvaise nouvelle ; la baisse en soirée n&#x27;est que le dernier coup.</p></div></div></article><article class="card"><h3 class="card-title">财报周的&quot;三选一&quot;</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>Netflix、Meta、Tesla在同一周发财报，大盘的情绪取决于这三份答卷。Netflix已经交卷，答案是&quot;好坏参半&quot;。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Netflix, Meta et Tesla publient la même semaine, et l&#x27;humeur du marché dépend de ces trois copies. Netflix a rendu la sienne : résultat mitigé." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Netflix, Meta et Tesla publient la même semaine, et l&#x27;humeur du marché dépend de ces trois copies. Netflix a rendu la sienne : résultat mitigé.</p></div></div></article><article class="card"><h3 class="card-title">一个数字，两种说法</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>同一份汇总里，道指和纳指的收盘点位写成了同一个数字。这类低级错误提醒我们，聚合站的数据要交叉核对，别直接抄。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Dans un même résumé, le Dow et le Nasdaq affichent la même valeur de clôture. Ce genre d&#x27;erreur rappelle qu&#x27;il faut recouper les chiffres des sites d&#x27;agrégation, pas les recopier." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Dans un même résumé, le Dow et le Nasdaq affichent la même valeur de clôture. Ce genre d&#x27;erreur rappelle qu&#x27;il faut recouper les chiffres des sites d&#x27;agrégation, pas les recopier.</p></div></div></article><article class="card"><h3 class="card-title">上周的跌幅，修复了多少</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>上周五纳指跌2.1%，是6月以来最差的一周，周二只小幅回升。市场的修复才刚开始，离10月6日的纪录收盘还有一段距离。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Vendredi dernier, le Nasdaq a lâché 2,1 %, sa pire semaine depuis juin ; mardi, le rebond reste timide. Le record du 6 octobre est encore loin." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Vendredi dernier, le Nasdaq a lâché 2,1 %, sa pire semaine depuis juin ; mardi, le rebond reste timide. Le record du 6 octobre est encore loin.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- <strong>已兑现</strong>：Netflix盘后继续下跌，跌幅约5%，比上一期的3-4%大。前期预期的&quot;下一天盘中确认&quot;还没发生，要看今日美股开盘。
+- <strong>新进展</strong>：10月20日美股收盘有了汇总数据（有一处明显的数字重复），Tesla财报确定在今日盘后，Super Micro盘后大涨的传闻出现。
+- <strong>仍未核实</strong>：布油、黄金、铜、美债收益率、伊朗最新动向、欧洲央行10月议息日期、Meta财报确切时间、Super Micro原始公告。
+- <strong>下期关注</strong>：Netflix今日开盘表现；Tesla财报数字及AI表述；Super Micro是否被原始公告证实；欧股收盘。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成，仅供研究参考，不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (6)</summary><ol><li><a href="https://finance.yahoo.com/markets/stocks/article/netflix-stock-sinks-after-announcing-q3-earnings-q4-revenue-forecast-falls-short-of-estimates-204545261.html" target="_blank" rel="noopener">Netflix stock sinks after announcing Q3 earnings, Q4 revenue forecast falls short (Yahoo Finance)</a></li><li><a href="https://www.benzinga.com/markets/equities/26/10/62485513/spacex-netflix-super-micro-computer-tesla-and-meta-why-these-5-stocks-are-on-investors-radars-today" target="_blank" rel="noopener">SpaceX, Netflix, Super Micro, Tesla and Meta: Why These 5 Stocks Are on Investors&#x27; Radars Today (Benzinga)</a></li><li><a href="https://newsable.asianetnews.com/markets/s-p-500-dow-gain-as-earnings-season-sets-in-while-spacex-aids-nasdaq-after-hours-spcx-ba-mmm-nflx-qcom-in-focus-articleshow-b8c8hw2" target="_blank" rel="noopener">S&amp;P 500, Dow Gain As Earnings Season Sets In (Asianet)</a></li><li><a href="https://www.fxstreet.com/analysis/nflx-meta-and-tsla-deliver-earnings-this-week-the-markets-mood-rides-on-three-reports-202610201534" target="_blank" rel="noopener">NFLX, META and TSLA deliver earnings this week (FXStreet)</a></li><li><a href="https://thriveinmarkets.com/market-insights/evening-review-2026-10-16/" target="_blank" rel="noopener">Evening review 2026-10-16 (Thrive in Markets)</a></li><li><a href="https://www.kucoin.com/news/flash/spacex-and-tesla-discuss-merger-super-micro-posts-strong-preliminary-earnings" target="_blank" rel="noopener">SpaceX and Tesla Discuss Merger; Super Micro Reports Strong Preliminary Earnings (KuCoin)</a></li></ol></details>
+  </footer>
+</div>
+<script>
+(function() {
+  var synth = window.speechSynthesis;
+  var currentBtn = null;
+
+  function pickFrenchVoice() {
+    if (!synth) return null;
+    var voices = synth.getVoices().filter(function(v) {
+      return v.lang && v.lang.toLowerCase().indexOf('fr') === 0;
+    });
+    if (!voices.length) return null;
+    var femaleNames = /amelie|amélie|audrey|marie|celine|céline|julie|chantal|female|femme/i;
+    var preferred = voices.find(function(v) { return femaleNames.test(v.name); });
+    return preferred || voices[0];
+  }
+
+  function stopSpeaking() {
+    if (synth) synth.cancel();
+    if (currentBtn) {
+      currentBtn.classList.remove('speaking');
+      currentBtn.textContent = '🔊';
+    }
+    currentBtn = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.speak-btn') : null;
+    if (!btn) return;
+    if (!synth) {
+      alert('当前浏览器不支持语音朗读');
+      return;
+    }
+    if (currentBtn === btn) {
+      stopSpeaking();
+      return;
+    }
+    stopSpeaking();
+    var text = btn.getAttribute('data-fr-text') || '';
+    if (!text) return;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    var voice = pickFrenchVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = stopSpeaking;
+    utter.onerror = stopSpeaking;
+    currentBtn = btn;
+    btn.classList.add('speaking');
+    btn.textContent = '⏸';
+    synth.speak(utter);
+  });
+})();
+</script>
+</body>
+</html>
