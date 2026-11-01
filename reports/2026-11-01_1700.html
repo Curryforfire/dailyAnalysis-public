@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+.fr-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speak-btn {
+  border: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.speak-btn:hover { border-color: var(--accent-blue-l); color: var(--accent-blue-l); }
+.speak-btn.speaking { background: var(--accent-blue-l); border-color: var(--accent-blue-l); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .speak-btn:hover { border-color: var(--accent-blue-d); color: var(--accent-blue-d); }
+  .speak-btn.speaking { background: var(--accent-blue-d); border-color: var(--accent-blue-d); color: #fff; }
+}
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-11-01 17:00 CET &middot; 渲染于 2026-11-01 17:01</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>10/30美股科技股重挫，标普约-1.8%，纳指月跌或超6%；埃克森、雪佛龙创新高；苹果11/2交卷</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>美股10月30日（周五）科技股抛售</strong>：TipRanks和CNBC一致的口径是标普500跌1.82%至7,580.07，道指跌1.09%至51,770.31。Trading Economics给的纳指跌幅约4%，与此口径有出入，未确认。</li><li><strong>触发点是亚马逊和英特尔财报加上AI开支担忧</strong>：这与上期&quot;亚马逊盘中跌幅收窄至约2%&quot;的数据不同，后半天跌幅似乎扩大了。收盘跌幅未确认，有报道给出-1.41%。</li><li><strong>10月全月</strong>：Trading Economics称标普月跌0.9%，纳指月跌6.6%，道指月涨1.7%。Schwab的周五早盘提示还是月涨近1%，月度数字取决于用哪个收盘位。</li><li><strong>能源股逆势</strong>：埃克森、雪佛龙财报利润大增，据CNBC股价创历史新高。</li><li><strong>苹果11月2日（明天）发财报</strong>：新CEO Ternus的首份财报，共识营收约1,133亿美元、EPS 1.99美元。</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">科技股周五抛售：亚马逊、英特尔财报引发AI开支担忧</h3><p class="field-row"><span class="field-label">事件</span>多家媒体（CNBC、TipRanks、Yahoo Finance，10月30日）称美股在科技财报和AI开支担忧下收跌。亚马逊三季度营收2,019亿美元，同比增12%，略低于预期；EPS 1.89美元，低于预期。另据CNBC在10月29日的直播贴，纳指当天已出现&quot;六月以来最差一日&quot;，说明抛售不是从周五才开始的。</p><p class="field-row"><span class="field-label">时效核查</span>TipRanks与CNBC的标普收盘价一致，我采用这个口径。纳指跌幅和亚马逊收盘跌幅，各来源不一致，我没有确认。搜索中的7月30日CNBC直播贴和更早年份的类似标题，已排除。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>AI芯片、云同业（微软、谷歌、甲骨文）、数据中心电力与设备、存储芯片。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">纳指10月累计跌幅可能已达6%以上，并且连续两天出现抛售，&quot;AI开支回报&quot;这个话题已经被反复交易。但月度数字有出入，所以这个判断的把握有限。如果周一苹果也不及预期，边际影响会比前面几家更大，原因是它的权重和指数持仓重合度更高。</span></p></article><article class="card"><h3 class="card-title">埃克森、雪佛龙利润大增，股价创新高</h3><p class="field-row"><span class="field-label">事件</span>CNBC、Yahoo Finance、TipRanks（10月30日）称两家公司财报受益于油价和炼油利润。TipRanks给出埃克森季度利润约175亿美元（+130%），雪佛龙约104亿美元（+185%）。这些利润数字来自单一聚合源，未核实。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>油服、炼油、油气设备、航空和运输（成本端）、通胀预期与利率。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">股价已创新高，说明利润增长已经反映在价格中。后续要看油价能否维持。10月23日Brent约116.72美元只来自二手来源，也没有确认10月30日的价格。</span></p></article><article class="card"><h3 class="card-title">苹果11月2日财报：新CEO首秀</h3><p class="field-row"><span class="field-label">事件</span>MacRumors、9to5Mac等（10月6日公布日期）称苹果将在11月2日（周一）美东盘后发布，是Ternus任CEO后的首次。指引营收同比增9%-11%，毛利率47%-48%，上一季度为50.1%（其中约两个点来自关税退款）。本季度只含约9天的iPhone 18 Pro销售。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>苹果供应链、存储芯片（成本）、消费电子、纳指权重。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">苹果在其他大厂被抛售后才交卷，市场对其开支和存储涨价的评论会很敏感，但这是推演，没有数据证实。周五苹果跌约1.2%，来自Trading Economics，未核实。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><h3 class="card-title">AI开支回报疑虑 → 科技股抛售 → 资金轮动到能源</h3><div class="chain-flow"><span class="chain-node">云厂商开支膨胀</span><span class="chain-arrow">→</span><span class="chain-node">科技股估值压缩</span><span class="chain-arrow">→</span><span class="chain-node">纳指月度大跌</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">资金流向能源/价值股</span></div><p class="field-row"><span class="field-label">逻辑</span>亚马逊计划约2,200亿美元的开支，加上财报略不及预期，把&quot;回报在哪里&quot;变成中心问题。科技股估值被压缩后，指数里权重较低的能源和价值股相对更抗跌，道指10月仍涨1.7%，纳指跌6.6%，表现分化。埃克森、雪佛龙创新高是这种分化的另一面，但也有油价本身上涨的因素，不能全部归因于轮动。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">分化已经出现在月度数据里，但数字来自单一来源，且我没有资金流向的数据，轮动是否持续没有验证。</span></p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">同一个月，两个世界</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>据Trading Economics，10月纳指跌6.6%，道指却涨1.7%。同一个市场里，一边在为AI账单发愁，一边在数油价上涨带来的利润。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="En octobre, le Nasdaq perd 6,6 % quand le Dow gagne 1,7 %, selon Trading Economics. Sur le même marché, les uns s&#x27;inquiètent de la facture de l&#x27;IA, les autres comptent les profits du pétrole." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>En octobre, le Nasdaq perd 6,6 % quand le Dow gagne 1,7 %, selon Trading Economics. Sur le même marché, les uns s&#x27;inquiètent de la facture de l&#x27;IA, les autres comptent les profits du pétrole.</p></div></div></article><article class="card"><h3 class="card-title">抛售不是从周五开始的</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>CNBC说10月29日纳指已经是六月以来最差的一天。周五的亚马逊和英特尔，更像是第二脚而不是第一脚。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Dès le 29 octobre, le Nasdaq vivait sa pire séance depuis juin, d&#x27;après CNBC. Amazon et Intel, vendredi, ressemblent donc à un deuxième coup plutôt qu&#x27;au premier." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Dès le 29 octobre, le Nasdaq vivait sa pire séance depuis juin, d&#x27;après CNBC. Amazon et Intel, vendredi, ressemblent donc à un deuxième coup plutôt qu&#x27;au premier.</p></div></div></article><article class="card"><h3 class="card-title">石油巨头创新高</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>埃克森和雪佛龙的股价都创了历史新高，而科技股在流血。能源这个老牌行业，这个月成了避风港。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Exxon et Chevron signent des records historiques pendant que la tech saigne. Le vieux pétrole joue le rôle de refuge ce mois-ci." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Exxon et Chevron signent des records historiques pendant que la tech saigne. Le vieux pétrole joue le rôle de refuge ce mois-ci.</p></div></div></article><article class="card"><h3 class="card-title">收盘数字对不上</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>同一天的纳指跌幅，有来源说约4%，也有来源口径对不上。数字不一致本身就是提醒：别只看一个页面的标题。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Pour la même séance, une source donne un Nasdaq en baisse d&#x27;environ 4 %, d&#x27;autres ne concordent pas. Ce décalage est un rappel : ne vous fiez jamais à un seul titre." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Pour la même séance, une source donne un Nasdaq en baisse d&#x27;environ 4 %, d&#x27;autres ne concordent pas. Ce décalage est un rappel : ne vous fiez jamais à un seul titre.</p></div></div></article><article class="card"><h3 class="card-title">苹果在最后一个出场</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>三家同行先后挨了市场的刀，苹果最后交卷。新CEO的第一份答卷，等于在最不利的气氛里考试。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Trois pairs ont déjà essuyé les foudres du marché ; Apple passe en dernier. Le premier examen du nouveau PDG se tient dans le pire climat possible." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Trois pairs ont déjà essuyé les foudres du marché ; Apple passe en dernier. Le premier examen du nouveau PDG se tient dans le pire climat possible.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- <strong>兑现/修正</strong>：上期只有亚马逊10月30日盘中数据（约-2%）。新信息显示全天指数跌幅更大：标普-1.82%，纳指跌幅有分歧。上期&quot;恐慌退潮&quot;的判断，需要修正为&quot;盘中收窄、后半天再度走弱&quot;，这一点来自与上期口径不一致的新数据，仍待确认。
+- <strong>仍未解决</strong>：亚马逊最终收盘价；英特尔10月30日的具体反应；英伟达、博通、存储股的表现；金价、收益率、美元、油价的10月30日读数。
+- <strong>下期关注</strong>：11月2日苹果财报及盘后反应；11月2日开盘的指数走势；能源股能否延续。
+- <strong>花絮</strong>：本时段没有搜到值得一提的文化、娱乐类新闻，省略。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成，仅供研究参考，不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (7)</summary><ol><li><a href="https://www.cnbc.com/2026/10/29/stock-market-today-live-updates.html" target="_blank" rel="noopener">Stock market rocked as investors dump tech shares; Nasdaq suffers worst day since June (CNBC, 10/29)</a></li><li><a href="https://www.tipranks.com/news/the-week-that-was-the-week-ahead-macro-and-markets-november-1" target="_blank" rel="noopener">The Week That Was, The Week Ahead: Macro and Markets, November 1 (TipRanks)</a></li><li><a href="https://finance.yahoo.com/markets/stocks/live/earnings-live-updates-exxon-chevron-refining-margins-jump-lifting-earnings-120334734.html" target="_blank" rel="noopener">Earnings live updates: Exxon, Chevron refining margins jump (Yahoo Finance)</a></li><li><a href="https://finance.yahoo.com/markets/stocks/articles/us-stock-futures-fall-amzn-100738749.html" target="_blank" rel="noopener">US Stock Futures Fall As AMZN, INTC Earnings Trigger Tech Sell-Off (Yahoo Finance)</a></li><li><a href="https://tradingeconomics.com/united-states/stock-market" target="_blank" rel="noopener">United States Stock Market Index (Trading Economics)</a></li><li><a href="https://macrumors.com/2026/10/06/apple-q4-2026-earnings-nov-2" target="_blank" rel="noopener">Apple to Report Q4 2026 Earnings on November 2 (MacRumors)</a></li><li><a href="https://www.ithinkdiff.com/apple-q4-2026-earnings-what-to-expect/" target="_blank" rel="noopener">What to Expect from Apple&#x27;s Q4 2026 Earnings on November 2 (iThinkDiff)</a></li></ol></details>
+  </footer>
+</div>
+<script>
+(function() {
+  var synth = window.speechSynthesis;
+  var currentBtn = null;
+
+  function pickFrenchVoice() {
+    if (!synth) return null;
+    var voices = synth.getVoices().filter(function(v) {
+      return v.lang && v.lang.toLowerCase().indexOf('fr') === 0;
+    });
+    if (!voices.length) return null;
+    var femaleNames = /amelie|amélie|audrey|marie|celine|céline|julie|chantal|female|femme/i;
+    var preferred = voices.find(function(v) { return femaleNames.test(v.name); });
+    return preferred || voices[0];
+  }
+
+  function stopSpeaking() {
+    if (synth) synth.cancel();
+    if (currentBtn) {
+      currentBtn.classList.remove('speaking');
+      currentBtn.textContent = '🔊';
+    }
+    currentBtn = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.speak-btn') : null;
+    if (!btn) return;
+    if (!synth) {
+      alert('当前浏览器不支持语音朗读');
+      return;
+    }
+    if (currentBtn === btn) {
+      stopSpeaking();
+      return;
+    }
+    stopSpeaking();
+    var text = btn.getAttribute('data-fr-text') || '';
+    if (!text) return;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    var voice = pickFrenchVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = stopSpeaking;
+    utter.onerror = stopSpeaking;
+    currentBtn = btn;
+    btn.classList.add('speaking');
+    btn.textContent = '⏸';
+    synth.speak(utter);
+  });
+})();
+</script>
+</body>
+</html>
