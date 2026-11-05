@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+.fr-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speak-btn {
+  border: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.speak-btn:hover { border-color: var(--accent-blue-l); color: var(--accent-blue-l); }
+.speak-btn.speaking { background: var(--accent-blue-l); border-color: var(--accent-blue-l); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .speak-btn:hover { border-color: var(--accent-blue-d); color: var(--accent-blue-d); }
+  .speak-btn.speaking { background: var(--accent-blue-d); border-color: var(--accent-blue-d); color: #fff; }
+}
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-11-05 14:16 CET &middot; 渲染于 2026-11-05 14:18</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>民主党横扫中期选举，道指涨3%、油价跌逾8%，数据中心与AI算力股承压，大型科技股走强</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>民主党横扫中期选举</strong>：CNBC选举台预测民主党在众议院至少拿下245席。AP称民主党从共和党手中翻转了爱荷华、堪萨斯、北卡、俄亥俄、南卡和得州的参议院席位。仍有数个席位未定。特朗普表示接受结果。</li><li><strong>美股周三大涨</strong>：标普500涨1.6%至7,688.62点，道指涨约3%至53,356点，为2026年最佳单日。周四盘前走势分化：道指期货约+0.5%，纳指期货约-0.6%至-1%，半导体连续第二日走弱。</li><li><strong>油价单日重挫</strong>：周三WTI收88.12美元（-8.3%），Brent收94.62美元（-8.7%），均为8月31日以来新低。市场押注选举后伊朗战事会提前收场。周四盘前小幅反弹，Brent约95.6美元。</li><li><strong>AI板块分化</strong>：新云厂商和数据中心股大跌，微软、亚马逊等巨头大涨。导火索之一是得州州长选举，民主党候选人主张暂停州内数据中心建设。</li><li><strong>金价与加息预期</strong>：现货金升至两周高点约4,135美元，美债10年期收益率约4.87%。CME FedWatch显示12月加息概率约82%。今晚（周五）的非农数据是下一个催化剂。</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">民主党拿下国会，市场&quot;不确定性出清&quot;</h3><p class="field-row"><span class="field-label">事件</span>CNBC和Yahoo Finance报道，民主党在众议院大幅领先，并翻转多个参议院席位。夜间纳指期货最多跌2.4%，特朗普表态接受结果后快速收复，周三全面上涨（11月3日夜至4日）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>大盘指数、太阳能与清洁能源、大型科技、医疗、国防。分裂政府常被解读为&quot;僵局利好&quot;，财政和关税的极端政策概率下降。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">周三道指单日涨3%，大部分&quot;不确定性出清&quot;已经兑现。第二天盘前走势已出现降温，继续追涨的边际赔率下降。</span></p></article><article class="card"><h3 class="card-title">油价单日暴跌：押注伊朗战事提前结束</h3><p class="field-row"><span class="field-label">事件</span>CNBC和Yahoo Finance报道，周三Brent跌8.7%，WTI跌8.3%。副总统万斯公开称&quot;我们输掉选举是因为这场战争&quot;。WTI三日跌幅为2021年11月以来最大。周四早盘反弹，ING认为抛售过度。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>原油、航空和运输、炼化、能源股、通胀预期、美债收益率、霍尔木兹海峡风险溢价。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">跌幅主要来自政治推断，而非供给端实质变化。伊朗局势是否真的缓和还没有得到证实。WTI年初约57美元，4月高点约113美元，现价仍明显高于年初，风险溢价是否继续回吐取决于是否出现具体谈判进展。</span></p></article><article class="card"><h3 class="card-title">AI数据中心与新云股：监管与地方政治风险</h3><p class="field-row"><span class="field-label">事件</span>CNBC和Yahoo Finance报道，CoreWeave跌约9%至10%，Applied Digital跌约9%，美光跌约7%，英伟达跌约1%至3%（各来源不一）。微软、亚马逊涨超6%。CoreWeave将于11月10日公布财报。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>新云厂商、数据中心REIT与开发商、存储芯片、电力与电网设备、可再生能源、拥有自有资本的超大规模云厂商。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">分析师称新国会更可能带来听证和调查，而非立刻禁建，任何立法仍需特朗普签字，所以近期立法风险有限。但地方层面的数据中心阻力和CoreWeave约350亿美元的债务负担是真实压力。11月10日的财报是检验点。</span></p></article><article class="card"><h3 class="card-title">黄金：美元和收益率回落带动反弹</h3><p class="field-row"><span class="field-label">事件</span>CNBC报道，现货金涨约1.9%至两周高点约4,135美元，美元和美债收益率在选举后回落。10月底美联储按兵不动，投票10比2，两名官员主张加息。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>黄金、白银、矿业股、美元、实际利率。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">12月加息概率约82%，利率路径仍是上方压力。10月初金价曾跌至七周低点。今晚非农数据可能迅速改变走势，反弹的持续性存疑。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><h3 class="card-title">选举结果 → 油价 → 通胀 → 加息预期</h3><div class="chain-flow"><span class="chain-node">民主党胜选</span><span class="chain-arrow">→</span><span class="chain-node">战争结束预期</span><span class="chain-arrow">→</span><span class="chain-node">油价重挫</span><span class="chain-arrow">→</span><span class="chain-node">通胀预期降温</span><span class="chain-arrow">→</span><span class="chain-node">收益率与美元回落</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">黄金反弹</span></div><p class="field-row"><span class="field-label">逻辑</span>万斯把败选归咎于战争，市场据此推断特朗普更愿意谈判，原油的战争溢价因此被抛售。油价下行降低通胀担忧，美债10年期收益率从约5%回落到约4.87%，美元走弱，黄金的持有成本和计价压力同步下降。但12月加息概率仍高达82%，所以这条链条只是缓解而非逆转。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">第一环（油价）已大幅反应，后三环（通胀预期、收益率、黄金）反应幅度小得多。链条能否延续取决于伊朗是否出现可核实的停火或谈判，以及非农数据。</span></p></article><article class="card" style="--accent-light:#eb6834;--accent-dark:#d95926"><h3 class="card-title">得州州长选举 → 数据中心许可风险 → 新云融资成本 → 大厂相对受益</h3><div class="chain-flow"><span class="chain-node">暂停建设主张</span><span class="chain-arrow">→</span><span class="chain-node">新云项目风险</span><span class="chain-arrow">→</span><span class="chain-node">融资与回报要求上升</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">超大规模厂商受益</span></div><p class="field-row"><span class="field-label">逻辑</span>民主党州长候选人主张暂停数据中心建设，直接压缩依赖得州项目的新云和数据中心开发商的预期。杠杆高的公司（如CoreWeave）融资成本和回报门槛随之上升。Needham认为监管收紧会抬高新进入者的门槛，反而巩固微软、亚马逊这类有现金流的大厂。资金因此从&quot;AI基础设施的杠杆玩家&quot;转向&quot;AI应用与平台的现金流大户&quot;。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">市场已区分新云和大厂，但具体政策（许可、电价、环评）还没有出台，真正的影响要等州和国会层面的动作。</span></p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">同一场选举，两种AI</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>选举结果一出，微软、亚马逊涨了6%以上，CoreWeave却跌了接近10%。同样叫&quot;AI股&quot;，一边是有现金的大厂，一边是背着350亿债务的新云，政治风险先砸向了弱的那一个。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Même élection, deux IA : Microsoft et Amazon gagnent plus de 6 %, CoreWeave perd près de 10 %. Le risque politique frappe d&#x27;abord le maillon le plus fragile, celui qui porte 35 milliards de dettes." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Même élection, deux IA : Microsoft et Amazon gagnent plus de 6 %, CoreWeave perd près de 10 %. Le risque politique frappe d&#x27;abord le maillon le plus fragile, celui qui porte 35 milliards de dettes.</p></div></div></article><article class="card"><h3 class="card-title">输掉选举的&quot;账单&quot;</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>副总统万斯说&quot;我们输是因为这场战争&quot;，油价当天就跌了8%以上。一句话的政治表态，让原油市场把战争溢价吐了出来。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Le vice-président Vance affirme que « la guerre nous a fait perdre », et le pétrole recule de plus de 8 % le jour même. Une phrase politique a suffi pour dégonfler la prime de guerre." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Le vice-président Vance affirme que « la guerre nous a fait perdre », et le pétrole recule de plus de 8 % le jour même. Une phrase politique a suffi pour dégonfler la prime de guerre.</p></div></div></article><article class="card"><h3 class="card-title">僵局是股市的朋友</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>分裂政府意味着两边谁也做不成大事，华尔街反而松了口气。道指一天涨3%，不是因为有了好政策，而是因为少了坏意外。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Un Congrès divisé, c&#x27;est un Congrès qui ne peut pas faire grand-chose, et Wall Street respire. Le Dow gagne 3 % non pas grâce à une bonne politique, mais grâce à la disparition des mauvaises surprises." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Un Congrès divisé, c&#x27;est un Congrès qui ne peut pas faire grand-chose, et Wall Street respire. Le Dow gagne 3 % non pas grâce à une bonne politique, mais grâce à la disparition des mauvaises surprises.</p></div></div></article><article class="card"><h3 class="card-title">小州长选举，大算力问题</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>一场州长选举，让投资者重新算起AI数据中心的账。得州的候选人主张暂停建设，这可能比一条联邦法案更直接地卡住项目。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Une élection de gouverneur, et les investisseurs refont les comptes des centres de données. Un moratoire au Texas pourrait freiner les projets plus vite qu&#x27;une loi fédérale." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Une élection de gouverneur, et les investisseurs refont les comptes des centres de données. Un moratoire au Texas pourrait freiner les projets plus vite qu&#x27;une loi fédérale.</p></div></div></article><article class="card"><h3 class="card-title">金价的拉扯</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>金价涨到两周高点，但12月加息概率还有82%。黄金一边吃着&quot;收益率回落&quot;的红利，一边头顶悬着加息这把剑。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="L&#x27;or touche un sommet de deux semaines alors que la probabilité d&#x27;une hausse de taux en décembre reste à 82 %. Le métal profite de la détente des rendements, avec une épée de Damoclès au-dessus." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>L&#x27;or touche un sommet de deux semaines alors que la probabilité d&#x27;une hausse de taux en décembre reste à 82 %. Le métal profite de la détente des rendements, avec une épée de Damoclès au-dessus.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- <strong>上期的待确认项现已有答案</strong>：中期选举结果出来了，民主党掌控众议院，并翻转多个参议院席位。上期因找不到一手来源而空缺的油价、金价、市场反应也有了带日期的报道。
+- <strong>上期&quot;选举结果推演&quot;的链条</strong>：我在上期设想过&quot;国会控制权 → 财政与关税预期 → 国债收益率 → 板块轮动&quot;。实际走向是&quot;国会控制权 → 战争预期 → 油价 → 收益率&quot;，传导主线来自油价而不是财政政策，这点与预想不同。
+- <strong>仍待确认</strong>：苹果、存储芯片股的具体走势，美联储的最新措辞，国会最终席位（仍有未定席位），伊朗局势的实质进展。工具摘要在美联储加息历史上前后有些不一致，上面只引用了10月底按兵不动、10比2投票和12月加息概率这几项。
+- <strong>下期关注</strong>：今晚非农数据，周四美股开盘后的半导体走势，CoreWeave 11月10日财报，伊朗谈判的一手报道。
+- <strong>花絮</strong>：本时段没有搜到相关新闻，省略。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成，仅供研究参考，不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (11)</summary><ol><li><a href="https://cnbc.com/2026/11/04/democrats-2026-midterm-election-results.html" target="_blank" rel="noopener">Democrats sweep 2026 midterms (CNBC)</a></li><li><a href="https://www.cnbc.com/2026/11/04/stock-market-rally-trump-midterms.html" target="_blank" rel="noopener">Stocks rally as Trump accepts Democratic midterm sweep (CNBC)</a></li><li><a href="https://finance.yahoo.com/markets/stocks/articles/us-stock-index-futures-steady-083456013.html" target="_blank" rel="noopener">Wall Street ends higher after Democrats win Congress; data center stocks tumble (Yahoo Finance)</a></li><li><a href="https://www.cnbc.com/2026/11/04/oil-price-iran-war-us-election-strait-hormuz.html" target="_blank" rel="noopener">Crude oil prices fall below $90 as Vance blames GOP election defeat on Iran war (CNBC)</a></li><li><a href="https://finance.yahoo.com/markets/article/oil-prices-fall-below-90-as-traders-bet-on-iran-war-ending-after-democrats-sweep-midterms-192105228.html" target="_blank" rel="noopener">Oil prices fall below $90 as traders bet on Iran war ending (Yahoo Finance)</a></li><li><a href="https://www.cnbc.com/2026/11/05/gold-hits-two-week-high-as-dollar-yields-ease-after-us-midterms.html" target="_blank" rel="noopener">Gold hits a two-week high as dollar, Treasury yields ease after U.S. midterm elections (CNBC)</a></li><li><a href="https://www.cnbc.com/2026/11/04/ai-stocks-texas-governor-data-centers.html" target="_blank" rel="noopener">AI data center stocks and SpaceX decline as Texas governor result raises risks (CNBC)</a></li><li><a href="https://www.cnbc.com/2026/11/04/apple-and-other-big-tech-stocks-surge-after-2026-midterm-elections.html" target="_blank" rel="noopener">Hyperscalers and Apple surge after election results (CNBC)</a></li><li><a href="https://sg.finance.yahoo.com/news/coreweave-iren-nebius-stocks-sink-120751139.html" target="_blank" rel="noopener">CoreWeave, IREN and Nebius stocks sink (Yahoo Finance)</a></li><li><a href="https://finance.yahoo.com/markets/live/stock-market-today-thursday-november-5-dow-sp-500-nasdaq-oil-falls-090519607.html" target="_blank" rel="noopener">Stock market today, Thursday November 5 (Yahoo Finance)</a></li><li><a href="https://www.bloomberg.com/news/articles/2026-11-05/us-stock-futures-diverge-as-chip-selloff-extends-into-second-day" target="_blank" rel="noopener">Semiconductor ETF drops over 3% as chipmakers extend losses (Bloomberg)</a></li></ol></details>
+  </footer>
+</div>
+<script>
+(function() {
+  var synth = window.speechSynthesis;
+  var currentBtn = null;
+
+  function pickFrenchVoice() {
+    if (!synth) return null;
+    var voices = synth.getVoices().filter(function(v) {
+      return v.lang && v.lang.toLowerCase().indexOf('fr') === 0;
+    });
+    if (!voices.length) return null;
+    var femaleNames = /amelie|amélie|audrey|marie|celine|céline|julie|chantal|female|femme/i;
+    var preferred = voices.find(function(v) { return femaleNames.test(v.name); });
+    return preferred || voices[0];
+  }
+
+  function stopSpeaking() {
+    if (synth) synth.cancel();
+    if (currentBtn) {
+      currentBtn.classList.remove('speaking');
+      currentBtn.textContent = '🔊';
+    }
+    currentBtn = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.speak-btn') : null;
+    if (!btn) return;
+    if (!synth) {
+      alert('当前浏览器不支持语音朗读');
+      return;
+    }
+    if (currentBtn === btn) {
+      stopSpeaking();
+      return;
+    }
+    stopSpeaking();
+    var text = btn.getAttribute('data-fr-text') || '';
+    if (!text) return;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    var voice = pickFrenchVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = stopSpeaking;
+    utter.onerror = stopSpeaking;
+    currentBtn = btn;
+    btn.classList.add('speaking');
+    btn.textContent = '⏸';
+    synth.speak(utter);
+  });
+})();
+</script>
+</body>
+</html>
