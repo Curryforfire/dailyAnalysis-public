@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+.fr-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speak-btn {
+  border: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.speak-btn:hover { border-color: var(--accent-blue-l); color: var(--accent-blue-l); }
+.speak-btn.speaking { background: var(--accent-blue-l); border-color: var(--accent-blue-l); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .speak-btn:hover { border-color: var(--accent-blue-d); color: var(--accent-blue-d); }
+  .speak-btn.speaking { background: var(--accent-blue-d); border-color: var(--accent-blue-d); color: #fff; }
+}
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-11-09 18:16 CET &middot; 渲染于 2026-11-09 18:18</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>英伟达董事会调查黄仁勋涉华间谍关系，股价跌约5%；美伊和谈希望压低Brent至93美元，美股大盘涨约2%</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>英伟达</strong>：董事会11月8日（周日）宣布独立调查CEO黄仁勋与一名被美国情报部门认定为中国间谍的女性的关系。黄仁勋已向员工邮件致歉并承认有婚外情。周一股价盘中跌约5%。</li><li><strong>原油</strong>：Brent周一盘中跌约5%至约93.4美元（前收98.32），为9月初以来低位。驱动是特朗普称对伊朗发动新打击&quot;极不可能&quot;，以及和谈希望。</li><li><strong>美股</strong>：盘中三大指数普涨约2%至2.6%（Dow约+2%，S&amp;P 500约+2.2–2.3%，Nasdaq约+2.6%），上周三大指数均收跌。英伟达是主要拖累。</li><li><strong>国会与北京</strong>：两党议员要求国会调查。中国外交部称相关说法&quot;毫无根据&quot;。</li><li><strong>未消失的风险</strong>：霍尔木兹海峡附近仍有油轮遇袭，伊朗尚未表态协议临近。</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">英伟达董事会调查黄仁勋</h3><p class="field-row"><span class="field-label">事件</span>纽约时报上月报道，中国公民Alice Huang与黄仁勋关系密切并被指向北京传递信息。她关联的Megaspeed是新加坡公司，购买英伟达AI芯片。董事会周日启动调查，称没有迹象显示国家安全或公司机密受损。路透无法独立核实相关指控。来源：CNBC 11/8、11/9，路透，NBC。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>英伟达及AI芯片链、对华/转口出口监管（新加坡等中转买家）、AMD与博通等竞争对手、治理风险定价。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">本次下跌只反映了&quot;治理不确定性&quot;。国会听证、对Megaspeed等转口买家的出口审查，以及11月18日财报，都可能带来后续消息。注意：这是单一事件的情绪反应，若调查结论偏轻，跌幅可能回补，但目前没有证据判断方向。</span></p></article><article class="card"><h3 class="card-title">原油：和谈希望压倒海峡袭击</h3><p class="field-row"><span class="field-label">事件</span>Brent盘中约93.4美元，WTI约86.7美元。较10月下旬超过115美元的高点已大幅回落，上周据报跌约17%。来源：Invezz、IG、LBC，11/9。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>能源股、航空与运输、通胀预期和债券收益率、黄金。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">偏【可能滞后】—— 一周内跌去近两成，说明和谈预期已大量计入。但伊朗没有表态，另一艘美国航母尚未到位，若谈判受挫，价格有反弹空间。反向追空的边际赔率不高。</span></p></article><article class="card"><h3 class="card-title">美股普涨但英伟达逆行</h3><p class="field-row"><span class="field-label">事件</span>盘中Nasdaq涨约2.6%，英伟达下跌约5%。来源：Yahoo Finance、CNN 市场页，11/9（盘中，非收盘）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>油价回落受益的消费与运输、AI板块内部分化。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">上涨主要对应油价下降和和谈预期，是宏观驱动。收盘数据还没确认，不宜把盘中数字当结论。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><h3 class="card-title">油价回落 → 通胀与加息预期</h3><div class="chain-flow"><span class="chain-node">Brent跌至93美元</span><span class="chain-arrow">→</span><span class="chain-node">能源通胀预期降温</span><span class="chain-arrow">→</span><span class="chain-node">12月加息概率下调</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">成长股估值回升</span></div><p class="field-row"><span class="field-label">逻辑</span>油价是headline通胀的重要输入，大幅回落会削弱央行继续加息的理由。利率预期下行会提高长久期资产（科技股）的折现价值，这与今天Nasdaq领涨相吻合。但这一条是我的推演：本期没有找到带日期的12月加息概率，上期的约78%未更新。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">逻辑成立，但需要CPI和FOMC官员表态验证，目前缺少当日利率数据。</span></p></article><article class="card" style="--accent-light:#eb6834;--accent-dark:#d95926"><h3 class="card-title">黄仁勋调查 → 出口监管</h3><div class="chain-flow"><span class="chain-node">间谍关系报道</span><span class="chain-arrow">→</span><span class="chain-node">国会要求调查</span><span class="chain-arrow">→</span><span class="chain-node">转口买家审查收紧</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">英伟达对华及东南亚收入风险</span></div><p class="field-row"><span class="field-label">逻辑</span>报道点名的Megaspeed是新加坡的芯片买家，议员很可能追问芯片如何流向中国。若监管收紧对东南亚转口的审查，英伟达的订单可见度会受影响，并叠加11月18日财报的指引不确定性。这是推演，目前没有新规则出台。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">链条依赖尚未发生的监管动作，当前仍以传闻与舆论为主。</span></p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">大盘涨，龙头跌</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>Nasdaq涨了2.6%，AI最大的龙头却跌了5%。这次拖累它的不是芯片需求，而是公司治理。基本面没变，价格先被&quot;人&quot;的问题拖下水。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Le Nasdaq grimpe de 2,6 %, mais le champion de l&#x27;IA recule de 5 %. Ce n&#x27;est pas la demande de puces qui pèse, c&#x27;est la gouvernance. Les fondamentaux n&#x27;ont pas bougé, mais un problème humain tire déjà le cours vers le bas." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Le Nasdaq grimpe de 2,6 %, mais le champion de l&#x27;IA recule de 5 %. Ce n&#x27;est pas la demande de puces qui pèse, c&#x27;est la gouvernance. Les fondamentaux n&#x27;ont pas bougé, mais un problème humain tire déjà le cours vers le bas.</p></div></div></article><article class="card"><h3 class="card-title">一周跌17%的油价</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>Brent从115美元以上的高点回落到93美元，一周就吃掉近两成。海峡里仍有油轮被袭，价格却在跌，说明市场更相信谈判桌，而不是新闻画面。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Le Brent est passé de plus de 115 dollars à 93 dollars, soit près de 20 % en une semaine. Des pétroliers sont toujours attaqués près d&#x27;Ormuz, mais le marché croit davantage à la table des négociations qu&#x27;aux images." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Le Brent est passé de plus de 115 dollars à 93 dollars, soit près de 20 % en une semaine. Des pétroliers sont toujours attaqués près d&#x27;Ormuz, mais le marché croit davantage à la table des négociations qu&#x27;aux images.</p></div></div></article><article class="card"><h3 class="card-title">新加坡这个小节点</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>这次风波里反复出现的Megaspeed在新加坡。AI芯片的全球供应链上，转口和中间买家往往比大客户更容易成为监管的焦点。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Megaspeed, basée à Singapour, revient sans cesse dans cette affaire. Dans la chaîne mondiale des puces d&#x27;IA, les acheteurs intermédiaires attirent souvent plus l&#x27;attention des régulateurs que les grands clients." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Megaspeed, basée à Singapour, revient sans cesse dans cette affaire. Dans la chaîne mondiale des puces d&#x27;IA, les acheteurs intermédiaires attirent souvent plus l&#x27;attention des régulateurs que les grands clients.</p></div></div></article><article class="card"><h3 class="card-title">财报倒计时九天</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>英伟达11月18日发三季报。在此之前，市场既要消化业绩预期，又要给&quot;CEO风险&quot;定价，这个组合在大型科技股里并不常见。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Nvidia publie ses résultats le 18 novembre. D&#x27;ici là, le marché doit à la fois digérer les attentes de bénéfices et chiffrer un « risque CEO », une combinaison rare chez les géants de la tech." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Nvidia publie ses résultats le 18 novembre. D&#x27;ici là, le marché doit à la fois digérer les attentes de bénéfices et chiffrer un « risque CEO », une combinaison rare chez les géants de la tech.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- <strong>已确认</strong>：上期未确认的周一价格窗口现在有数据。Brent从前收98.32美元跌至约93.4美元，美股盘中普涨。&quot;Brent守住95美元&quot;这一看点没有应验，已跌破。
+- <strong>新增</strong>：英伟达调查是本期最大的新事件，上期完全没有。
+- <strong>仍未确认</strong>：美股收盘价、黄金价格、12月加息概率、民主党AI法案进展。
+- <strong>下一步看点</strong>：美股收盘与明日亚洲反应、伊朗是否公开回应、国会对英伟达的动作、11月18日英伟达财报、CPI。
+- <strong>花絮</strong>：本时段没有搜到相关新闻，省略。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成，仅供研究参考，不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (8)</summary><ol><li><a href="https://www.cnbc.com/2026/11/08/nvidia-jensen-huang-investigation-china-spy.html" target="_blank" rel="noopener">Nvidia investigates CEO Jensen Huang&#x27;s relationship with alleged Chinese spy (CNBC, 2026-11-08)</a></li><li><a href="https://www.cnbc.com/2026/11/09/nvidia-jensen-huang-chinese-spy-investigation.html" target="_blank" rel="noopener">Nvidia stock falls 5% as scrutiny turns to Jensen Huang&#x27;s affair with alleged Chinese spy (CNBC, 2026-11-09)</a></li><li><a href="https://www.cnbc.com/2026/11/08/jensen-huang-nvidia-china-spy-congress.html" target="_blank" rel="noopener">Nvidia CEO Jensen Huang faces bipartisan congressional scrutiny (CNBC, 2026-11-08)</a></li><li><a href="https://www.nbcnews.com/tech/tech-news/nvidia-ceo-jensen-huang-investigation-rcna608148" target="_blank" rel="noopener">Nvidia opens investigation after CEO Jensen Huang&#x27;s affair (NBC News)</a></li><li><a href="https://finance.yahoo.com/markets/live/stock-market-today-monday-november-9-dow-sp-500-nasdaq-nvidia-090535419.html" target="_blank" rel="noopener">Stock market today: Nasdaq rallies despite Nvidia stock slide (Yahoo Finance, 11/9)</a></li><li><a href="https://invezz.com/pk/news/2026/11/09/why-are-oil-prices-falling-despite-fresh-attacks-near-the-strait-of-hormuz/" target="_blank" rel="noopener">Oil prices today: Why Brent is falling despite Strait of Hormuz attacks (Invezz, 2026-11-09)</a></li><li><a href="https://www.ig.com/en-ch/news-and-trade-ideas/brent-oil-price-iran-talks-technical-analysis-261109" target="_blank" rel="noopener">Brent oil falls 4 percent on Iran deal hopes (IG)</a></li><li><a href="https://www.lbc.co.uk/article/439654de81084e8bb0b4d81de19e3b75-5Hjdm9p_2/" target="_blank" rel="noopener">Oil prices fall to two-month low as Trump says new Iran strikes &#x27;unlikely&#x27; (LBC)</a></li></ol></details>
+  </footer>
+</div>
+<script>
+(function() {
+  var synth = window.speechSynthesis;
+  var currentBtn = null;
+
+  function pickFrenchVoice() {
+    if (!synth) return null;
+    var voices = synth.getVoices().filter(function(v) {
+      return v.lang && v.lang.toLowerCase().indexOf('fr') === 0;
+    });
+    if (!voices.length) return null;
+    var femaleNames = /amelie|amélie|audrey|marie|celine|céline|julie|chantal|female|femme/i;
+    var preferred = voices.find(function(v) { return femaleNames.test(v.name); });
+    return preferred || voices[0];
+  }
+
+  function stopSpeaking() {
+    if (synth) synth.cancel();
+    if (currentBtn) {
+      currentBtn.classList.remove('speaking');
+      currentBtn.textContent = '🔊';
+    }
+    currentBtn = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.speak-btn') : null;
+    if (!btn) return;
+    if (!synth) {
+      alert('当前浏览器不支持语音朗读');
+      return;
+    }
+    if (currentBtn === btn) {
+      stopSpeaking();
+      return;
+    }
+    stopSpeaking();
+    var text = btn.getAttribute('data-fr-text') || '';
+    if (!text) return;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    var voice = pickFrenchVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = stopSpeaking;
+    utter.onerror = stopSpeaking;
+    currentBtn = btn;
+    btn.classList.add('speaking');
+    btn.textContent = '⏸';
+    synth.speak(utter);
+  });
+})();
+</script>
+</body>
+</html>
