@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+.fr-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speak-btn {
+  border: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.speak-btn:hover { border-color: var(--accent-blue-l); color: var(--accent-blue-l); }
+.speak-btn.speaking { background: var(--accent-blue-l); border-color: var(--accent-blue-l); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .speak-btn:hover { border-color: var(--accent-blue-d); color: var(--accent-blue-d); }
+  .speak-btn.speaking { background: var(--accent-blue-d); border-color: var(--accent-blue-d); color: #fff; }
+}
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-11-11 10:20 CET &middot; 渲染于 2026-11-11 10:20</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>美股11/10收跌：10月CPI超预期，英伟达跌5.4%，加息押注升温；CoreWeave财报大超预期，盘后最高涨15%</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>美股 11/10 收盘全线下跌</strong>：道指 -0.30% 至 52,231.89，标普 500 -0.38% 至 7,520.93，纳指 -0.74% 至 25,065.87。10 月 CPI 环比 +0.4%（预期 +0.3%），核心 CPI +0.3%（预期 +0.2%）。这抹去了周一的部分反弹。</li><li><strong>英伟达跌约 5.4%</strong>：它是科技板块（-1.4%）里表现最差的权重股，周一反弹时它就已经逆势下跌。</li><li><strong>加息预期升温</strong>：交易员认为 12 月加息的概率上升。黄金在 CPI 公布后跌破 4,100 美元，美元走强。</li><li><strong>CoreWeave 财报大超预期（盘后）</strong>：营收约 37 亿美元，同比 +168%。积压订单约 1,330 亿美元，全年指引上调。盘后股价最高涨约 15%。</li><li><strong>英伟达与国会</strong>：回复期限是今天（11/11），目前没有找到回应的报道。</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">10 月 CPI 超预期与加息押注</h3><p class="field-row"><span class="field-label">事件</span>11/10 公布的 10 月 CPI 环比 +0.4%，核心 +0.3%，都高于预期（TheStreet、Reuters 系列报道，11/10 美东盘中至收盘）。美股收跌，美元走强，黄金回落。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>长久期成长股（科技、AI 高估值股）、美元、黄金、银行（息差）、房地产和公用事业（利率敏感）。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">12 月联储会议前还有更多数据，一次 -0.3% 到 -0.7% 的跌幅还不足以反映&quot;加息&quot;这一情景，值得持续跟踪。但周一已有大涨，部分下跌可能只是回吐。</span></p></article><article class="card"><h3 class="card-title">英伟达单日下跌约 5.4%</h3><p class="field-row"><span class="field-label">事件</span>英伟达在 11/10 收跌约 5.4%，周一反弹时它也下跌。11/17 将公布财报，11/18 是国会闭门简报的建议日期（多个二手来源）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>AI 芯片链、存储芯片、服务器代工、对华出口相关公司。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">下跌原因没有一个来源说清楚，可能是利率、国会压力、财报前减仓的叠加。我没有找到单一的确认原因，不要把它当作某一个催化剂的结果。</span></p></article><article class="card"><h3 class="card-title">CoreWeave Q3 财报</h3><p class="field-row"><span class="field-label">事件</span>11/10 盘后公布，营收约 37 亿美元（+168%），调整后营业利润 3.79 亿美元（自家指引为 2.0–2.6 亿），积压订单约 1,330 亿美元（Q2 为 1,042 亿）。全年营收指引上调至 130–133 亿美元，资本开支指引 370–390 亿美元。GAAP 净亏损 7.09 亿美元。盘后最高涨约 15%（这是盘后初步反应，不是盘中或收盘状态）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>&quot;新云&quot;算力公司（Nebius、IREN）、英伟达 GPU 需求、数据中心电力与融资（债务、延迟提款定期贷款）。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">积压订单和指引上调说明需求真实，邻近同行盘后也跟涨。但资本开支 370–390 亿美元和利息成本是主要风险，且 CPI 超预期推高融资成本预期。欧洲时段之后的真实走势还没有确认，盘后涨幅在开盘后可能收窄。</span></p></article><article class="card"><h3 class="card-title">英伟达与国会简报请求</h3><p class="field-row"><span class="field-label">事件</span>三个众议院委员会主席要求黄仁勋 11/18 出席闭门简报，11/11 前回复（众议院外交委员会新闻稿）。这是自愿简报请求，不是传票。未找到回应报道。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>AI 芯片链、对华出口许可。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">回复本身可能成为消息点，但目前没有确认。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><h3 class="card-title">通胀超预期 → AI 融资成本</h3><div class="chain-flow"><span class="chain-node">CPI 超预期</span><span class="chain-arrow">→</span><span class="chain-node">加息预期升温</span><span class="chain-arrow">→</span><span class="chain-node">融资成本上升</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">AI 资本开支承压</span></div><p class="field-row"><span class="field-label">逻辑</span>CPI 超预期让市场提高 12 月加息的概率，长期利率预期随之上升。CoreWeave 这类公司靠债务建设算力，指引中资本开支高达 370–390 亿美元，利息成本对利率很敏感。这会压缩高估值 AI 股的估值倍数，也可能让下游数据中心项目的融资条件变差。但 CoreWeave 说它的大部分融资会通过与具体客户合同匹配的延迟提款定期贷款，这在一定程度上对冲了利率风险。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">财报强劲与利率预期恶化同时出现，市场还没有决定先交易哪一个。</span></p></article><article class="card" style="--accent-light:#eb6834;--accent-dark:#d95926"><h3 class="card-title">美元走强 → 黄金回落</h3><div class="chain-flow"><span class="chain-node">热 CPI</span><span class="chain-arrow">→</span><span class="chain-node">加息押注</span><span class="chain-arrow">→</span><span class="chain-node">美元走强</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">黄金跌破 4,100</span></div><p class="field-row"><span class="field-label">逻辑</span>黄金不产生利息，加息预期升高会提高持有成本，同时美元走强让以美元计价的黄金对非美元买家更贵。这条链条本身是经典传导，来源是 11/10 的报道。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">黄金已经在 CPI 公布后快速反应。如果 12 月前通胀数据继续偏热，才会有新的下行，但这需要新数据。</span></p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">好消息和坏消息同一晚到</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>同一个晚上，通胀数据把科技股往下拽，CoreWeave 的财报又在盘后把 AI 概念往上推。市场在同一张桌子上收到两张相反的牌。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Même soirée, deux signaux opposés : l&#x27;inflation tire la tech vers le bas, tandis que les résultats de CoreWeave la poussent vers le haut après la clôture. Le marché doit jouer deux cartes contradictoires en même temps." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Même soirée, deux signaux opposés : l&#x27;inflation tire la tech vers le bas, tandis que les résultats de CoreWeave la poussent vers le haut après la clôture. Le marché doit jouer deux cartes contradictoires en même temps.</p></div></div></article><article class="card"><h3 class="card-title">1,330 亿美元的订单</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>积压订单从 1,042 亿涨到约 1,330 亿美元，一个季度多了近 300 亿。但同一份指引里，今年的资本开支要花 370–390 亿，相当于先垫钱、后收钱。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Le carnet de commandes passe d&#x27;environ 104 à 133 milliards de dollars en un trimestre. Mais il faut dépenser 37 à 39 milliards cette année : on avance l&#x27;argent avant de l&#x27;encaisser." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Le carnet de commandes passe d&#x27;environ 104 à 133 milliards de dollars en un trimestre. Mais il faut dépenser 37 à 39 milliards cette année : on avance l&#x27;argent avant de l&#x27;encaisser.</p></div></div></article><article class="card"><h3 class="card-title">英伟达的逆行</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>周一大盘涨 2% 以上，英伟达反而跌；周二大盘小跌，它跌得更多。当龙头不跟着大盘走时，通常值得问一句&quot;谁在卖，为什么&quot;。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Lundi, le marché grimpe de plus de 2 % et Nvidia recule ; mardi, le marché cède un peu et Nvidia chute davantage. Quand le chef de file ne suit pas le peloton, la bonne question est : qui vend, et pourquoi ?" aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Lundi, le marché grimpe de plus de 2 % et Nvidia recule ; mardi, le marché cède un peu et Nvidia chute davantage. Quand le chef de file ne suit pas le peloton, la bonne question est : qui vend, et pourquoi ?</p></div></div></article><article class="card"><h3 class="card-title">昨天的结果，今天的价格</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>我昨晚搜到的 CoreWeave 结果全是一年前的旧闻，今天终于对上了日期。看财报新闻，第一步是先看年份。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Hier soir, tout ce que je trouvais sur CoreWeave datait d&#x27;un an. Aujourd&#x27;hui, les dates correspondent enfin. Pour les résultats trimestriels, la première chose à lire, c&#x27;est l&#x27;année." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Hier soir, tout ce que je trouvais sur CoreWeave datait d&#x27;un an. Aujourd&#x27;hui, les dates correspondent enfin. Pour les résultats trimestriels, la première chose à lire, c&#x27;est l&#x27;année.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- <strong>已兑现</strong>：上期提到的&quot;CPI 高于预期、加息押注升温&quot;得到确认，数据为环比 +0.4%，核心 +0.3%，美股收跌。
+- <strong>已兑现（初步）</strong>：CoreWeave 财报结果出来了，是 2026 年 Q3 的真实数据，不是 2025 年的旧闻。上期的担忧是&quot;营收翻倍、指引下调、股价下跌&quot;这个旧剧本，这次没有重演：指引是上调的，盘后股价上涨。
+- <strong>仍未确认</strong>：英伟达是否回复国会、原油的最新价格、CoreWeave 开盘后的真实走势。
+- <strong>接下来关注</strong>：英伟达 11/17 财报、11/18 国会简报、12 月联储会议前的数据。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成，仅供研究参考，不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (9)</summary><ol><li><a href="https://thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-nov-10-2026" target="_blank" rel="noopener">Stock Market Today (Nov. 10, 2026) – TheStreet</a></li><li><a href="https://eurasiabusinessnews.com/2026/11/11/stock-market-today-dow-jones-nasdaq-sp-500-fall-on-november-10-2026-oil-and-gold-retreat/" target="_blank" rel="noopener">Stock Market Today: Dow Jones, Nasdaq, S&amp;P 500 Fall on November 10, 2026 – Eurasia Business News</a></li><li><a href="https://www.kucoin.com/news/flash/u-s-stocks-drop-as-october-cpi-exceeds-expectations-nvidia-falls-5-5" target="_blank" rel="noopener">U.S. stocks decline as October CPI exceeds expectations; Nvidia drops 5.5% – KuCoin</a></li><li><a href="https://traderfactor.com/hot-us-cpi-sends-gold-below-4100-dollar-rallies/" target="_blank" rel="noopener">Hot US CPI Sends Gold Below $4,100 – TraderFactor</a></li><li><a href="https://www.fool.com/earnings/call-transcripts/2026/11/10/coreweave-crwv-q3-2026-earnings-call-transcript/" target="_blank" rel="noopener">CoreWeave Q3 2026 Earnings Call Transcript – Motley Fool</a></li><li><a href="https://www.cnbc.com/2026/11/10/coreweave-earnings-preview-debt-capex.html" target="_blank" rel="noopener">CoreWeave earnings put debt-fueled AI build-out under scrutiny – CNBC</a></li><li><a href="https://finance.biggo.com/news/US_CRWV_2026-11-10" target="_blank" rel="noopener">CoreWeave Q3 2026 – BigGo Finance</a></li><li><a href="https://letsdatascience.com/news/house-chairs-ask-nvidia-ceo-jensen-huang-for-closed-door-bri-d3ca0fdc" target="_blank" rel="noopener">House Chairs Ask Nvidia CEO Jensen Huang for Closed-Door Briefing – Let&#x27;s Data Science</a></li><li><a href="https://www.staradvertiser.com/2026/11/09/breaking-news/wall-street-rallies-after-last-weeks-ai-rout-nvidia-falls/" target="_blank" rel="noopener">Wall Street rallies after last week&#x27;s AI rout; Nvidia falls – Star Advertiser (11/9)</a></li></ol></details>
+  </footer>
+</div>
+<script>
+(function() {
+  var synth = window.speechSynthesis;
+  var currentBtn = null;
+
+  function pickFrenchVoice() {
+    if (!synth) return null;
+    var voices = synth.getVoices().filter(function(v) {
+      return v.lang && v.lang.toLowerCase().indexOf('fr') === 0;
+    });
+    if (!voices.length) return null;
+    var femaleNames = /amelie|amélie|audrey|marie|celine|céline|julie|chantal|female|femme/i;
+    var preferred = voices.find(function(v) { return femaleNames.test(v.name); });
+    return preferred || voices[0];
+  }
+
+  function stopSpeaking() {
+    if (synth) synth.cancel();
+    if (currentBtn) {
+      currentBtn.classList.remove('speaking');
+      currentBtn.textContent = '🔊';
+    }
+    currentBtn = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.speak-btn') : null;
+    if (!btn) return;
+    if (!synth) {
+      alert('当前浏览器不支持语音朗读');
+      return;
+    }
+    if (currentBtn === btn) {
+      stopSpeaking();
+      return;
+    }
+    stopSpeaking();
+    var text = btn.getAttribute('data-fr-text') || '';
+    if (!text) return;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    var voice = pickFrenchVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = stopSpeaking;
+    utter.onerror = stopSpeaking;
+    currentBtn = btn;
+    btn.classList.add('speaking');
+    btn.textContent = '⏸';
+    synth.speak(utter);
+  });
+})();
+</script>
+</body>
+</html>
