@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+.fr-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speak-btn {
+  border: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.speak-btn:hover { border-color: var(--accent-blue-l); color: var(--accent-blue-l); }
+.speak-btn.speaking { background: var(--accent-blue-l); border-color: var(--accent-blue-l); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .speak-btn:hover { border-color: var(--accent-blue-d); color: var(--accent-blue-d); }
+  .speak-btn.speaking { background: var(--accent-blue-d); border-color: var(--accent-blue-d); color: #fff; }
+}
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-11-17 20:30 CET &middot; 渲染于 2026-11-17 21:19</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>英伟达财报约22:20 CET公布,结果未出;共识营收约1090亿美元,首份无黄仁勋的财报,指引与中国是焦点</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>英伟达 FQ3&#x27;27 财报今晚收盘后发布,此刻结果未出。</strong> 这是黄仁勋离任后的首份财报,临时 CEO Colette Kress 预计主持电话会。</li><li><strong>预期数字(多个预览来源基本一致):</strong> 营收共识约 1,090 亿美元,调整后 EPS 约 2.47–2.49 美元(各来源略有出入)。公司自身指引为约 1,080 亿美元 ±2%,毛利率 74.0% ±50bp。</li><li><strong>中国是关键变量:</strong> 公司指引假设数据中心算力在中国的收入为零。预览称,中国与东亚的评论和出口限制,对股价的影响可能比营收超预期与否更大。</li><li><strong>本时段没有找到可核实的新进展:</strong> 地缘政治、大宗商品和其他公司的搜索没有返回当日内容。搜索结果多为旧文,我没有硬凑。11/16 美股收盘、最新油价和金价仍然缺失。</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">英伟达 FQ3&#x27;27 财报(今晚,结果未出)</h3><p class="field-row"><span class="field-label">事件</span>Motley Fool(11/15)、FXStreet(11/16)、CNBC(11/17)等预览称,财报在美东收盘后发布。我只读到搜索摘要,没有打开原文,也没有核对公司原始指引。因此上述数字按&quot;多来源一致但未逐一核实&quot;处理。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>HBM/存储、服务器与代工链、电力基础设施、云厂商资本开支、AMD 等竞品。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">股价自 10 月高点大幅回撤,市场已部分计入领导层折价。但指引、中国表态和继任安排尚未知,价格尚未反映这些信息。结果出来前,我不预设&quot;超预期后下跌&quot;的套路,也不预设相反方向。</span></p></article><article class="card"><h3 class="card-title">黄仁勋辞任后的继任安排</h3><p class="field-row"><span class="field-label">事件</span>预览提到,有分析师认为 Kress 可能借这次电话会争取转正。这只是分析师的看法,不是公司表态。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>英伟达、被投公司、AI 链条情绪。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">继任人选目前主要是推测,单一来源,公司未表态。</span></p></article><article class="card"><h3 class="card-title">中国与出口管制</h3><p class="field-row"><span class="field-label">事件</span>公司指引不含中国数据中心算力收入。如果出现新的限制或放开信号,会出现在指引或评论里。本时段没有找到新的政策消息。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>英伟达、AMD、半导体设备、国产替代链。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">指引已按零中国收入编制,所以下行风险有一部分已被消化。放开的可能性并未被充分定价。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><h3 class="card-title">财报指引 → AI 资本开支预期 → 上游链条</h3><div class="chain-flow"><span class="chain-node">英伟达指引</span><span class="chain-arrow">→</span><span class="chain-node">云厂商开支预期</span><span class="chain-arrow">→</span><span class="chain-node">存储与电力需求</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">指数权重</span></div><p class="field-row"><span class="field-label">逻辑</span>英伟达指引是云厂商资本开支的间接读数。订单可见度高,HBM、服务器和电力设备的需求预期随之上调。反过来,如果管理层交接说明含糊,或&quot;AI 融资&quot;问题被追问,估值折价会沿同一条链条向上游扩散。英伟达是指数权重股,所以影响会传到大盘。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">条件推演,取决于今晚的数字。本时段没有其他环节的新数据可以验证。</span></p><p>本时段没有找到适合展开的其他多级传导新闻。</p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">没有舵手的第一次考试</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>这是英伟达二十多年来第一次不由黄仁勋站台的财报。数字大概率漂亮,可市场要听的是谁在掌舵。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="C&#x27;est la première fois depuis plus de vingt ans que Nvidia publie ses résultats sans Jensen Huang à la barre. Les chiffres seront sans doute bons, mais le marché veut surtout savoir qui tient le gouvernail." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>C&#x27;est la première fois depuis plus de vingt ans que Nvidia publie ses résultats sans Jensen Huang à la barre. Les chiffres seront sans doute bons, mais le marché veut surtout savoir qui tient le gouvernail.</p></div></div></article><article class="card"><h3 class="card-title">一个被写成零的市场</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>指引里中国数据中心收入是零。这个&quot;零&quot;让坏消息更难出现,也让任何松动都成了意外之喜。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Dans les prévisions, la Chine pèse zéro. Cela rend les mauvaises surprises plus rares, et la moindre ouverture devient une bonne surprise." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Dans les prévisions, la Chine pèse zéro. Cela rend les mauvaises surprises plus rares, et la moindre ouverture devient une bonne surprise.</p></div></div></article><article class="card"><h3 class="card-title">预期比结果更挑剔</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>共识比公司自己的指引还高一点(1,090 对 1,080 亿美元)。市场已经替公司把及格线抬高了。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Le consensus (109 milliards) dépasse même les prévisions de l&#x27;entreprise (108 milliards). Le marché a déjà relevé la barre à sa place." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Le consensus (109 milliards) dépasse même les prévisions de l&#x27;entreprise (108 milliards). Le marché a déjà relevé la barre à sa place.</p></div></div></article><article class="card"><h3 class="card-title">搜不到,也是一种信息</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>今天我搜了地缘、油价、金价,几乎全是旧文。宁可写&quot;没找到&quot;,也不把去年的新闻当成今晚的。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Mes recherches sur la géopolitique, le pétrole et l&#x27;or n&#x27;ont ramené que de vieux articles. Mieux vaut écrire « introuvable » que présenter l&#x27;actualité d&#x27;hier comme celle de ce soir." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Mes recherches sur la géopolitique, le pétrole et l&#x27;or n&#x27;ont ramené que de vieux articles. Mieux vaut écrire « introuvable » que présenter l&#x27;actualité d&#x27;hier comme celle de ce soir.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- <strong>财报状态:</strong> 与上期一致,结果仍未出。预计约 22:20 CET 公布,本期成稿时点早于此。下一期需要区分盘后初步反应与次日盘前状态。
+- <strong>数字核对:</strong> 上期引用的 FourWeekMBA 指引(约 1,080 亿美元 ±2%,毛利率 74%)得到了本期多个预览来源的印证,单一来源的疑虑有所缓解,但仍未核对公司原始文件。
+- <strong>黄仁勋事件:</strong> 本时段没有找到新增的重大进展,继任人选和董事会表态无更新。
+- <strong>仍然缺失:</strong> 11/16 指数收盘、最新油价和金价、12 月 FOMC 的新消息。
+- <strong>接下来关注:</strong> 财报指引、中国评论、电话会上的继任说明、12/8-9 FOMC。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成,仅供研究参考,不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (4)</summary><ol><li><a href="https://www.fool.com/investing/2026/11/15/nvidia-reports-earnings-on-nov-17-2026-heres-what-investors-should-be-watching/" target="_blank" rel="noopener">Nvidia Reports Earnings on Nov. 17 (Motley Fool)</a></li><li><a href="https://www.fxstreet.com/news/nvidia-earnings-preview-the-first-big-test-after-jensen-huangs-exit-202611160603" target="_blank" rel="noopener">Nvidia earnings preview: The first big test after Jensen Huang&#x27;s exit (FXStreet)</a></li><li><a href="https://www.cnbc.com/2026/11/17/nvidia-earnings-investor-china-jensen.html" target="_blank" rel="noopener">Nvidia earnings: China sales, leadership and AI financing (CNBC)</a></li><li><a href="https://www.stonex.com/en-gb/news-and-analysis/nvidia-earnings-preview-nvda-s-first-test-of-the-post-jenson-huang-era/" target="_blank" rel="noopener">Nvidia Earnings Preview: NVDA&#x27;s First Test of the Post Jenson Huang Era (StoneX)</a></li></ol></details>
+  </footer>
+</div>
+<script>
+(function() {
+  var synth = window.speechSynthesis;
+  var currentBtn = null;
+
+  function pickFrenchVoice() {
+    if (!synth) return null;
+    var voices = synth.getVoices().filter(function(v) {
+      return v.lang && v.lang.toLowerCase().indexOf('fr') === 0;
+    });
+    if (!voices.length) return null;
+    var femaleNames = /amelie|amélie|audrey|marie|celine|céline|julie|chantal|female|femme/i;
+    var preferred = voices.find(function(v) { return femaleNames.test(v.name); });
+    return preferred || voices[0];
+  }
+
+  function stopSpeaking() {
+    if (synth) synth.cancel();
+    if (currentBtn) {
+      currentBtn.classList.remove('speaking');
+      currentBtn.textContent = '🔊';
+    }
+    currentBtn = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.speak-btn') : null;
+    if (!btn) return;
+    if (!synth) {
+      alert('当前浏览器不支持语音朗读');
+      return;
+    }
+    if (currentBtn === btn) {
+      stopSpeaking();
+      return;
+    }
+    stopSpeaking();
+    var text = btn.getAttribute('data-fr-text') || '';
+    if (!text) return;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    var voice = pickFrenchVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = stopSpeaking;
+    utter.onerror = stopSpeaking;
+    currentBtn = btn;
+    btn.classList.add('speaking');
+    btn.textContent = '⏸';
+    synth.speak(utter);
+  });
+})();
+</script>
+</body>
+</html>
