@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+.fr-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speak-btn {
+  border: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.speak-btn:hover { border-color: var(--accent-blue-l); color: var(--accent-blue-l); }
+.speak-btn.speaking { background: var(--accent-blue-l); border-color: var(--accent-blue-l); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .speak-btn:hover { border-color: var(--accent-blue-d); color: var(--accent-blue-d); }
+  .speak-btn.speaking { background: var(--accent-blue-d); border-color: var(--accent-blue-d); color: #fff; }
+}
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-11-18 12:05 CET &middot; 渲染于 2026-11-18 12:06</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>英伟达盘后涨2–5%（不及期权隐含约7–8%），软件股受Anthropic IPO冲击；常规盘与亚欧盘数据仍缺</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>英伟达盘后反应：</strong> 本期检索的各来源显示 +2% 到 +5%，没有出现统一数字。前收盘价 155.46 美元，约 19:59 ET 报 162.94 美元（+4.8%）。盘后波动小于期权隐含的约 7–8%。<strong>我没有找到 11/18 盘前或常规盘数据。</strong> 搜索结果里的&quot;盘前 +7%&quot;是 2026 年 8 月 Q2 财报后的旧闻，我没有采用。</li><li><strong>与上期的差异：</strong> 检索结果提到 Investing.com 称股价涨约 3%，另一条称盘后一度回吐部分涨幅。盘后数字仍不是最终结论。</li><li><strong>仍有悬而未决的问题：</strong> Seaport 的 Goldberg 提醒，5000 亿美元芯片融资平台在 Kress 治下可能缩减。Baird 提到管理层动荡和美国政府的进一步行动是风险。这两条都是分析师的看法，不是事实。</li><li><strong>软件股受 Anthropic 压力：</strong> Chartmill 的标题称软件股在&quot;Anthropic 威胁&quot;下承压。Barchart 称 Bloomberg 报道 Anthropic 预计 IPO 估值将达到或超过某一水平，文章被截断，我看不到具体数字。Upstart 跌 6.3%，但我无法确认这篇文章的日期是否对应 11/17–18。</li><li><strong>大宗商品仍然缺失：</strong> 11/12 黄金跌约 3%，跌破 4,000 美元，创一年多低点。白银 49.97 美元。油价因中东和平希望消退而上涨。这些都是 6 天前的数据，不能当作当前状态。</li><li><strong>亚洲和欧洲盘面：</strong> 没有找到 11/18 的亚洲或欧洲盘面报道，搜到的都是旧日期。本期不对盘面作判断。</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">英伟达财报后的盘后反应</h3><p class="field-row"><span class="field-label">事件</span>财报 11/17 美东盘后发布。营收、指引超预期（上期已列明）。本期新增的是：盘后涨幅多数来源在 3–5%，Investing.com 为约 3%，另有来源称一度回吐涨幅。CoreWeave、AMD、Broadcom 同步走高。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>AMD、博通、CoreWeave 等算力租赁、HBM 与存储、服务器链。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">股价此前已在 2025 年 7 月以来的低位，盘后反弹幅度小于期权定价，说明市场没有完全消化。但没有常规盘数据，判断是暂时的。上期提醒&quot;超预期后下跌&quot;的套路，目前仍未应验，但盘后还不等于收盘。</span></p></article><article class="card"><h3 class="card-title">Anthropic IPO 与软件股承压</h3><p class="field-row"><span class="field-label">事件</span>Chartmill 称软件股&quot;在 Anthropic 威胁下承压&quot;。Barchart 引用 Bloomberg 称 Anthropic 对 IPO 估值有预期，细节被截断。Anthropic 在 6 月已机密递交 S-1，当时融资估值 9650 亿美元（来自 6 月报道）。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>SaaS 软件（Salesforce、ServiceNow、MongoDB、Okta、Zscaler、Cloudflare）、IT 服务、AI 基础设施。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">我没有打开原文，不能确认日期与具体数字。软件股年内反复因 AI 替代担忧下跌，逻辑已被交易多次。上期道指大跌中 Salesforce 和 ServiceNow 领跌，与此相符，但因果链是我的推断。</span></p></article><article class="card"><h3 class="card-title">加息预期（待核实）</h3><p class="field-row"><span class="field-label">事件</span>检索中出现两条未标日期的内容：一条称 12 月 Fed 加息 25bp 仍是部分机构的预期（CITIC），另一条称交易员押注 ECB 12 月加息的概率为 84%，源于一次美国通胀数据偏热。我无法确认这些是否对应本周。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>长久期成长股、欧元区银行、美元。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">日期不明，来源是转述，未核实 CME FedWatch。不应作为结论使用。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><h3 class="card-title">AI 软件替代 vs. 算力需求：同一主题的两面</h3><div class="chain-flow"><span class="chain-node">Anthropic 估值预期</span><span class="chain-arrow">→</span><span class="chain-node">软件股被重估</span><span class="chain-arrow">→</span><span class="chain-node">资金转向算力</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">英伟达反弹</span></div><p class="field-row"><span class="field-label">逻辑</span>如果市场相信 Anthropic 等模型公司会取代传统软件，软件股的终值被下调。同时，模型公司的扩张需要算力，英伟达 1,300 亿美元的指引正是这类需求的体现。因此同一个叙事让软件股下跌、算力股受益。这是我的推演，本期没有数据证明资金确实在从软件流向算力。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">缺少资金流数据，链条依赖叙事。</span></p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">期权比实际更&quot;激动&quot;</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>期权预期涨跌 7–8%，实际盘后只有 2–5%。市场提前为惊喜买了保险，惊喜来了，保险费没赚回来。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Les options anticipaient 7 à 8 % de mouvement, le marché n&#x27;a donné que 2 à 5 % après la clôture. L&#x27;assurance était chère, et la surprise n&#x27;a pas suffi à la rentabiliser." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Les options anticipaient 7 à 8 % de mouvement, le marché n&#x27;a donné que 2 à 5 % après la clôture. L&#x27;assurance était chère, et la surprise n&#x27;a pas suffi à la rentabiliser.</p></div></div></article><article class="card"><h3 class="card-title">一份财报，两种命运</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>英伟达靠 AI 订单涨，软件股却因为同一个 AI 被砸。同一场技术浪潮，有人坐在船上，有人站在岸边。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Nvidia monte grâce à l&#x27;IA, les éditeurs de logiciels chutent à cause de cette même IA. Même vague : certains sont sur le bateau, d&#x27;autres sur la plage." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Nvidia monte grâce à l&#x27;IA, les éditeurs de logiciels chutent à cause de cette même IA. Même vague : certains sont sur le bateau, d&#x27;autres sur la plage.</p></div></div></article><article class="card"><h3 class="card-title">旧闻很会&quot;伪装&quot;</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>搜&quot;英伟达盘前大涨 7%&quot;，跳出来的全是今年 8 月的老新闻。财报季的标题长得太像，不核对日期就会被带偏。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="En cherchant « Nvidia bondit de 7 % avant l&#x27;ouverture », on tombe sur les articles d&#x27;août. Les titres de saison de résultats se ressemblent tellement qu&#x27;il faut vérifier la date." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>En cherchant « Nvidia bondit de 7 % avant l&#x27;ouverture », on tombe sur les articles d&#x27;août. Les titres de saison de résultats se ressemblent tellement qu&#x27;il faut vérifier la date.</p></div></div></article><article class="card"><h3 class="card-title">钱花在哪，要看谁掌舵</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>5000 亿美元的融资平台还没落地，有分析师担心 Kress 会缩减规模。数字很大，但谁来拍板仍是未知数。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="La plateforme de financement de 500 milliards n&#x27;est pas bouclée, et certains analystes craignent qu&#x27;elle soit réduite sous Kress. Le montant est colossal, mais on ne sait pas encore qui décidera." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>La plateforme de financement de 500 milliards n&#x27;est pas bouclée, et certains analystes craignent qu&#x27;elle soit réduite sous Kress. Le montant est colossal, mais on ne sait pas encore qui décidera.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- <strong>新增：</strong> 盘后涨幅区间的更多来源（2–5%），CoreWeave、AMD、博通同步上涨，以及分析师对 5000 亿美元融资平台和管理层不确定性的提醒。软件股在 Anthropic 话题下承压。
+- <strong>未应验也未证伪：</strong> &quot;超预期后下跌&quot;的套路。目前只有盘后数据，没有常规盘数据。
+- <strong>未能核实：</strong> 12 月加息预期（本期仍无可靠来源）；油价和金价（最新为 11/12，已过时）；亚洲、欧洲盘面。
+- <strong>搜索质量说明：</strong> 本期搜索命中大量旧日期内容，我已排除。因此本期篇幅较短，没有硬凑。
+- <strong>接下来关注：</strong> 美股常规盘对财报的反应、软件股是否继续下跌、Anthropic IPO 的具体时间表、Fed 会议纪要、12/8-9 FOMC、Kress 继任安排。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成，仅供研究参考，不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (7)</summary><ol><li><a href="https://www.investing.com/news/earnings/nvidia-quarterly-results-beat-estimates-5033943" target="_blank" rel="noopener">Nvidia shares gain 3% after outlook lift (Investing.com)</a></li><li><a href="https://investinglive.com/stocks/nvidia-price-up-tops-forecasts-by-7-billion-as-kress-steers-first-report-since-huang-exit" target="_blank" rel="noopener">Nvidia tops forecasts by $7 billion (InvestingLive)</a></li><li><a href="https://247wallst.com/cards/the-numbers-removed-the-near-term-doubt-but-the-two-things-amd-podcast-episode-01m7nzkd71nf1qxpnyr906jfrv" target="_blank" rel="noopener">Nvidia&#x27;s $130B forecast beats, but leadership and $500B financing deal stay unresolved (24/7 Wall St)</a></li><li><a href="https://www.chartmill.com/news/NKE/Chartmill-58852-stock-market-today-nvidia-beats-raises-kress-software-selloff-anthropic-ipo-nike-disney-2026-11-18" target="_blank" rel="noopener">Stock Market Today: Nvidia beats and raises, software stocks buckle (Chartmill)</a></li><li><a href="https://www.barchart.com/story/news/3974200/mongodb-cloudflare-okta-zscaler-and-upstart-stocks-trade-down-what-you-need-to-know" target="_blank" rel="noopener">MongoDB, Cloudflare, Okta, Zscaler and Upstart trade down (Barchart)</a></li><li><a href="https://www.irishtimes.com/business/2026/06/01/anthropic-confidentially-files-for-us-ipo-as-investors-bet-big-on-ai-future/" target="_blank" rel="noopener">Anthropic confidentially files for US IPO (Irish Times, June 2026)</a></li><li><a href="https://www.khaleejtimes.com/business/gold-drops-3-to-over-one-year-low-as-fading-middle-east-peace-hopes-fan-inflation-fears" target="_blank" rel="noopener">Gold drops 3% to over one-year low (Khaleej Times)</a></li></ol></details>
+  </footer>
+</div>
+<script>
+(function() {
+  var synth = window.speechSynthesis;
+  var currentBtn = null;
+
+  function pickFrenchVoice() {
+    if (!synth) return null;
+    var voices = synth.getVoices().filter(function(v) {
+      return v.lang && v.lang.toLowerCase().indexOf('fr') === 0;
+    });
+    if (!voices.length) return null;
+    var femaleNames = /amelie|amélie|audrey|marie|celine|céline|julie|chantal|female|femme/i;
+    var preferred = voices.find(function(v) { return femaleNames.test(v.name); });
+    return preferred || voices[0];
+  }
+
+  function stopSpeaking() {
+    if (synth) synth.cancel();
+    if (currentBtn) {
+      currentBtn.classList.remove('speaking');
+      currentBtn.textContent = '🔊';
+    }
+    currentBtn = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.speak-btn') : null;
+    if (!btn) return;
+    if (!synth) {
+      alert('当前浏览器不支持语音朗读');
+      return;
+    }
+    if (currentBtn === btn) {
+      stopSpeaking();
+      return;
+    }
+    stopSpeaking();
+    var text = btn.getAttribute('data-fr-text') || '';
+    if (!text) return;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    var voice = pickFrenchVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = stopSpeaking;
+    utter.onerror = stopSpeaking;
+    currentBtn = btn;
+    btn.classList.add('speaking');
+    btn.textContent = '⏸';
+    synth.speak(utter);
+  });
+})();
+</script>
+</body>
+</html>
