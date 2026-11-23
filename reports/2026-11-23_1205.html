@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+.fr-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speak-btn {
+  border: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.speak-btn:hover { border-color: var(--accent-blue-l); color: var(--accent-blue-l); }
+.speak-btn.speaking { background: var(--accent-blue-l); border-color: var(--accent-blue-l); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .speak-btn:hover { border-color: var(--accent-blue-d); color: var(--accent-blue-d); }
+  .speak-btn.speaking { background: var(--accent-blue-d); border-color: var(--accent-blue-d); color: #fff; }
+}
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-11-23 12:05 CET &middot; 渲染于 2026-11-23 12:05</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>本时段无可核实的新行情;英伟达案新增黄仁勋致歉声明与&quot;点数过每块GPU&quot;的回应,均未见一手文件</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>无可用行情数据:</strong> 没有找到 11/20–11/23 可核实日期的油价、金价、股指报道。搜到的&quot;英伟达财报后&quot;类标题无法确认属于本季度,按时效性规则弃用。</li><li><strong>黄仁勋首次公开表态(摘要称):</strong> &quot;我给董事会制造了问题,深感遗憾,所有错误由我承担。&quot;他还对 Bloomberg 说,已核查 Megaspeed 的全部部署,&quot;每一块都数过&quot;。具体发布日期不明,大致在 11 月中旬。</li><li><strong>英伟达官方立场(摘要称):</strong> 此前的转运指控&quot;去年已被彻底调查并驳斥&quot;。Megaspeed 否认任何不当行为。</li><li><strong>指控升级但未证实:</strong> 摘要称,NYT 援引匿名信源,指 Megaspeed 的 Alice Huang 涉嫌协助中国情报机构,司法部在牵头多项相关调查。我没找到官方确认。</li><li><strong>股东诉讼:</strong> 摘要称,有诉讼引用英伟达此前对 Alice Huang 与黄仁勋关系的否认。没读到诉状原文。</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">英伟达:调查、辞任与公司回应</h3><p class="field-row"><span class="field-label">事件</span>WSJ(约 11/17)称 SEC 在做民事调查,审查披露是否误导投资者。摘要称黄仁勋 11/12 辞去 CEO,此后股价累计跌超 10%。本时段增量是黄仁勋的致歉声明和英伟达&quot;已调查并驳斥&quot;的回应。两者都来自二手转述(Tweaktown、Stocktwits、Finimize 等),没有 8-K、SEC 公告或 Reuters 原文。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>英伟达、台积电、SK海力士、AI服务器链(超微电脑、戴尔)、东南亚算力中转商。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">调查范围不明,涉及情报机构的指控来自匿名信源,金额、股价跌幅都没有核实。&quot;致歉&quot;既可能缓和治理担忧,也可能被读作承认问题,摘要看不出市场怎么解读。</span></p></article><article class="card"><h3 class="card-title">美国东南亚 AI 芯片许可制新规</h3><p class="field-row"><span class="field-label">事件</span>11/16 公布的规则,本时段没有新进展。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>英伟达、AMD、东南亚数据中心、国产算力链。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">Megaspeed 案说明转运渠道是监管重点,对出货的影响要等订单和公司指引。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><h3 class="card-title">治理风波 → 英伟达融资与客户信心</h3><div class="chain-flow"><span class="chain-node">CEO辞任与调查</span><span class="chain-arrow">→</span><span class="chain-node">董事会治理折价</span><span class="chain-arrow">→</span><span class="chain-node">大客户采购审慎</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">AI服务器链订单节奏</span></div><p class="field-row"><span class="field-label">逻辑</span>CEO 辞任叠加 SEC 和司法部调查,会让估值里的治理折价上升。云厂商和主权客户采购前的合规审查可能变慢,这对出货节奏有影响。这是我的推演,没有分析师或公司数据验证。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">订单影响要到下次财报指引才可见,目前没有数据。</span></p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">一句&quot;每块都数过&quot;</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>黄仁勋说&quot;每一块GPU都数过&quot;,问题是数得清芯片,不等于说得清芯片最后去了谁手里。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="« On a compté chaque GPU », dit Jensen Huang. Mais savoir combien de puces ont été livrées ne dit pas entre quelles mains elles ont fini." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>« On a compté chaque GPU », dit Jensen Huang. Mais savoir combien de puces ont été livrées ne dit pas entre quelles mains elles ont fini.</p></div></div></article><article class="card"><h3 class="card-title">道歉与否认同时出现</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>个人声明在道歉,公司声明在说&quot;早已驳斥&quot;。两种口径并存,市场得自己判断哪个更重。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="D&#x27;un côté un mea culpa personnel, de l&#x27;autre une entreprise qui dit « déjà démenti ». Deux tonalités, et au marché de trancher." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>D&#x27;un côté un mea culpa personnel, de l&#x27;autre une entreprise qui dit « déjà démenti ». Deux tonalités, et au marché de trancher.</p></div></div></article><article class="card"><h3 class="card-title">匿名信源的重量</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>情报机构这类指控现在只有匿名信源和二手转述,官方没有确认。重话不等于重证据。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Une accusation d&#x27;espionnage qui ne repose que sur des sources anonymes relayées de seconde main : des mots lourds, mais pas encore de preuve lourde." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Une accusation d&#x27;espionnage qui ne repose que sur des sources anonymes relayées de seconde main : des mots lourds, mais pas encore de preuve lourde.</p></div></div></article><article class="card"><h3 class="card-title">搜索结果的&quot;时间错位&quot;</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>今天搜&quot;油价&quot;&quot;金价&quot;,出来的是 3 月、4 月、7 月、9 月的文章。数字都对,日期都不对,所以我选择不引用。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="En cherchant le pétrole et l&#x27;or, je tombe sur des articles de mars, avril, juillet, septembre. Les chiffres sont exacts, mais pas les dates : je ne les cite pas." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>En cherchant le pétrole et l&#x27;or, je tombe sur des articles de mars, avril, juillet, septembre. Les chiffres sont exacts, mais pas les dates : je ne les cite pas.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- <strong>新增(摘要层面):</strong> 黄仁勋的致歉声明、他&quot;数过每块GPU&quot;的说法、英伟达&quot;去年已驳斥&quot;的回应、对 Alice Huang 的情报指控和司法部多项调查、股东诉讼。全部来自二手转述,发布日期不明。
+- <strong>仍未确认:</strong> 8-K 原文、SEC 官方表态、股价跌幅、Megaspeed 金额(20 亿对 120 亿的矛盾本期未解决)、11/20 起的油价、金价、股指。
+- <strong>未应验也未证伪:</strong> 上期关注的&quot;周一欧美开盘&quot;反应,本期没有找到可核实的报道。
+- <strong>花絮板块省略</strong>,没有可核实的条目。
+- <strong>接下来关注:</strong> 英伟达 8-K 或官方声明、SEC 表态、周一美股收盘、OPEC+ 产能评估、周三(11/25)Deere 财报。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成,仅供研究参考,不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (6)</summary><ol><li><a href="https://www.tweaktown.com/news/114760/sec-opens-investigation-into-nvidia-over-whether-investors-were-misled-to-boost-earnings/index.html" target="_blank" rel="noopener">SEC opens investigation into Nvidia (TweakTown)</a></li><li><a href="https://www.tweaktown.com/news/114387/nvidia-pushes-back-against-report-linking-ceo-jensen-huang-to-suspected-chinese-intelligence-asset/index.html" target="_blank" rel="noopener">Nvidia pushes back against report linking Huang to suspected Chinese intelligence asset (TweakTown)</a></li><li><a href="https://stocktwits.com/news-articles/markets/equity/jensen-huang-says-nvidia-counted-all-gp-us-at-firm-under-probe-for-spying-for-china/cZUXbd3R9Rg" target="_blank" rel="noopener">Jensen Huang says Nvidia counted all GPUs at firm under probe (Stocktwits)</a></li><li><a href="https://finimize.com/content/nvidia-says-its-megaspeed-chip-checks-were-thorough" target="_blank" rel="noopener">Nvidia says its Megaspeed chip checks were thorough (Finimize)</a></li><li><a href="https://cryptobriefing.com/nvidia-ceo-defends-megaspeed-dealings-probe/" target="_blank" rel="noopener">Nvidia CEO defends Megaspeed dealings probe (Crypto Briefing)</a></li><li><a href="https://tradingeconomics.com/commodity/brent-crude-oil/news/586654" target="_blank" rel="noopener">Brent Near $107 as Gulf Shipping Remains Disrupted (Trading Economics, Sept., not current)</a></li></ol></details>
+  </footer>
+</div>
+<script>
+(function() {
+  var synth = window.speechSynthesis;
+  var currentBtn = null;
+
+  function pickFrenchVoice() {
+    if (!synth) return null;
+    var voices = synth.getVoices().filter(function(v) {
+      return v.lang && v.lang.toLowerCase().indexOf('fr') === 0;
+    });
+    if (!voices.length) return null;
+    var femaleNames = /amelie|amélie|audrey|marie|celine|céline|julie|chantal|female|femme/i;
+    var preferred = voices.find(function(v) { return femaleNames.test(v.name); });
+    return preferred || voices[0];
+  }
+
+  function stopSpeaking() {
+    if (synth) synth.cancel();
+    if (currentBtn) {
+      currentBtn.classList.remove('speaking');
+      currentBtn.textContent = '🔊';
+    }
+    currentBtn = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.speak-btn') : null;
+    if (!btn) return;
+    if (!synth) {
+      alert('当前浏览器不支持语音朗读');
+      return;
+    }
+    if (currentBtn === btn) {
+      stopSpeaking();
+      return;
+    }
+    stopSpeaking();
+    var text = btn.getAttribute('data-fr-text') || '';
+    if (!text) return;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    var voice = pickFrenchVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = stopSpeaking;
+    utter.onerror = stopSpeaking;
+    currentBtn = btn;
+    btn.classList.add('speaking');
+    btn.textContent = '⏸';
+    synth.speak(utter);
+  });
+})();
+</script>
+</body>
+</html>
