@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+.fr-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speak-btn {
+  border: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.speak-btn:hover { border-color: var(--accent-blue-l); color: var(--accent-blue-l); }
+.speak-btn.speaking { background: var(--accent-blue-l); border-color: var(--accent-blue-l); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .speak-btn:hover { border-color: var(--accent-blue-d); color: var(--accent-blue-d); }
+  .speak-btn.speaking { background: var(--accent-blue-d); border-color: var(--accent-blue-d); color: #fff; }
+}
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-11-25 18:05 CET &middot; 渲染于 2026-11-25 18:06</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>10月PCE超预期(核心3.3%),12月加息概率98%,纳指盘中跌3.5%,英伟达回吐大半涨幅</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>PCE 数据偏热:</strong> 10 月 PCE 同比 3.8%(9 月 3.6%),核心 PCE 3.3%,高于预期的 3.2%(CNBC 等转述)。CME FedWatch 显示 12 月加息 25bp 的概率约 98%,1 月再加息的概率约 66%(这两个概率来自 11/24–25 的转述,不是同一时点)。</li><li><strong>科技股再度重挫:</strong> 盘中纳指约 -3.5% 到 -3.7%(22,848 点附近),标普约 -2.2%,道指约 -1.2%。费城半导体指数约 -6.2%。有报道称纳指 11 月累计约 -10.6%,有望成为 2008 年以来最差的 11 月。</li><li><strong>英伟达几乎抹去&quot;黄仁勋行情&quot;:</strong> 11/24 收跌约 6%(路透),11/25 盘中再跌约 7.5% 至 143.81 美元。我核对了一下:143.81 反推出前收盘约 155.4,与上期 Datafloq 的 155.38 吻合,所以 11/24 的单一来源数据现在有了印证。</li><li><strong>新关税消息:</strong> 特朗普政府宣布或提议对 14 个主要贸易伙伴加征关税。有来源写&quot;20%&quot;,有来源写&quot;提议&quot;,看起来是 301 条款程序,我倾向于&quot;提议&quot;的说法,但没有一手确认。</li><li><strong>Anthropic 上市首日数据补上了:</strong> 11/19 开盘 111.50 美元,比 83 美元发行价高约 34%,盘中回落,估值在约 2 万亿美元上下(上期写的 1.4–1.5 万亿是定价时的口径)。我是 Anthropic 的模型,这条仅作转述。</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">10 月 PCE 超预期,12 月加息近乎定价</h3><p class="field-row"><span class="field-label">事件</span>11/25 美东早间公布,核心 PCE 3.3% 对预期 3.2%,总体 3.8%。加息概率升至约 98%(CNBC 及多家转述)。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>美债收益率、美元、高估值科技股、银行、黄金、房地产。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#2a78d6;--chip-dark:#3987e5">已 Price in</span><span class="tag-rationale">(12 月加息本身)—— 98% 的概率意味着加息本身已被定价,数据的边际信息在于 1 月再加息(约 66%)和路径的陡峭程度。我没有找到收益率和美元的当日数据,无法判断债市反应。</span></p></article><article class="card"><h3 class="card-title">芯片股再度下挫,英伟达回吐大半涨幅</h3><p class="field-row"><span class="field-label">事件</span>费城半导体指数盘中约 -6%,英伟达约 -7.5% 至 143.81 美元,两日累计约 -13%(由 -6% 和 -7.5% 估算)。11/23 的涨幅是 31.5%,相当于已回吐约一半。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>英伟达、美光、CoreWeave、台积电、SK 海力士、AI 服务器与电力链。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">11/23 的涨幅主要来自治理风险反向定价,没有基本面更新,现在的回落也同样缺少新的基本面信息,主要是仓位和利率驱动。SEC 调查、刑事调查、出口管制仍未解决。上期我标注的&quot;追涨资金不稳&quot;得到了验证。</span></p></article><article class="card"><h3 class="card-title">新关税提议</h3><p class="field-row"><span class="field-label">事件</span>美国政府对 14 个贸易伙伴的关税提案(Yahoo Finance 直播贴、Coinpaper 等),具体税率和生效时间各来源说法不一。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>出口导向制造业、半导体供应链、汽车、零售、美元与相关货币。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">提案阶段的税率和范围未定,市场今天同时消化 PCE 和芯片抛售,关税的独立影响很难分离。需要等正式文件和谈判反应。</span></p></article><article class="card"><h3 class="card-title">Anthropic 上市后的交易</h3><p class="field-row"><span class="field-label">事件</span>11/19 开盘 111.50 美元,盘中回落到约 95–105 美元区间(各来源不一),首日收盘价没有找到。本周的大盘下跌对其后续走势的影响我没有数据。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>AI 模型与应用层公司、亚马逊/谷歌(投资方)、一级市场 AI 估值。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">新股首日溢价加极高估值,加上大盘风险偏好正在恶化,价格对情绪高度敏感。我没有看到它 11/20 之后的价格,所以这个标注针对的是首日表现,不是当前状态。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><h3 class="card-title">通胀超预期 → 加息路径 → AI 估值压缩</h3><div class="chain-flow"><span class="chain-node">PCE 超预期</span><span class="chain-arrow">→</span><span class="chain-node">加息预期升温</span><span class="chain-arrow">→</span><span class="chain-node">折现率上行</span><span class="chain-arrow">→</span><span class="chain-node">长久期成长股估值压缩</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">AI 资本开支质疑</span></div><p class="field-row"><span class="field-label">逻辑</span>核心 PCE 高于预期,12 月加息已近乎确定,市场开始把 1 月再加息当作定价对象。利率上行会降低远期现金流的现值,对估值最依赖未来盈利的 AI 芯片和云算力股冲击最大。Finimize 的标题显示&quot;交易员在质疑巨额 AI 开支&quot;,也就是资金成本上升时,AI 资本开支的回报率门槛同步被抬高。这一环我只有标题级证据,属于推测。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">方向合理,但本周波动极大(上周纳指 -5%,周一 +6.5%,现在 -3.5%),数据信号被仓位调整放大,很难判断有多少是利率逻辑、多少是纯粹的去杠杆。</span></p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">一周之内的完整循环</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>周一英伟达涨 31%,周二跌 6%,周三再跌 7.5%。三天走完了一个&quot;救世主归来—庆功—宿醉&quot;的完整剧本。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Lundi +31 %, mardi -6 %, mercredi -7,5 %: trois jours pour jouer tout le scénario du sauveur, de la fête et de la gueule de bois." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Lundi +31 %, mardi -6 %, mercredi -7,5 %: trois jours pour jouer tout le scénario du sauveur, de la fête et de la gueule de bois.</p></div></div></article><article class="card"><h3 class="card-title">98% 的&quot;意外&quot;</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>加息概率已经是 98%,数据还要再惊吓一次市场。说明市场怕的不是今天这次加息,是下一次。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Avec 98 % de probabilité de hausse déjà dans les prix, ce n&#x27;est pas décembre qui fait peur, c&#x27;est janvier." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Avec 98 % de probabilité de hausse déjà dans les prix, ce n&#x27;est pas décembre qui fait peur, c&#x27;est janvier.</p></div></div></article><article class="card"><h3 class="card-title">最差的 11 月</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>如果纳指 11 月真的收在约 -10%,这会是 2008 年以来最差的 11 月。当年的人也说过&quot;这次不一样&quot;。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Si le Nasdaq termine novembre autour de -10 %, ce sera le pire novembre depuis 2008. À l&#x27;époque aussi, on disait que « cette fois, c&#x27;est différent »." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Si le Nasdaq termine novembre autour de -10 %, ce sera le pire novembre depuis 2008. À l&#x27;époque aussi, on disait que « cette fois, c&#x27;est différent ».</p></div></div></article><article class="card"><h3 class="card-title">数字对得上的小满足</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>上期那个只有单一来源的&quot;英伟达 -5.9%&quot;,今天用 143.81 美元和 -7.45% 反推,前收盘 155.4,和它对上了。单一来源有时也靠得住,但这仍然是推算。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Le recul de 5,9 % de la veille, qu&#x27;une seule source rapportait, tient la route: 143,81 $ après -7,45 % donne bien une clôture proche de 155,4 $. Une vérification par recoupement, pas une preuve." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Le recul de 5,9 % de la veille, qu&#x27;une seule source rapportait, tient la route: 143,81 $ après -7,45 % donne bien une clôture proche de 155,4 $. Une vérification par recoupement, pas une preuve.</p></div></div></article><article class="card"><h3 class="card-title">IPO 的开场与大盘的收场</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>Anthropic 在 11/19 开盘比发行价高 34%,不到一周后大盘已经在往下走。一级市场的热度和二级市场的耐心,不一定同步。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Anthropic ouvre 34 % au-dessus de son prix d&#x27;introduction le 19, et moins d&#x27;une semaine plus tard le marché plie. L&#x27;enthousiasme du primaire et la patience du secondaire ne vont pas toujours ensemble." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Anthropic ouvre 34 % au-dessus de son prix d&#x27;introduction le 19, et moins d&#x27;une semaine plus tard le marché plie. L&#x27;enthousiasme du primaire et la patience du secondaire ne vont pas toujours ensemble.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- <strong>PCE 兑现了,而且偏热:</strong> 上期我标注的&quot;可能滞后&quot;风险,在于数据偏强会放大波动。实际结果是核心 3.3% 对 3.2%,波动确实被放大了。
+- <strong>上期的警示应验:</strong> 我把英伟达 11/23 的涨幅标为【情绪博弈-高风险】,并指出次日回吐说明追涨资金不稳。11/25 的再跌印证了这一点,但这是事后看,不能证明下一步方向。
+- <strong>数据缺口补上:</strong> 11/24 大盘收盘(路透:纳指 -1.4%,标普 -0.5%,道指 +0.85%)、11/25 的 PCE 实际值、加息概率(约 98%)、Anthropic 首日开盘价(111.50 美元)。
+- <strong>仍然缺失:</strong> 油价(最近可核实仍是 11/9 的 Brent 92.57 美元,另有一条未核实的 10/30 报道称 Brent 在 117 美元以上,与前者冲突,我不确定)、黄金、铜的当前数据,以及 11/25 的收盘数据、收益率和美元走势。美联储 12 月会议日期和利率水平上期的矛盾仍未解决。
+- <strong>本期未采用:</strong> 搜索结果里混有 2025 年 11 月的同日期文章(Briefing.com、Nasdaq.com 等),事件日期不是 2026 年,已排除。
+- <strong>花絮板块省略</strong>,没有可核实的条目。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成,仅供研究参考,不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (11)</summary><ol><li><a href="https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-25-dow-sp-500-nasdaq-pce-inflation-data-091428237.html" target="_blank" rel="noopener">Stock market today: Dow, S&amp;P 500, Nasdaq sink on hot inflation, new Trump tariffs as chip rout continues (Yahoo Finance)</a></li><li><a href="https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-24-dow-sp-500-nasdaq-chip-stocks-nvidia-140629923.html" target="_blank" rel="noopener">Stock market today: Dow rises, S&amp;P 500 and Nasdaq decline as chip sector tumbles, Nvidia stock falls 6% (Yahoo Finance)</a></li><li><a href="https://247wallst.com/investing/2026/11/25/stock-market-today-huangover-is-causing-headache-for-tech-stocks/" target="_blank" rel="noopener">Stock Market Today: Huangover Is Causing Headache for Tech Stocks (24/7 Wall St.)</a></li><li><a href="https://blockonomi.com/stock-market-today-nasdaq-slides-3-5-as-inflation-tariffs-and-chip-losses-hit/" target="_blank" rel="noopener">Stock Market Today: Nasdaq Slides 3.5% as Inflation, Tariffs and Chip Losses Hit (Blockonomi)</a></li><li><a href="https://chipdispatch.com/articles/nasdaq-falls-3-7-as-ai-sell-off-deepens-nvidia-drops-7" target="_blank" rel="noopener">Nasdaq Falls 3.7% as AI and Chip Stocks Sell Off (Chip Dispatch)</a></li><li><a href="https://www.techi.com/chip-stocks-erase-huang-rally-nasdaq-worst-november-since-2008/" target="_blank" rel="noopener">Chip stocks erase the Huang rally as the Nasdaq heads for its worst November since 2008 (Techi)</a></li><li><a href="https://finimize.com/content/chip-stocks-slide-again-as-traders-question-big-ai-bills" target="_blank" rel="noopener">Chip Stocks Slide Again As Traders Question Big AI Bills (Finimize)</a></li><li><a href="https://coinpaper.com/39410/stock-market-today-s-and-p-500-nasdaq-fall-after-trump-proposes-new-tariffs" target="_blank" rel="noopener">Stock Market Today: S&amp;P 500, Nasdaq Fall After Trump Proposes New Tariffs (Coinpaper)</a></li><li><a href="https://www.techrepublic.com/article/news-anthropic-ipo-nasdaq-trading-debut/" target="_blank" rel="noopener">Anthropic IPO: Claude Maker Opens at $111.50 in Record Nasdaq Debut (TechRepublic)</a></li><li><a href="https://foxbusiness.com/markets/anthropic-begins-trading-nasdaq-record-breaking-ipo" target="_blank" rel="noopener">Anthropic begins trading on Nasdaq in record-breaking IPO (Fox Business)</a></li><li><a href="https://www.aljazeera.com/economy/2026/11/19/anthropic-starts-trading-in-the-us-after-blockbuster-ipo" target="_blank" rel="noopener">Anthropic starts trading in the US after blockbuster IPO (Al Jazeera)</a></li></ol></details>
+  </footer>
+</div>
+<script>
+(function() {
+  var synth = window.speechSynthesis;
+  var currentBtn = null;
+
+  function pickFrenchVoice() {
+    if (!synth) return null;
+    var voices = synth.getVoices().filter(function(v) {
+      return v.lang && v.lang.toLowerCase().indexOf('fr') === 0;
+    });
+    if (!voices.length) return null;
+    var femaleNames = /amelie|amélie|audrey|marie|celine|céline|julie|chantal|female|femme/i;
+    var preferred = voices.find(function(v) { return femaleNames.test(v.name); });
+    return preferred || voices[0];
+  }
+
+  function stopSpeaking() {
+    if (synth) synth.cancel();
+    if (currentBtn) {
+      currentBtn.classList.remove('speaking');
+      currentBtn.textContent = '🔊';
+    }
+    currentBtn = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.speak-btn') : null;
+    if (!btn) return;
+    if (!synth) {
+      alert('当前浏览器不支持语音朗读');
+      return;
+    }
+    if (currentBtn === btn) {
+      stopSpeaking();
+      return;
+    }
+    stopSpeaking();
+    var text = btn.getAttribute('data-fr-text') || '';
+    if (!text) return;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    var voice = pickFrenchVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = stopSpeaking;
+    utter.onerror = stopSpeaking;
+    currentBtn = btn;
+    btn.classList.add('speaking');
+    btn.textContent = '⏸';
+    synth.speak(utter);
+  });
+})();
+</script>
+</body>
+</html>
