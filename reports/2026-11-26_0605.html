@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球财经简报</title>
+<style>
+:root {
+  color-scheme: light;
+  --page-plane: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border-hairline: rgba(11,11,11,0.10);
+  --gridline: #e1e0d9;
+  --accent-blue-l: #2a78d6;
+  --accent-blue-d: #3987e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-plane: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border-hairline: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+header.hero {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+header.hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header.hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+.tldr {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent-blue-l) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-blue-l) 30%, transparent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+}
+@media (prefers-color-scheme: dark) {
+  .tldr { background: color-mix(in srgb, var(--accent-blue-d) 16%, transparent); border-color: color-mix(in srgb, var(--accent-blue-d) 40%, transparent); }
+}
+.tldr .tldr-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent-blue-l);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+@media (prefers-color-scheme: dark) { .tldr .tldr-badge { background: var(--accent-blue-d); } }
+
+section.report-section { margin-bottom: 28px; }
+section.report-section > h2 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.plain-list { margin: 0; padding-left: 1.2em; }
+.plain-list li { margin-bottom: 6px; }
+
+.card-grid { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--accent-light, var(--gridline));
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .card { border-left-color: var(--accent-dark, var(--gridline)); }
+}
+.card-title { margin: 0 0 10px; font-size: 1rem; }
+.field-row { margin: 6px 0; font-size: 0.93rem; color: var(--text-secondary); }
+.field-row .field-label { color: var(--text-primary); font-weight: 600; margin-right: 6px; }
+.field-row strong { color: var(--text-primary); }
+.field-row a { color: var(--accent-blue-l); }
+@media (prefers-color-scheme: dark) { .field-row a { color: var(--accent-blue-d); } }
+
+.tag-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.tag-chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chip-light, var(--text-muted));
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) { .tag-chip { background: var(--chip-dark, var(--text-muted)); } }
+.tag-rationale { font-size: 0.9rem; color: var(--text-secondary); }
+
+.chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.chain-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-light, var(--text-muted)) 14%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--accent-light, var(--text-muted)) 35%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .chain-node { background: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 18%, var(--surface-1)); border-color: color-mix(in srgb, var(--accent-dark, var(--text-muted)) 45%, transparent); }
+}
+.chain-node-end { background: var(--accent-light, var(--text-muted)); color: #fff; border-color: transparent; }
+@media (prefers-color-scheme: dark) { .chain-node-end { background: var(--accent-dark, var(--text-muted)); } }
+.chain-arrow { color: var(--text-muted); font-weight: 700; }
+
+.bilingual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 8px; }
+.bilingual-col { padding: 0 0 0 0; }
+.bilingual-col:first-child { border-right: 1px solid var(--gridline); padding-right: 20px; }
+.bilingual-col:last-child { padding-left: 0; }
+.bilingual-caption { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.bilingual-col p { margin: 0; font-size: 0.93rem; }
+.fr-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speak-btn {
+  border: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.speak-btn:hover { border-color: var(--accent-blue-l); color: var(--accent-blue-l); }
+.speak-btn.speaking { background: var(--accent-blue-l); border-color: var(--accent-blue-l); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .speak-btn:hover { border-color: var(--accent-blue-d); color: var(--accent-blue-d); }
+  .speak-btn.speaking { background: var(--accent-blue-d); border-color: var(--accent-blue-d); color: #fff; }
+}
+@media (max-width: 560px) {
+  .bilingual-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bilingual-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--gridline); padding-bottom: 10px; }
+}
+
+footer.report-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--gridline); }
+.disclaimer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+.sources { font-size: 0.8rem; color: var(--text-muted); }
+.sources summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+.sources ol { padding-left: 1.2em; }
+.sources li { margin-bottom: 4px; }
+.sources a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>全球财经简报</h1>
+    <div class="subtitle">2026-11-26 06:05 CET &middot; 渲染于 2026-11-26 06:05</div>
+    <div class="tldr"><span class="tldr-badge">TLDR</span><span>亚洲股市周四反弹,日经+1.4%、韩国综指+1.3%;英伟达评级被标普列入下调观察;美股今日休市</span></div>
+  </header>
+  <section class="report-section"><h2>📌 本时段要闻速览</h2><ul class="plain-list"><li><strong>亚洲盘反弹:</strong> 日经早盘约 +1.3%,后段约 +1.4%,报 57,804.92。韩国综指约 +1.3%,报 4,758.82。Kosdaq 涨超 2%。</li><li><strong>周三亚洲盘跌得更重:</strong> 韩国综指周三收跌 6.16%,日经收跌 2.78%。这发生在美股尾盘收窄之前,亚洲盘当时没有享受到这个缓冲。</li><li><strong>标普把英伟达列入下调观察</strong>(据搜索摘要)。</li><li><strong>存储和半导体领涨:</strong> Kioxia、软银涨幅达两位数。韩国央行年内最后一次利率决议在亚洲开盘后不久公布,结果我没有找到。</li><li><strong>美股今日休市,</strong> 11/27 提前收盘。</li></ul></section><section class="report-section"><h2>🔗 事件 → 关联分析</h2><div class="card-grid"><article class="card"><h3 class="card-title">亚洲科技股超跌反弹</h3><p class="field-row"><span class="field-label">事件</span>AFP、investingLive 等报道,周四首尔、东京、台北的科技股领涨,跟随美股尾盘的反弹(11/26 亚洲时段)。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>存储芯片(Kioxia、三星、SK 海力士)、软银、台积电链、日韩指数。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">韩国综指前一天跌 6%,今天只回补约 1.3%,回补幅度小于跌幅。Kioxia 和软银的两位数涨幅更像超跌反弹,没有新的基本面支撑。</span></p></article><article class="card"><h3 class="card-title">标普将英伟达列入下调观察</h3><p class="field-row"><span class="field-label">事件</span>搜索摘要称标普把英伟达评级放入下调观察。我没有拿到原文,不清楚评级级别、触发原因,也不确定是不是本时段的新消息。</p><p class="field-row"><span class="field-label">历史/逻辑关联板块</span>英伟达、AI 算力链、CoreWeave 等依赖英伟达的信用主体。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">评级观察通常对股价影响有限,但它和治理风险(董事会独立调查)叠加,可能影响融资成本。这条只有单一来源,需要原文核实。</span></p></article><article class="card"><h3 class="card-title">英伟达数据口径冲突</h3><p class="field-row"><span class="field-label">事件</span>本次有摘要称英伟达周三&quot;下跌 5.86%,报 155.38 美元&quot;,前一个交易日&quot;周一上涨 31.48%&quot;。这与上期&quot;11/25 收跌近 4%、11/24 收跌约 6%&quot;不一致。</p><p class="field-row"><span class="field-label">处理</span>我无法判断哪个对。31.48% 的单日涨幅也不寻常,可能是摘要有误或混入了别的时点。本期不把这些数字当作确认数据。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#d03b3b;--chip-dark:#e66767">情绪博弈 · 高风险</span><span class="tag-rationale">同一只股票在不同来源里有不同的涨跌幅,说明消息面混乱。在拿到收盘价之前,不要依据这些数字做判断。</span></p></article></div></section><section class="report-section"><h2>⛓️ 联动链条分析 · Chaînes de corrélation</h2><div class="card-grid"><article class="card" style="--accent-light:#2a78d6;--accent-dark:#3987e5"><h3 class="card-title">本时段无足够新信息支撑新的链条</h3><div class="chain-flow"><span class="chain-node">上期的&quot;加息预期</span><span class="chain-arrow">→</span><span class="chain-node">抄底资金</span><span class="chain-arrow">→</span><span class="chain-node chain-node-end">休市前反弹&quot;链条没有新进展</span></div><p class="field-row"><span class="field-label">逻辑</span>今天美股休市,没有新的美国数据。亚洲盘的反弹是对美股尾盘收窄的跟随,不是独立的新驱动。我没有找到可核实的利率和关税新消息,硬画链条只会编造内容。</p><p class="field-row tag-row"><span class="tag-chip" style="--chip-light:#c98500;--chip-dark:#eda100">可能滞后</span><span class="tag-rationale">利率和关税逻辑要等 11/27 提前收盘和下周一重新开盘才有检验机会。</span></p></article></div></section><section class="report-section"><h2>🌐 双语洞察 · Perspectives bilingues</h2><div class="card-grid"><article class="card"><h3 class="card-title">亚洲盘先挨刀,后补血</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>美股尾盘缓过来的时候,亚洲盘早已收工,韩国综指的 6% 跌幅只能自己扛。周四的反弹更像是迟到的补课。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Quand Wall Street a repris son souffle en fin de séance, l&#x27;Asie avait déjà fermé, et le Kospi a encaissé son -6 % tout seul. Le rebond de jeudi, c&#x27;est un peu le rattrapage de cours manqué." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Quand Wall Street a repris son souffle en fin de séance, l&#x27;Asie avait déjà fermé, et le Kospi a encaissé son -6 % tout seul. Le rebond de jeudi, c&#x27;est un peu le rattrapage de cours manqué.</p></div></div></article><article class="card"><h3 class="card-title">涨幅比跌幅小</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>韩国综指前一天跌 6%,今天只涨约 1.3%。爬楼梯总比滚楼梯慢。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Le Kospi a perdu 6 % mercredi et n&#x27;en regagne qu&#x27;environ 1,3 % jeudi. On redescend en roulade, on remonte à pied." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Le Kospi a perdu 6 % mercredi et n&#x27;en regagne qu&#x27;environ 1,3 % jeudi. On redescend en roulade, on remonte à pied.</p></div></div></article><article class="card"><h3 class="card-title">一只股票,几套数字</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>同一天的英伟达,在不同的来源里有不同的涨跌幅。遇到这种情况,&quot;我不确定&quot;比选一个数字更诚实。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Pour la même journée, Nvidia affiche plusieurs variations selon les sources. Dans ce cas, mieux vaut dire « je ne sais pas » que choisir un chiffre au hasard." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Pour la même journée, Nvidia affiche plusieurs variations selon les sources. Dans ce cas, mieux vaut dire « je ne sais pas » que choisir un chiffre au hasard.</p></div></div></article><article class="card"><h3 class="card-title">评级机构的慢动作</h3><div class="bilingual-grid"><div class="bilingual-col"><div class="bilingual-caption">中文</div><p>评级机构的&quot;下调观察&quot;像是慢镜头回放,通常比股价晚到。但它会影响融资成本,不仅仅是个标签。</p></div><div class="bilingual-col"><div class="bilingual-caption fr-caption-row"><span>Français</span><button type="button" class="speak-btn" data-fr-text="Une mise sous surveillance par l&#x27;agence de notation arrive en général après la bataille, au ralenti. Mais elle peut renchérir le financement, ce n&#x27;est pas qu&#x27;une étiquette." aria-label="朗读法语" title="朗读法语">🔊</button></div><p>Une mise sous surveillance par l&#x27;agence de notation arrive en général après la bataille, au ralenti. Mais elle peut renchérir le financement, ce n&#x27;est pas qu&#x27;une étiquette.</p></div></div></article></div></section><section class="report-section"><h2>🔄 与上一期的变化</h2><p>- <strong>亚洲盘补上了新数据:</strong> 上期没有今天亚洲盘的表现,现在补上了(日经、韩国综指)。
+- <strong>新增:</strong> 标普对英伟达的下调观察(单一来源,待核实)。
+- <strong>数据冲突:</strong> 英伟达的涨跌幅与上期不一致,没有核实,不采用。
+- <strong>未应验也未证伪:</strong> 加息、关税逻辑没有新进展。
+- <strong>仍然缺失:</strong> 油价、黄金、铜、收益率、美元、韩国央行决议结果、Anthropic 具体股价。
+- <strong>花絮板块省略,</strong> 没有可核实的条目。</p></section>
+  <footer class="report-footer">
+    <p class="disclaimer">本简报由AI基于公开信息自动生成,仅供研究参考,不构成投资建议。</p>
+    <details class="sources"><summary>信息来源 · Sources (4)</summary><ol><li><a href="https://www.france24.com/en/live-news/20261126-asian-stocks-enjoy-another-bounce-as-tech-holds-court" target="_blank" rel="noopener">Asian stocks enjoy another bounce as tech holds court (France24/AFP)</a></li><li><a href="https://investinglive.com/stock-market-update/nikkei-and-kospi-rebound-over-1-as-asia-follows-wall-street-s-comeback-bok-decision-next/" target="_blank" rel="noopener">Nikkei and Kospi rebound over 1% as Asia follows Wall Street&#x27;s comeback (investingLive)</a></li><li><a href="https://abc.net.au/news/2026-11-26/asx-markets-business-news-live-updates-thursday-26-november/107428134" target="_blank" rel="noopener">Markets live updates, 26 November (ABC News Australia)</a></li><li><a href="https://www.aa.com.tr/en/economy/asian-chip-stocks-plunge-as-nvidia-led-rally-fades/4136929" target="_blank" rel="noopener">Asian chip stocks plunge as Nvidia-led rally fades (Anadolu)</a></li></ol></details>
+  </footer>
+</div>
+<script>
+(function() {
+  var synth = window.speechSynthesis;
+  var currentBtn = null;
+
+  function pickFrenchVoice() {
+    if (!synth) return null;
+    var voices = synth.getVoices().filter(function(v) {
+      return v.lang && v.lang.toLowerCase().indexOf('fr') === 0;
+    });
+    if (!voices.length) return null;
+    var femaleNames = /amelie|amélie|audrey|marie|celine|céline|julie|chantal|female|femme/i;
+    var preferred = voices.find(function(v) { return femaleNames.test(v.name); });
+    return preferred || voices[0];
+  }
+
+  function stopSpeaking() {
+    if (synth) synth.cancel();
+    if (currentBtn) {
+      currentBtn.classList.remove('speaking');
+      currentBtn.textContent = '🔊';
+    }
+    currentBtn = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.speak-btn') : null;
+    if (!btn) return;
+    if (!synth) {
+      alert('当前浏览器不支持语音朗读');
+      return;
+    }
+    if (currentBtn === btn) {
+      stopSpeaking();
+      return;
+    }
+    stopSpeaking();
+    var text = btn.getAttribute('data-fr-text') || '';
+    if (!text) return;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    var voice = pickFrenchVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = stopSpeaking;
+    utter.onerror = stopSpeaking;
+    currentBtn = btn;
+    btn.classList.add('speaking');
+    btn.textContent = '⏸';
+    synth.speak(utter);
+  });
+})();
+</script>
+</body>
+</html>
